@@ -1,3 +1,30 @@
+body {
+    padding: 20px;
+    background-color: #233142;
+}
+
+table {
+    background-color: #C5D6C6;
+    border-spacing: 0;
+}
+
+td {
+    border: 1px solid #F1F5DA;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+span {
+    color: #233142;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .header{
     background-color: #f95959; 
     padding-top: 5px; 
@@ -87,4 +114,33 @@
     top: 1%;
     padding: 0;
     left: 108%
+}
+
+
+td.dead {
+    background-color: transparent;
+}
+
+td.live {
+    background-color: #CC4774;
+    border-radius: 10px;
+}
+
+#gridContainer {
+    padding-bottom: 10px;
+}
+
+#start,
+#clear,
+#random {
+    padding: .75em;
+    border-radius: 5px;
+    border: none;    
+    background: linear-gradient(
+        to bottom right,
+        #C5DEC6, #587559);
+}
+
+#header {
+    flex: 1;
 }
