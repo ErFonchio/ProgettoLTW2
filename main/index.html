@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>The game of Life</title>
+        <link rel="stylesheet" href="sections/css/style.css">   
+        <link href="sections/css/nord.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="sidepanel.css">
+    </head>
+    <body>
+        <div id="container" style="display: flex; flex-direction: column; height: 100vh;">
+            <div id="nord" class="header" style="flex: 1">
+                <div id="title" class="title">
+                    THE GAME OF LIFE
+                </div>
+                <div id="buttons" class="buttons">
+                    <button id="login" class="button" role="button" onclick="openForm()">LOGIN</button>
+                    <div class="form-popup" id="loginForm">
+                        <form action="/action_page.php" class="form-container">
+                        <h1>Login</h1>
+                    
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Username" name="email" required style="margin: 0 0 3 0">
+                    
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                        <button type="submit" class="loginButton">Login</button>
+                        <button type="button" class="loginButton" onclick="openSignin()">SignIn</button>
+                        <button type="button" class="cancelButton" onclick="closeForm()">×</button>
+                        </form>
+                    </div>
+                    <div class="form-popup" id="signinForm">
+                    <form action="/action_page.php" class="form-container">
+                        <h1>Sign In</h1>
+                    
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter email" name="email" required style="margin: 0 0 3 0">
+                    
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                        <button type="submit" class="loginButton">SignIn</button>
+                        
+                        <button type="button" class="cancelButton" onclick="closeSignin()">×</button>
+                    </form>
+                    </div>
+                    <a href="about.html" role="button">
+                        <button id="about" class="button">ABOUT</button>
+                    </a>
+                    <!--eventualmente cambiare LOGIN con icona profilo e ABOUT con icona righette-->
+                </div>
+            </div>
+        
+            <div id="middle" style="flex: 3; display: flex; flex-direction: row;">
+                
+                <div id="ovest" class="sidepanel_ovest" style="flex: 1">
+                    <span>sadfsdf</span>
+                    <div class="circle_ovest"></div>
+                </div>
+                <div id="gridContainer" style="flex: 3"></div>
+                <div id="est" style="flex: 1"></div>
+            </div>
+            <div id="sud" style="flex: 1">
+            
+                <!-- QUESTA SEZIONE ANDREBBE IN CENTRO -->
+        
+                <!-- TODO: AGGIUNGERE IL TAG HTML COMPRENSIVO DI METADATI-->
+                <button id="pac-man"><span>Pac-man</span></button>
+                <button id="save"><span>Salva</span></button>
+                <button id="start"><span>Start</span></button>
+                <button id="clear"><span>Clear</span></button>
+                <button id="random"><span>Random</span></button>
+                <button id="reset"><span>Reset</span></button>
+                <table>
+                    <tr>
+                        <td>
+                            <button id="zoom+"><span>zoom+</span></button>
+                        </td>
+                        <td>
+                            <button id="zoom-"><span>zoom-</span></button>
+                        </td>
+                    </tr>
+                        <td>
+                            <label for="fps-number">FPS:</label>
+                        </td>
+                        <td>
+                            <input type="number" id="fps-number" name="quantity" min="1" max="120">
+                        </td>
+                    <tr>
+                        
+                    </tr>
+        
+                </table>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="sections/js/script.js"></script>
+        <script src="sections/js/panel.js"></script>
+        <script src="sections/js/nord.js"></script>
+    </body>
+</html>

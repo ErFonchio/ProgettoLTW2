@@ -1,0 +1,91 @@
+.header{
+    background-color: #f95959; 
+    padding-top: 5px; 
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: 60%;
+    position: relative;
+    
+}
+
+.title{
+    color: #e3e3e3;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    /*float: left;*/
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    
+}
+
+.buttons{
+    /*float: right;*/
+    position: absolute;
+    right: 3%;
+    top: 40%;
+}
+
+.button{
+    color: #e3e3e3;
+    background-color: #f95959;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #f95959; 
+    color: #455d7a;
+  }/*animazione bottoni*/
+
+.form-popup {
+    display: none;
+    position: absolute;
+    top: 200%;
+    right: 90%;
+    z-index: auto;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #455d7a;
+    text-align: center;
+
+    
+}
+  
+  /* Add styles to the form container */
+.form-container {
+    max-width: 350px;
+    width:180px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right:12%;
+    background-color: #e3e3e3;
+    border-radius: 10%;
+    /*top:50%;*/
+    box-shadow: 0.3em 0.3em 1em #233142,
+                -0.3em -0.3em 1em #233142;
+  }
+
+.loginButton{
+    color: #e3e3e3;
+    background-color: #455d7a;
+    border: none;
+    padding: .75em;
+    border-radius: 5px;
+    margin:15 10 10 10;
+    
+}
+
+.cancelButton{
+    border:none;
+    background-color: #e3e3e3;
+    color: 455d7a;
+    font-size: 22;
+    bottom: 100%;
+    position:absolute;
+    top: 1%;
+    padding: 0;
+    left: 108%
+}
