@@ -1,5 +1,5 @@
-var rows = 38;
-var cols = 100;
+var rows = 25;
+var cols = 70;
 
 var playing = false;
 
@@ -108,11 +108,6 @@ function setupControlButtons() {
     randomButton.onclick = randomButtonHandler;
 }
 
-//Permette di caricare i pulsanti
-$(document).on('click', '#random', randomButtonHandler);
-$(document).on('click', '#start', startButtonHandler);
-$(document).on('click', '#clear', clearButtonHandler);
-
 function randomButtonHandler() {
     if (playing) return;
     clearButtonHandler();
@@ -134,7 +129,7 @@ function clearButtonHandler() {
     
     playing = false;
     var startButton = document.getElementById('start');
-    startButton.innerHTML = "Start";    
+    startButton.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';    
     clearTimeout(timer);
     
     var cellsList = document.getElementsByClassName("live");
@@ -146,9 +141,14 @@ function clearButtonHandler() {
     }
     
     for (var i = 0; i < cells.length; i++) {
+
         cells[i].setAttribute("class", "dead");
     }
-    resetGrids;
+    for(var i=0; i<rows; i++){
+        for(var j=0; j<cols; j++){
+            grid[i][j]=0;
+        }
+    }
 }
 
 // start/pause/continue the game
@@ -156,12 +156,12 @@ function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
         playing = false;
-        this.innerHTML = "Continue";
+        this.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
         clearTimeout(timer);
     } else {
         console.log("Continue the game");
         playing = true;
-        this.innerHTML = "Pause";
+        this.innerHTML = '<span class="material-symbols-outlined">pause</span>';
         play();
     }
 }

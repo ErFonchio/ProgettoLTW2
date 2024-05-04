@@ -22,29 +22,30 @@
     <title>The Game of Life</title>
 </head>
 <body>
-    <header>
-        <h1 class="title">The Game of Life</h1>
-    </header>
-    <div class="container">
-        <div class="left-side-panel">
+    <h1 class="md-typescale-display-medium">Hello Material!</h1>
+    <form>
+      <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+      <md-checkbox></md-checkbox>
+      <div>
+        <md-radio name="group"></md-radio>
+        <md-radio name="group"></md-radio>
+        <md-radio name="group"></md-radio>
+      </div>
+      <md-outlined-text-field label="Favorite color" value="gPurple"></md-outlined-text-field>
+      <md-outlined-button type="reset">Reset</md-outlined-button>
+      <md-slider range value-start="25" value-end="75"></md-slider>
+    </form>
+    <md-tabs>
+        <md-primary-tab>
+          <md-icon slot="icon">piano</md-icon>
+          Keyboard
+        </md-primary-tab>
+        <md-primary-tab>
+          <md-icon slot="icon">tune</md-icon>
+          Guitar
+        </md-primary-tab>
+      </md-tabs>
+      <md-circular-progress indeterminate aria-label="Page refresh progress"></md-circular-progress>
 
-        </div>
-        
-        <div id="gridContainer"></div>
-        
-            
-        <div class="right-side-panel">
-
-        </div>
-
-    </div>
-    <div id="control-buttons">
-        <div class="controls">
-            <md-filled-button id="start"><span class="material-symbols-outlined">play_arrow</span></md-filled-button>
-            <md-filled-button id="clear"><span class="material-symbols-outlined">restart_alt</span></md-filled-button>
-            <md-filled-button id="random"><span class="material-symbols-outlined">casino</span></md-filled-button>
-        </div>
-    </div>
 </body>
-<script src="/public/js/script.js"></script>
 </html>
