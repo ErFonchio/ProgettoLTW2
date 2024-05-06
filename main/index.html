@@ -45,11 +45,6 @@
 
     </div>
     <div class="control-panel">
-        <div>
-            <!-- div lasciato vuoto per allineare il control panel -->
-        </div>
-
-
         <div class="control-buttons">
             <div class="controls">
                 <md-filled-button id="start"><span class="material-symbols-outlined">play_arrow</span></md-filled-button>
@@ -58,9 +53,10 @@
             </div>
         </div>
         <div class="fps-control">
-            <span class="material-symbols-outlined" id="add-fps">add</span>
-            <span id="add-fps">fps</span>
-            <span class="material-symbols-outlined" id="add-fps">remove</span>
+            <md-filled-button id="increase-fps"><span class="material-symbols-outlined">add</span></md-filled-button>
+            <input type="number" name="fps-field" id="fps-field" value="30" placeholder="FPS">
+            <md-filled-button id="decrease-fps"><span class="material-symbols-outlined">remove</span></md-filled-button>
+
         </div>
     </div>
 </body>

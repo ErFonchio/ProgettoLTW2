@@ -1,13 +1,17 @@
 :root {
     --first-color: #e3e3e3;
+    --live-color: red;
+    --dead-color: transparent;
+
+    
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+   -webkit-appearance: none;
+   margin: 0;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-}
 
 header {
     display: flex;
@@ -71,18 +75,25 @@ span {
 }
 
 .control-panel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding: 5px;
+    margin: 5px;
 }
 
 .control-buttons {
+    grid-column: 2;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
+.fps-control {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 td.dead {
     background-color: transparent;
@@ -96,13 +107,12 @@ td.live {
 
 #start,
 #clear,
-#random {
+#random,
+#increase-fps,
+#decrease-fps {
     padding: .75em;
-    border-radius: 5px;
-    border: none;    
-    background: linear-gradient(
-        to bottom right,
-        #C5DEC6, #587559);
+    border-radius: 8px;   
+    
 }
 #title{
     color: var(--first-color);
@@ -116,3 +126,17 @@ td.live {
     padding-bottom: 10px;
 }
 
+#fps-field {
+    width: 6vh;
+    text-align: center;
+    height: auto;
+    font-size: 2em;
+    border-radius: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+   -webkit-appearance: none;
+   margin: 0;
+}
