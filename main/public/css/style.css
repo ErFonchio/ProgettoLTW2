@@ -1,5 +1,8 @@
 :root {
-    --first-color: #e3e3e3;
+    --primary-color: #e3e3e3;
+    --secondary-color: #c294fd;
+    --tertiary-color: #8f32e0;
+    --quaternary-color: #222222;
     --live-color: red;
     --dead-color: transparent;
 
@@ -22,7 +25,7 @@ header {
 
 body {
     padding: 20px;
-    background-color: #444;
+    background-color: #c4c4c4;
 }
 
 
@@ -115,7 +118,7 @@ td.live {
     
 }
 #title{
-    color: var(--first-color);
+    color: var(--primary-color);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 700;
     position: relative;
