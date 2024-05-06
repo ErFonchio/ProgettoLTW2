@@ -1,8 +1,8 @@
 :root {
     --primary-color: #e3e3e3;
-    --secondary-color: #c294fd;
-    --tertiary-color: #8f32e0;
-    --quaternary-color: #222222;
+    --secondary-color: #735EAB;
+    --tertiary-color: #222222;
+    --quaternary-color: #8f32e0;
     --live-color: red;
     --dead-color: transparent;
 
@@ -18,14 +18,14 @@ input::-webkit-inner-spin-button
 
 header {
     display: flex;
-    background-color: #f95959;
+    background-color: var(--secondary-color);
     align-items: center;
     justify-content: space-between;
 }
 
 body {
     padding: 20px;
-    background-color: #c4c4c4;
+    background-color: var(--primary-color);
 }
 
 
@@ -54,7 +54,7 @@ span {
 
 .container {
     display: flex;
-    background-color: blue;
+    background-color: transparent;
     width: 100%;
     height: auto;
 }
@@ -95,7 +95,15 @@ span {
     grid-column: 3;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.save-buttons {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
 }
 
 td.dead {
@@ -118,11 +126,13 @@ td.live {
     
 }
 #title{
-    color: var(--primary-color);
+    color: var(--tertiary-color);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 700;
+    font-size: 40px;
     position: relative;
-    padding: 2vh;
+    padding: 10px;
+    margin-left: 1vw;
 }
 
 #gridContainer {
@@ -142,4 +152,11 @@ input::-webkit-inner-spin-button
 {
    -webkit-appearance: none;
    margin: 0;
+}
+
+@media (max-width: 1000px) {
+    #title {
+        color: blue;
+        font-size: 20px;
+    }
 }
