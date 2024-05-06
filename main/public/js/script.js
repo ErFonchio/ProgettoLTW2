@@ -7,7 +7,7 @@ var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
 var timer;
-var reproductionTime = 1000;
+var reproductionTime;
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
@@ -36,6 +36,7 @@ function copyAndResetGrid() {
 
 // Initialize
 function initialize() {
+    reproductionTime = 120;
     isMobileOrDesktop()
     createTable();
     initializeGrids();
@@ -255,11 +256,17 @@ function isMobileOrDesktop() {
     }
 }
 
+function getFPSvalue(){
+    var fpsField = document.getElementById('fps-field');
+    console.log("Current FPS Value: ",fpsField);
+    return parseInt(fpsField.value);
+}
+
 function increaseFPS() {
     var fpsField = document.getElementById('fps-field');
     var currentValue = parseInt(fpsField.value);
     var newValue = currentValue + 10;
-    if(newValue>120) newValue = 120;
+    if(newValue>240) newValue = 240;
     fpsField.value = newValue;
 }
 
@@ -271,17 +278,20 @@ function decreaseFPS() {
     fpsField.value = newValue;
 }
 
-function checkFPSvalue() {
+function setFPSvalue() {
     var fpsField = document.getElementById('fps-field');
     var currentValue = parseInt(fpsField.value);
     if(currentValue<10) {
+        currentValue = 10
         fpsField.value = 10;
-    } else if(currentValue>120) {
-        fpsField.value = 120;
+    } else if(currentValue>240) {
+        currentValue = 240;
+        fpsField.value = 240;
     }
-    reproductionTime = 1000 / currentValue;
 
 }
+
+
 
 // listener del bottone per aumentare i frame per secondo
 document.getElementById('increase-fps').addEventListener('click', increaseFPS);
@@ -291,7 +301,7 @@ document.getElementById('decrease-fps').addEventListener('click', decreaseFPS);
 
 // listener del campo fps-value
 
-document.getElementById('fps-field').addEventListener('change', checkFPSvalue);
+document.getElementById('fps-field').addEventListener('change', setFPSvalue);
 
 
 // listener dell'orientamento dello schermo

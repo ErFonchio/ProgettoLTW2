@@ -159,14 +159,21 @@ td.live {
 
 
 #fps-field {
-    width: 6vh;
+    width: 8vh;
     text-align: center;
     height: auto;
-    font-size: 2em;
+    font-size: 1.5em;
     border-radius: 8px;
     background-color: var(--tertiary-color);
     border: none;
     color: var(--primary-color);
+}
+
+#fps-field-label {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    color: var(--tertiary-color);
 }
 
 input::-webkit-outer-spin-button,
