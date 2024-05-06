@@ -36,6 +36,7 @@ function copyAndResetGrid() {
 
 // Initialize
 function initialize() {
+    isMobileOrDesktop()
     createTable();
     initializeGrids();
     resetGrids();
@@ -242,3 +243,23 @@ function countNeighbors(row, col) {
 
 // Start everything
 window.onload = initialize;
+
+function isMobileOrDesktop() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        console.log("Mobile");
+        return "Mobile";
+    } else {
+        console.log("Desktop");
+        return "Desktop";
+    }
+}
+
+screen.orientation.addEventListener("change", (event) => {
+    const type = event.target.type;
+    const angle = event.target.angle;
+    isMobileOrDesktop()
+    console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`);
+  });
+
+
+
