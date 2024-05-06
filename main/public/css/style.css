@@ -3,7 +3,7 @@
     --secondary-color: #735EAB;
     --tertiary-color: #222222;
     --quaternary-color: #8f32e0;
-    --live-color: red;
+    --live-color: #CC4774;
     --dead-color: transparent;
 
     
@@ -31,12 +31,13 @@ body {
 
 
 table {
-    background-color: #C5D6C6;
+    margin: 20px;
+    background-color: var(--primary-color);
     border-spacing: 0;
 }
 
 td {
-    border: 1px solid #F1F5DA;
+    border: 1px solid rgb(196, 196, 196);
     border-radius: 3px;
     width: 6vh;
     height: 10px;
@@ -52,21 +53,30 @@ span {
     justify-content: space-around;
 }
 
+td.dead {
+    background-color: var(--dead-color);
+}
+
+td.live {
+    background-color: var(--live-color);
+    border-radius: 10px;
+}
+
 .container {
     display: flex;
     background-color: transparent;
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
 .left-side-panel {
-    background-color: red;
+    
     width: 50%;
     height: 200px;
 }
 
 .right-side-panel {
-    background-color: purple;
+    
     width: 50%;
     height: 200px;
 }
@@ -80,8 +90,13 @@ span {
 .control-panel {
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    padding: 5px;
-    margin: 5px;
+}
+.save-buttons {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
 }
 
 .control-buttons {
@@ -98,23 +113,30 @@ span {
     justify-content: flex-start;
 }
 
-.save-buttons {
-    grid-column: 1;
+.fps-control > * {
+    margin: 0 5px;
+
+}
+
+.save-buttons > * {
+    margin: 0 5px;
+
+}
+
+.nav-bar span {
+    font-size: 2.5vw;
+}
+
+
+.fps-counter-div {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
+    margin: 10px;
+
 
 }
-
-td.dead {
-    background-color: transparent;
-}
-
-td.live {
-    background-color: #CC4774;
-    border-radius: 10px;
-}
-
 
 #start,
 #clear,
@@ -135,9 +157,6 @@ td.live {
     margin-left: 1vw;
 }
 
-#gridContainer {
-    padding-bottom: 10px;
-}
 
 #fps-field {
     width: 6vh;
@@ -145,6 +164,9 @@ td.live {
     height: auto;
     font-size: 2em;
     border-radius: 8px;
+    background-color: var(--tertiary-color);
+    border: none;
+    color: var(--primary-color);
 }
 
 input::-webkit-outer-spin-button,
@@ -153,6 +175,7 @@ input::-webkit-inner-spin-button
    -webkit-appearance: none;
    margin: 0;
 }
+
 
 @media (max-width: 1000px) {
     #title {

@@ -7,7 +7,7 @@ var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
 var timer;
-var reproductionTime = 100;
+var reproductionTime = 1000;
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
@@ -244,6 +244,7 @@ function countNeighbors(row, col) {
 // Start everything
 window.onload = initialize;
 
+// restituisce il tipo di dispositivo con cui l'utente è collegato
 function isMobileOrDesktop() {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         console.log("Mobile");
@@ -254,6 +255,46 @@ function isMobileOrDesktop() {
     }
 }
 
+function increaseFPS() {
+    var fpsField = document.getElementById('fps-field');
+    var currentValue = parseInt(fpsField.value);
+    var newValue = currentValue + 10;
+    if(newValue>120) newValue = 120;
+    fpsField.value = newValue;
+}
+
+function decreaseFPS() {
+    var fpsField = document.getElementById('fps-field');
+    var currentValue = parseInt(fpsField.value);
+    var newValue = currentValue - 10;
+    if(newValue<10) newValue = 10;
+    fpsField.value = newValue;
+}
+
+function checkFPSvalue() {
+    var fpsField = document.getElementById('fps-field');
+    var currentValue = parseInt(fpsField.value);
+    if(currentValue<10) {
+        fpsField.value = 10;
+    } else if(currentValue>120) {
+        fpsField.value = 120;
+    }
+    reproductionTime = 1000 / currentValue;
+
+}
+
+// listener del bottone per aumentare i frame per secondo
+document.getElementById('increase-fps').addEventListener('click', increaseFPS);
+
+// listener del bottone per diminuire i frame per secondo
+document.getElementById('decrease-fps').addEventListener('click', decreaseFPS);
+
+// listener del campo fps-value
+
+document.getElementById('fps-field').addEventListener('change', checkFPSvalue);
+
+
+// listener dell'orientamento dello schermo
 screen.orientation.addEventListener("change", (event) => {
     const type = event.target.type;
     const angle = event.target.angle;

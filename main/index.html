@@ -26,9 +26,9 @@
     <header>
         <h1 id="title">The Game of Life</h1>
         <div class="nav-bar">
-            <a class="nav-item" href="#"><span class="material-symbols-outlined">passkey</span></a>
-            <a class="nav-item" href="#"><span class="material-symbols-outlined">question_mark</span></a>
-            <a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a>
+            <a href="#"><span id="login-button" class="material-symbols-outlined">passkey</span></a>
+            <a href="#"><span id="about-button" class="material-symbols-outlined">lightbulb</span></a>
+            <a href="#"><span id="help-button" class="material-symbols-outlined">question_mark</span></a>
         </div>
     </header>
     <div class="container">
@@ -57,13 +57,17 @@
             </div>
         </div>
         <div class="fps-control">
-            <md-filled-button id="increase-fps"><span class="material-symbols-outlined">add</span></md-filled-button>
-            <input type="number" name="fps-field" id="fps-field" value="30" placeholder="FPS">
-            <md-filled-button id="decrease-fps"><span class="material-symbols-outlined">remove</span></md-filled-button>
+            <md-filled-button id="increase-fps" ><span class="material-symbols-outlined">add</span></md-filled-button>
+            <div class="fps-counter-div">
+                <label for="fps-field">FPS:</label>
+                <input type="number" name="fps-field" id="fps-field" value="30" min="10" max="120" placeholder="FPS">
+            </div>
+            <md-filled-button id="decrease-fps" ><span class="material-symbols-outlined">remove</span></md-filled-button>
 
         </div>
     </div>
 </body>
 
 <script src="/public/js/script.js"></script>
+<script src="/public/js/orientationTest.js"></script>
 </html>
