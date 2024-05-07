@@ -24,7 +24,7 @@ header {
 }
 
 body {
-    padding: 20px;
+    padding: 0;
     background-color: var(--primary-color);
 }
 
@@ -116,6 +116,70 @@ td.live {
 }
 
 
+/*classi about*/
+.subtitle{
+    color: var(--tertiary-color);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    position: relative;
+    padding: 10px;
+    margin-left: 1vw;
+}
+
+.subsubtitle-left{
+    text-align: left;
+    margin-left: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--tertiary-color);
+    font-size: 20px;
+}
+
+.subsubtitle-right{
+    text-align: right;
+    margin-right: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--tertiary-color);
+    font-size: 20px;
+}
+
+.first-container{
+    padding-left: 17vw;
+    padding-right: 17vw;
+}
+
+.second-container{
+    background-color: var(--quaternary-color);
+    padding: 15px;
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+
+.text{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    margin: 5px;
+    text-align:justify;
+    
+}
+
+.div-img{
+    padding: 8px;
+    width: 350%;
+    
+    
+}
+
+.img{
+    object-fit:contain;
+    width:100%;
+    
+    
+}
+
+/*fine classi about*/
+
+
 #start,
 #clear,
 #random,
@@ -159,4 +223,31 @@ input::-webkit-inner-spin-button
         color: blue;
         font-size: 20px;
     }
+    .first-container{
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+    .text{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+        margin: 5px;
+    }
+    .subtitle{
+        
+        font-size: 18px;
+        
+    }
+    
+    .subsubtitle-left{
+        
+        font-size: 16px;
+    }
+    
+    .subsubtitle-right{
+        
+        font-size: 16px;
+    }
+
 }
+
+
