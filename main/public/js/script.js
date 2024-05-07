@@ -321,4 +321,73 @@ screen.orientation.addEventListener("change", (event) => {
   });
 
 
+  $('.circle_ovest').click(function() {
+    let spWidth = $('.left-side-panel').width();
+    let spMarginLeft = parseInt($('.left-side-panel').css('margin-left'),10);
+    let radius = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--radius').trim());
 
+    let w = (spMarginLeft >= 0 ) ? spWidth * -1 : 0;
+    let cw = (w < 0) ? -(w+radius): spWidth-$('.circle_ovest').width()-radius;
+    $('.left-side-panel').animate({
+        marginLeft:w
+    });
+    $('.circle_ovest').animate({
+        left:cw
+    },
+    function() {
+        $(this).find('span').toggleClass('rotated');
+    });
+});
+
+
+$('.circle_est').click(function() {
+    let spWidth = $('.sidepanel_est').width();
+    let spMarginRight = parseInt($('.sidepanel_est').css('margin-right'),10);
+    let radius = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--radius').trim());
+
+    let w = (spMarginRight >= 0 ) ? spWidth * -1 : 0;
+    let cw = (w < 0) ? -(w+radius): spWidth-$('.circle_est').width()-radius;
+    $('.sidepanel_est').animate({
+        marginRight:w
+    });
+    $('.circle_est').animate({
+        right:cw
+    },
+    function() {
+        $(this).find('span').toggleClass('rotated');
+    });
+});
+
+function aggiungiDiv() {
+    // Creare un nuovo elemento div
+    var nuovoDiv = document.createElement('div');
+    nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
+
+    var nuovaImmagine = document.createElement('img');
+    nuovaImmagine.src = '/../immagini/glider.png'; // Impostare l'URL dell'immagine
+    nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
+
+    var nuovaX = document.createElement('div');
+    nuovaX.className = 'cross';
+    nuovaX.id = 'id-cross';
+    var nuovaIcona = document.createElement('i');
+    nuovaIcona.className = 'fa fa-close'; 
+
+    //aggiunta dell'immagine e della X per l'eliminazione
+    nuovoDiv.appendChild(nuovaImmagine);
+    nuovoDiv.appendChild(nuovaX);
+    nuovaX.appendChild(nuovaIcona);
+
+    // Aggiungere il nuovo div al div genitore
+    var parentDiv = document.getElementById('scroll-container-ovest');
+    var addButton = document.getElementById('addButton');
+    parentDiv.insertBefore(nuovoDiv, addButton);
+}
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.fa-close')) { // Verifica se l'elemento cliccato ha la classe 'fa-close'
+        var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine
+    }
+});
+
+document.getElementById('addButton').addEventListener('click', aggiungiDiv);
