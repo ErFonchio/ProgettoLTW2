@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/login-style.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import '@material/web/all.js';
+      import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Login | The GoL</title>
+</head>
+<body>
+    <div class="login-form">
+        <div class="top-title-container">
+            <span class="material-symbols-outlined" id="icon">linked_services</span>
+            <h1 class="title">Hello,</h1>        
+        </div>
+        <form action="" method="post">
+            <md-outlined-text-field label="First name" placeholder="John"></md-outlined-text-field>
+            <md-outlined-text-field label="Last name" placeholder="Doe"></md-outlined-text-field>
+            <md-outlined-text-field label="email" placeholder="email@domain.com"></md-outlined-text-field>
+        </form>
+    </div>
+</body>
+</html>
