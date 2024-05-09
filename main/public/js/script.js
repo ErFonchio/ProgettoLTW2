@@ -6,11 +6,16 @@ var playing = false;
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
+var recordMatrix = new Array(rows);
+var nextRecordMatrix = new Array(rows);
+
 var timer;
 var reproductionTime = 120;;
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
+        recordMatrix[i] = new Array(cols);
+        nextRecordMatrix[i] = new Array(cols);
         grid[i] = new Array(cols);
         nextGrid[i] = new Array(cols);
     }
@@ -19,6 +24,8 @@ function initializeGrids() {
 function resetGrids() {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
+            recordMatrix[i][j] = 0;
+            nextRecordMatrix[i][j] = 0;
             grid[i][j] = 0;
             nextGrid[i][j] = 0;
         }
@@ -28,8 +35,10 @@ function resetGrids() {
 function copyAndResetGrid() {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
+            recordMatrix[i][j] = nextRecordMatrix[i][j];
             grid[i][j] = nextGrid[i][j];
             nextGrid[i][j] = 0;
+            nextRecordMatrix[i][j] = 0;
         }
     }
 }
@@ -148,6 +157,7 @@ function clearButtonHandler() {
     }
     for(var i=0; i<rows; i++){
         for(var j=0; j<cols; j++){
+            recordMatrix[i][j]=0;
             grid[i][j]=0;
         }
     }
@@ -171,6 +181,8 @@ function startButtonHandler() {
 // run the life game
 function play() {
     reproductionTime = getFPSvalue();
+    console.log("record Matrix: ", recordMatrix);
+    
     computeNextGen();
     
     if (playing) {
@@ -202,14 +214,18 @@ function applyRules(row, col) {
     if (grid[row][col] == 1) {
         if (numNeighbors < 2) {
             nextGrid[row][col] = 0;
+            nextRecordMatrix[row][col] = 0;
         } else if (numNeighbors == 2 || numNeighbors == 3) {
             nextGrid[row][col] = 1;
+            nextRecordMatrix[row][col] = 1;
         } else if (numNeighbors > 3) {
             nextGrid[row][col] = 0;
+            nextRecordMatrix[row][col] = 0;
         }
     } else if (grid[row][col] == 0) {
             if (numNeighbors == 3) {
                 nextGrid[row][col] = 1;
+                nextRecordMatrix[row][col] = 1;
             }
         }
     }
@@ -319,6 +335,3 @@ screen.orientation.addEventListener("change", (event) => {
     isMobileOrDesktop()
     console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`);
   });
-
-
-
