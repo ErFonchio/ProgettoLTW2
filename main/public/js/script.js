@@ -8,6 +8,8 @@ var nextGrid = new Array(rows);
 
 var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
+var savedMatrix = new Array(rows);
+
 
 var timer;
 var reproductionTime = 120;;
@@ -16,6 +18,7 @@ function initializeGrids() {
     for (var i = 0; i < rows; i++) {
         recordMatrix[i] = new Array(cols);
         nextRecordMatrix[i] = new Array(cols);
+        savedMatrix = new Array(cols);
         grid[i] = new Array(cols);
         nextGrid[i] = new Array(cols);
     }
@@ -58,7 +61,7 @@ function createTable() {
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
-        console.error("Problem: No div for the drid table!");
+        console.error("Problem: No div for the grid table!");
     }
     var table = document.createElement("table");
     
@@ -85,6 +88,7 @@ function createTable() {
         if(classes.indexOf("live") > -1) {
             this.setAttribute("class", "dead");
             grid[row][col] = 0;
+            
         } else {
             this.setAttribute("class", "live");
             grid[row][col] = 1;
@@ -104,6 +108,15 @@ function createTable() {
             }
         }
     }
+
+
+function saveGame(){
+    savedMatrix = JSON.parse(JSON.stringify(nextRecordMatrix));
+    console.log("Saved Matrix: ", savedMatrix);
+}
+
+// listener del bottone save
+document.getElementById('save').addEventListener('click', saveGame);
 
 function setupControlButtons() {
     // button to start
