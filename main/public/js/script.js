@@ -98,6 +98,7 @@ function createTable() {
     }
 
     function updateView() {
+        isStillAlive();
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 var cell = document.getElementById(i + "_" + j);
@@ -150,6 +151,20 @@ document.getElementById('save').addEventListener('click', saveGame);
 
 // listener del bottone load
 document.getElementById('load').addEventListener('click', loadGame);
+
+// se il numero di celle vive è 0 fermo il gioco
+
+function isStillAlive(){
+    var cellsList = document.getElementsByClassName("live");
+    console.log("Number of live cells: ", cellsList.length);
+    if(cellsList.length == 0){
+        console.log("GAME OVER");
+        var startButton = document.getElementById('start');
+        startButton.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
+        startButtonHandler();
+        
+    }
+}
 
 
 function setupControlButtons() {
