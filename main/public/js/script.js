@@ -88,10 +88,11 @@ function createTable() {
         if(classes.indexOf("live") > -1) {
             this.setAttribute("class", "dead");
             grid[row][col] = 0;
-            
+            recordMatrix[row][col] = 0;
         } else {
             this.setAttribute("class", "live");
             grid[row][col] = 1;
+            recordMatrix[row][col] = 1;
         }
         
     }
@@ -111,12 +112,45 @@ function createTable() {
 
 
 function saveGame(){
-    savedMatrix = JSON.parse(JSON.stringify(nextRecordMatrix));
+    savedMatrix = JSON.parse(JSON.stringify(recordMatrix));
     console.log("Saved Matrix: ", savedMatrix);
 }
 
+// load the newest saved matrix
+function loadGame() {
+    console.log("Load Game button pressed");
+    if (playing) return;
+    clearButtonHandler();
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var thisCell = savedMatrix[i][j];
+            if (thisCell == 1) {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", "live");
+                grid[i][j] = 1;
+                recordMatrix[i][j] = 1;
+            }
+            else {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", "dead");
+                grid[i][j] = 0;
+                recordMatrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+
+
+
+
+
 // listener del bottone save
 document.getElementById('save').addEventListener('click', saveGame);
+
+// listener del bottone load
+document.getElementById('load').addEventListener('click', loadGame);
+
 
 function setupControlButtons() {
     // button to start
@@ -142,10 +176,12 @@ function randomButtonHandler() {
                 var cell = document.getElementById(i + "_" + j);
                 cell.setAttribute("class", "live");
                 grid[i][j] = 1;
+                recordMatrix[i][j] = 1;
             }
         }
     }
 }
+
 
 // clear the grid
 function clearButtonHandler() {
