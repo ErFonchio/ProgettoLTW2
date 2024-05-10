@@ -96,9 +96,29 @@ td.live {
 .control-panel {
     display: grid;
     grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
 }
+
+.cell-counter-div {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-counter-div > * {
+    margin-top: -20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
+    padding: 0px 5px 0px 5px;
+}
+
+
 .save-buttons {
     grid-column: 1;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -107,6 +127,7 @@ td.live {
 
 .control-buttons {
     grid-column: 2;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,6 +135,7 @@ td.live {
 
 .fps-control {
     grid-column: 3;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: flex-start;
