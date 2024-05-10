@@ -6,11 +6,19 @@ var playing = false;
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
+var recordMatrix = new Array(rows);
+var nextRecordMatrix = new Array(rows);
+var savedMatrix = new Array(rows);
+
+
 var timer;
 var reproductionTime = 120;;
 
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
+        recordMatrix[i] = new Array(cols);
+        nextRecordMatrix[i] = new Array(cols);
+        savedMatrix = new Array(cols);
         grid[i] = new Array(cols);
         nextGrid[i] = new Array(cols);
     }
@@ -19,6 +27,8 @@ function initializeGrids() {
 function resetGrids() {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
+            recordMatrix[i][j] = 0;
+            nextRecordMatrix[i][j] = 0;
             grid[i][j] = 0;
             nextGrid[i][j] = 0;
         }
@@ -28,8 +38,10 @@ function resetGrids() {
 function copyAndResetGrid() {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
+            recordMatrix[i][j] = nextRecordMatrix[i][j];
             grid[i][j] = nextGrid[i][j];
             nextGrid[i][j] = 0;
+            nextRecordMatrix[i][j] = 0;
         }
     }
 }
@@ -49,7 +61,7 @@ function createTable() {
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
-        console.error("Problem: No div for the drid table!");
+        console.error("Problem: No div for the grid table!");
     }
     var table = document.createElement("table");
     
@@ -76,14 +88,17 @@ function createTable() {
         if(classes.indexOf("live") > -1) {
             this.setAttribute("class", "dead");
             grid[row][col] = 0;
+            recordMatrix[row][col] = 0;
         } else {
             this.setAttribute("class", "live");
             grid[row][col] = 1;
+            recordMatrix[row][col] = 1;
         }
         
     }
 
     function updateView() {
+        isStillAlive();
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 var cell = document.getElementById(i + "_" + j);
@@ -95,6 +110,62 @@ function createTable() {
             }
         }
     }
+
+
+function saveGame(){
+    savedMatrix = JSON.parse(JSON.stringify(recordMatrix));
+    console.log("Saved Matrix: ", savedMatrix);
+}
+
+// load the newest saved matrix
+function loadGame() {
+    console.log("Load Game button pressed");
+    if (playing) return;
+    clearButtonHandler();
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var thisCell = savedMatrix[i][j];
+            if (thisCell == 1) {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", "live");
+                grid[i][j] = 1;
+                recordMatrix[i][j] = 1;
+            }
+            else {
+                var cell = document.getElementById(i + "_" + j);
+                cell.setAttribute("class", "dead");
+                grid[i][j] = 0;
+                recordMatrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+// listener del bottone save
+document.getElementById('save').addEventListener('click', saveGame);
+
+// listener del bottone load
+document.getElementById('load').addEventListener('click', loadGame);
+
+// se il numero di celle vive è 0 fermo il gioco
+
+function isStillAlive(){
+    var cellsList = document.getElementsByClassName("live");
+    console.log("Number of live cells: ", cellsList.length);
+    if(cellsList.length == 0){
+        console.log("GAME OVER");
+        var startButton = document.getElementById('start');
+        startButton.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
+        startButtonHandler();
+        
+    }
+}
+
 
 function setupControlButtons() {
     // button to start
@@ -120,10 +191,12 @@ function randomButtonHandler() {
                 var cell = document.getElementById(i + "_" + j);
                 cell.setAttribute("class", "live");
                 grid[i][j] = 1;
+                recordMatrix[i][j] = 1;
             }
         }
     }
 }
+
 
 // clear the grid
 function clearButtonHandler() {
@@ -148,6 +221,7 @@ function clearButtonHandler() {
     }
     for(var i=0; i<rows; i++){
         for(var j=0; j<cols; j++){
+            recordMatrix[i][j]=0;
             grid[i][j]=0;
         }
     }
@@ -171,6 +245,8 @@ function startButtonHandler() {
 // run the life game
 function play() {
     reproductionTime = getFPSvalue();
+    console.log("record Matrix: ", recordMatrix);
+    
     computeNextGen();
     
     if (playing) {
@@ -202,14 +278,18 @@ function applyRules(row, col) {
     if (grid[row][col] == 1) {
         if (numNeighbors < 2) {
             nextGrid[row][col] = 0;
+            nextRecordMatrix[row][col] = 0;
         } else if (numNeighbors == 2 || numNeighbors == 3) {
             nextGrid[row][col] = 1;
+            nextRecordMatrix[row][col] = 1;
         } else if (numNeighbors > 3) {
             nextGrid[row][col] = 0;
+            nextRecordMatrix[row][col] = 0;
         }
     } else if (grid[row][col] == 0) {
             if (numNeighbors == 3) {
                 nextGrid[row][col] = 1;
+                nextRecordMatrix[row][col] = 1;
             }
         }
     }
