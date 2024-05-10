@@ -151,6 +151,7 @@ td.live {
     background-color: var(--quaternary-color);
     padding: 15px;
     display: flex;
+    flex-direction: row;
     align-items: top;
     justify-content: space-between;
 }
@@ -248,6 +249,26 @@ input::-webkit-inner-spin-button
         font-size: 16px;
     }
 
+    
+
+}
+
+@media(max-width: 700px){
+    .second-container{
+        background-color: var(--quaternary-color);
+        padding: 15px;
+        align-items: center;
+        /*align-items: top;
+        justify-content: space-between;*/
+        flex-direction: column;
+    }
+
+    .div-img{
+        padding: 8px;
+        width: 40%;
+        
+        
+    }
 }
 
 
