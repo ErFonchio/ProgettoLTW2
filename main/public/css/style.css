@@ -30,7 +30,7 @@ header {
 }
 
 body {
-    padding: 20px;
+    /*padding: 20px;*/
     background-color: var(--primary-color);
     --diameter: 22px;
     --radius: 11px;
