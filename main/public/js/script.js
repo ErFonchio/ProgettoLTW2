@@ -321,42 +321,21 @@ screen.orientation.addEventListener("change", (event) => {
   });
 
 
-  $('.circle_ovest').click(function() {
-    let spWidth = $('.left-side-panel').width();
-    let spMarginLeft = parseInt($('.left-side-panel').css('margin-left'),10);
-    let radius = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--radius').trim());
-
-    let w = (spMarginLeft >= 0 ) ? spWidth * -1 : 0;
-    let cw = (w < 0) ? -(w+radius): spWidth-$('.circle_ovest').width()-radius;
-    $('.left-side-panel').animate({
-        marginLeft:w
-    });
-    $('.circle_ovest').animate({
-        left:cw
-    },
-    function() {
-        $(this).find('span').toggleClass('rotated');
-    });
-});
+//Gestione dei pannelli laterali
+function LeftSidePanelSliding () {
+    const co = document.getElementById('circle-ovest');
+    const lsp = document.getElementById('left-side-panel');
+    lsp.classList.toggle('slide-left');
+    co.classList.toggle('rotate');
+};
 
 
-$('.circle_est').click(function() {
-    let spWidth = $('.right-side-panel').width();
-    let spMarginRight = parseInt($('.right-side-panel').css('margin-right'),10);
-    let radius = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--radius').trim());
-
-    let w = (spMarginRight >= 0 ) ? spWidth * -1 : 0;
-    let cw = (w < 0) ? -(w+radius): spWidth-$('.circle_est').width()-radius;
-    $('.right-side-panel').animate({
-        marginRight:w
-    });
-    $('.circle_est').animate({
-        right:cw
-    },
-    function() {
-        $(this).find('span').toggleClass('rotated');
-    });
-});
+function RightSidePanelSliding() {
+    const co = document.getElementById('circle-est');
+    const lsp = document.getElementById('right-side-panel');
+    lsp.classList.toggle('slide-right');
+    co.classList.toggle('rotate');
+};
 
 function aggiungiDiv() {
     // Creare un nuovo elemento div
@@ -383,11 +362,14 @@ function aggiungiDiv() {
     var addButton = document.getElementById('addButton');
     parentDiv.insertBefore(nuovoDiv, addButton);
 }
-document.addEventListener('click', function(event) {
-    if (event.target.matches('.fa-close')) { // Verifica se l'elemento cliccato ha la classe 'fa-close'
+function removePanel(event) { 
+    if(event.target.classList.contains('fa-close')) {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
-        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
     }
-});
+};
 
 document.getElementById('addButton').addEventListener('click', aggiungiDiv);
+document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
+document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
+document.getElementById('scroll-container-ovest').addEventListener('click', removePanel);

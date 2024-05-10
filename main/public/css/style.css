@@ -181,31 +181,23 @@ input::-webkit-inner-spin-button
     }
 }
 
-  .left-side-panel {
+  #left-side-panel {
     position: absolute;
     background-color:#455d7a;
     height: 100%;
     width:30%;
-    min-width:100px;
-    font-size:1.5em;
-    line-height:1.5em;
-    color:#e3e3e3;
-    font-family:Helvetica;
     text-align:center;
+    align-items: center;
   }
-  .right-side-panel{
+  #right-side-panel{
     position: absolute;
     background-color:#455d7a;
+    right: 0px;
     height: 100%;
     width:30%;
-    min-width:100px;
-    font-size:1.5em;
-    line-height:1.5em;
-    color:#e3e3e3;
-    font-family:Helvetica;
-    text-align:center;
+    align-items: center;
   }
-  .circle_ovest {
+  #circle-ovest {
     position:absolute;
     width: var(--diameter);
     height: var(--diameter);
@@ -213,7 +205,6 @@ input::-webkit-inner-spin-button
     font-size:16px;
     margin-left: 0px;
     background-color:#f95959;
-    color:#e3e3e3;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -222,7 +213,7 @@ input::-webkit-inner-spin-button
     cursor:pointer;
     z-index: 1;
   }
-  .circle_est{
+  #circle-est{
     position:absolute;
     width: var(--diameter);
     height: var(--diameter);
@@ -230,7 +221,6 @@ input::-webkit-inner-spin-button
     font-size:16px;
     margin-right: 0px;
     background-color:#f95959;
-    color:#e3e3e3;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -239,11 +229,25 @@ input::-webkit-inner-spin-button
     cursor:pointer;
     z-index: 1;
   }
+/* Transitioning*/
+  #left-side-panel.slide-left {
+    transform: translateX(-100%);
+}
+
+#right-side-panel.slide-right {
+    transform: translateX(100%);
+}
+#left-side-panel,
+#right-side-panel,
+#circle-ovest,
+#circle-est {
+    transition: transform 0.5s ease;
+}
 
   /*per le frecce*/
-  .rotated {
+#circle-ovest.rotate,
+#circle-est.rotate {
     transform: rotate(180deg);
-    transition: transform 0.8s ease; /* Aggiungi transizione per un effetto fluido */
 }
 
    /*fa scomparire la scrollbar*/
@@ -255,6 +259,7 @@ input::-webkit-inner-spin-button
     height: 100%;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    align-items: center;
   }
   .scroll-page {
     display: flex;
@@ -266,17 +271,21 @@ input::-webkit-inner-spin-button
   }
 
   .div-image{
+    position: relative;
     left: 50%;
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
+    align-items: center;
   }
   .item-image{
-    width: 10%;
+    width: 60%;
+
   }
   .cross{
+    position: absolute;
     background-color: #f95959;
-    right: 0px;
+    right: 15%;
     top: 10px;
     border-radius: 30%;
     width: 20px;
@@ -284,9 +293,12 @@ input::-webkit-inner-spin-button
     cursor:pointer;
   }
   .fa-close{
-    position: absolute;
     top: -3px;
     left: 1px;
     color: rgb(21, 21, 21);
+  }
+  #addButton{
+    position: relative;
+    top: 10px;
   }
   
