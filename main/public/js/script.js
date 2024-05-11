@@ -156,7 +156,10 @@ document.getElementById('load').addEventListener('click', loadGame);
 
 function isStillAlive(){
     var cellsList = document.getElementsByClassName("live");
-    console.log("Number of live cells: ", cellsList.length);
+    var cellCounter = cellsList.length;
+    console.log("Number of live cells: ", cellCounter);
+    var cellCounterField = document.getElementById("cell-counter");
+    cellCounterField.innerHTML = cellCounter;
     if(cellsList.length == 0){
         console.log("GAME OVER");
         var startButton = document.getElementById('start');
