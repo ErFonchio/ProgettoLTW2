@@ -417,19 +417,19 @@ function aggiungiDiv() {
     var nuovoDiv = document.createElement('div');
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
 
-
     var nuovaImmagine = document.createElement('img');
     nuovaImmagine.src = createImageFromMatrix(savedMatrix);
     var matrixHeight = savedMatrix.length;
     var matrixWidth = savedMatrix[0].length;
     var ratio = matrixWidth/matrixHeight;
-    nuovaImmagine.style.height = '80px'
+    nuovaImmagine.style.height = '70px'
     nuovaImmagine.style.width = parseFloat(nuovaImmagine.style.height)*ratio +'px';
-    /*
-    nuovaImmagine.src = '/../immagini/glider.png'; // Impostare l'URL dell'immagine
-    */
     nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
     nuovaImmagine.id = 'id-item-image';
+
+    /*Aggiorno dimensioni del div in base all'immagine*/
+    nuovoDiv.style.width = nuovaImmagine.style.width;
+    nuovoDiv.style.height = nuovaImmagine.style.height;
 
     var nuovaX = document.createElement('div');
     nuovaX.className = 'cross';
@@ -445,7 +445,6 @@ function aggiungiDiv() {
     // Aggiungere il nuovo div al div genitore
     var parentDiv = document.getElementById('scroll-container-ovest');
 
-    /*parentDiv.insertBefore(nuovoDiv, addButton);*/
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
@@ -467,10 +466,27 @@ function LeftContainerEvent(event) {
                 }
             }
             event.target.style.opacity = '0.6';
+            /** aggiungo il div per il pop-up */
+            event.target.append(popup);
+            var popup = document.createElement('div');
+            popup.id = 'id-popup';
+            popup.className = 'class-popup';
+            var close = document.createElement('span');
+            var image = document.createElement('img');
+            close.className = 'class-close';
+            close.innerHTML = '&times;';
+            image.id = 'popup-image';
+            image.src = '';
+            image.alt = 'Popup Image';
+            popup.append(close);
+            openPopup(image);
+            console.log('close');
+
         }
         else{
             event.target.style.opacity = '1.0'
         }
+        
         
     }
 };
@@ -508,6 +524,13 @@ function createImageFromMatrix(matrix) {
     }
     // Restituisci il canvas creato
     return canvas.toDataURL();
+};
+
+function openPopup(img) {
+    var popup = document.getElementById("id-popup");
+    var popupImage = document.getElementById("popup-image");
+    popup.style.display = "block";
+    popupImage.src = img.src;
 };
 
 

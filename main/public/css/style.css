@@ -5,8 +5,6 @@
     --quaternary-color: #8f32e0;
     --live-color: #CC4774;
     --dead-color: transparent;
-
-    
 }
 /*
 * {
@@ -363,16 +361,14 @@ input::-webkit-inner-spin-button
   .cross{
     position: absolute;
     background-color: #f95959;
-    right: 15%;
-    top: 10px;
     border-radius: 30%;
     width: 20px;
     height: 20px;
+    top: 10px;
+    right: -10px;
     cursor:pointer;
   }
   .fa-close{
-    top: -3px;
-    left: 1px;
     color: rgb(21, 21, 21);
   }
   #infoButton{
@@ -386,7 +382,32 @@ input::-webkit-inner-spin-button
     top: 10px;
     cursor: pointer;
   }
-  
+
+/* Stile per la finestra di popup */
+.class-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
+}
+
+/* Stile per il pulsante di chiusura della finestra di popup */
+.class-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#id-popup{
+    display: "block";
+}
+
     .first-container{
         padding-left: 2vw;
         padding-right: 2vw;
