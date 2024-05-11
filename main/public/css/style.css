@@ -133,11 +133,11 @@ td.live {
 }
 
 td.dead {
-    background-color: transparent;
+    background-color: var(--dead-color);
 }
 
 td.live {
-    background-color: #CC4774;
+    background-color: var(--live-color);
     border-radius: 10px;
 }
 
