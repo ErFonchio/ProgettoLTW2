@@ -1,0 +1,114 @@
+body {
+    margin:0;
+    padding:0;
+    --diameter: 22px;
+    --radius: 11px;
+  }
+  .sidepanel_ovest {
+    position:relative;
+    height:100%;
+    background-color:#455d7a;
+    width:100%;
+    min-width:100px;
+    z-index:2;
+    font-size:1.5em;
+    line-height:1.5em;
+    color:#e3e3e3;
+    font-family:Helvetica;
+    text-align:center;
+  }
+  .sidepanel_est{
+    position:relative;
+    height:100%;
+    background-color:#455d7a;
+    width:100%;
+    min-width:100px;
+    z-index: 2;
+    font-size:1.5em;
+    line-height:1.5em;
+    color:#e3e3e3;
+    font-family:Helvetica;
+    text-align:center;
+  }
+  .circle_ovest {
+    position:absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    border-radius:50%;
+    font-size:16px;
+    margin-left: 0px;
+    background-color:#f95959;
+    color:#e3e3e3;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    top: calc(50% - var(--radius));
+    left: calc(100% - var(--radius));
+    z-index:3;
+    cursor:pointer;
+  }
+  .circle_est{
+    position:absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    border-radius:50%;
+    font-size:16px;
+    margin-right: 0px;
+    background-color:#f95959;
+    color:#e3e3e3;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    top:calc(50% - var(--radius));
+    right:calc(100% - var(--radius));
+    z-index:3;
+    cursor:pointer;
+  }
+  .fa-chevron-left-ovest {
+    margin-right:5px;
+  }
+  .fa-chevron-left-est {
+    margin-right:5px;
+  }
+  .fa-chevron-right-ovest {
+    margin-left:5px;
+  }
+  .fa-chevron-right-est {
+    margin-left:5px;
+  }
+  .hide{
+    display:none;
+  }
+
+::-webkit-scrollbar {
+    display: none;
+}
+.scroll-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+  .scroll-page {
+    position:absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    scroll-behavior: smooth;
+    font-size: 2em;
+  }
+
+  .immagine{
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 60%;
+  }
+  img{
+    width: 20;
+    height: 20;
+  }
