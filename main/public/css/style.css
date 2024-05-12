@@ -52,6 +52,16 @@ span {
     color: #222;
 }
 
+footer{
+    text-align: center;
+    padding-top: 11vw;
+    padding-bottom: 6vw;
+    font-size: 12px;
+    color: var(--tertiary-color);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
 .nav-bar {
     display: flex;
     width: 30vh;
@@ -171,6 +181,7 @@ td.live {
 .first-container{
     padding-left: 17vw;
     padding-right: 17vw;
+    
 }
 
 .second-container{
@@ -262,7 +273,7 @@ input::-webkit-inner-spin-button
         color: blue;
         font-size: 20px;
     }
-}
+
 
   #left-side-panel {
     position: absolute;
@@ -439,7 +450,7 @@ input::-webkit-inner-spin-button
         font-size: 16px;
     }
 
-    
+}  
 
 
 @media(max-width: 600px){
