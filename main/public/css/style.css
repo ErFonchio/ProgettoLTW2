@@ -6,11 +6,6 @@
     --live-color: #CC4774;
     --dead-color: transparent;
 }
-/*
-* {
-    box-sizing: border-box;
-}
-*/
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button
@@ -25,6 +20,7 @@ header {
     background-color: var(--secondary-color);
     align-items: center;
     justify-content: space-between;
+    border-radius: 8px;
 }
 
 body {
@@ -95,9 +91,29 @@ td.live {
 .control-panel {
     display: grid;
     grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
 }
+
+.cell-counter-div {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-counter-div > * {
+    margin-top: -20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
+    padding: 5px 5px 10px 5px;
+}
+
+
 .save-buttons {
     grid-column: 1;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -106,6 +122,7 @@ td.live {
 
 .control-buttons {
     grid-column: 2;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,6 +130,7 @@ td.live {
 
 .fps-control {
     grid-column: 3;
+    grid-row: 2;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -129,7 +147,13 @@ td.live {
 }
 
 .nav-bar span {
-    font-size: 2.5vw;
+    font-size: 3vw;
+}
+
+@media(max-width: 600px){
+    .nav-bar span {
+        font-size: 35px;
+    }
 }
 
 
@@ -143,11 +167,11 @@ td.live {
 }
 
 td.dead {
-    background-color: transparent;
+    background-color: var(--dead-color);
 }
 
 td.live {
-    background-color: #CC4774;
+    background-color: var(--live-color);
     border-radius: 10px;
 }
 
@@ -155,8 +179,8 @@ td.live {
 /*classi about*/
 .subtitle{
     color: var(--tertiary-color);
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 22px;
+    font-family:"Roboto", sans-serif;
+    font-size: 24px;
     position: relative;
     padding: 10px;
     margin-left: 1vw;
@@ -165,7 +189,7 @@ td.live {
 .subsubtitle-left{
     text-align: left;
     margin-left: 30px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:"Roboto", sans-serif;
     color: var(--tertiary-color);
     font-size: 20px;
 }
@@ -173,7 +197,7 @@ td.live {
 .subsubtitle-right{
     text-align: right;
     margin-right: 30px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto", sans-serif;
     color: var(--tertiary-color);
     font-size: 20px;
 }
@@ -185,7 +209,7 @@ td.live {
 }
 
 .second-container{
-    background-color: var(--quaternary-color);
+    background-color: var(--secondary-color);
     padding: 15px;
     display: flex;
     flex-direction: row;
@@ -194,30 +218,80 @@ td.live {
 }
 
 .text{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     margin: 5px;
     text-align:justify;
+    background-color: var(--secondary-color);
     
 }
 
 .div-img{
-    padding: 8px;
+    padding: 10px;
     height: 12vw;
     max-width: auto;
-    
-    
-    
 }
 
 .img{
     object-fit:contain;
     height: 100%;
     
+    
 
     
     
 }
+
+/* CLASSI ABOUT 2 COME PROVA*/
+
+.card > h3, p {
+    padding: 8px;
+}
+
+.card > h3 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.card-container > h2 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+    margin-top: 20px;
+}
+.text-area {    
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    margin: 1px;
+    padding: 20px;
+}
+
+.text-area > * {
+    font-family: "Roboto";
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card {
+    width: calc(4/5 * 100%);
+    margin: 10px;
+}
+
+.img-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
 
 /*fine classi about*/
 
@@ -268,6 +342,7 @@ td.live {
     width:30%;
     text-align:center;
     align-items: center;
+    border-radius: 8px;
   }
   #right-side-panel{
     position: absolute;
@@ -276,6 +351,7 @@ td.live {
     height: 100%;
     width:30%;
     align-items: center;
+    border-radius: 8px;
   }
   #circle-ovest {
     position:absolute;
@@ -284,7 +360,7 @@ td.live {
     border-radius:50%;
     font-size:16px;
     margin-left: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -300,7 +376,7 @@ td.live {
     border-radius:50%;
     font-size:16px;
     margin-right: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -341,7 +417,10 @@ td.live {
     overflow-y: scroll;
     scroll-behavior: smooth;
     align-items: center;
+    border-radius: 8px;
+
   }
+
   .scroll-page {
     display: flex;
     align-items: center;
@@ -353,11 +432,10 @@ td.live {
 
   .div-image{
     position: relative;
-    left: 50%;
+    left: 65%;
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
-    align-items: center;
   }
   .item-image{
     opacity: 1.0;
@@ -365,7 +443,7 @@ td.live {
   }
   .cross{
     position: absolute;
-    background-color: #f95959;
+    background-color: var(--primary-color);
     border-radius: 30%;
     width: 20px;
     height: 20px;
@@ -373,6 +451,7 @@ td.live {
     right: -10px;
     cursor:pointer;
   }
+
   .fa-close{
     color: rgb(21, 21, 21);
   }
@@ -436,6 +515,7 @@ input::-webkit-inner-spin-button
     cursor: pointer;
     right: 0px;
     top: 0px;
+    right: 40px;
   }
   #addButton{
     position: relative;
@@ -478,18 +558,18 @@ input::-webkit-inner-spin-button
         margin: 5px;
     }
     .subtitle{
-        font-size: 18px;
+        font-size: 20px;
         
     }
     
     .subsubtitle-left{
         
-        font-size: 16px;
+        font-size: 18px;
     }
     
     .subsubtitle-right{
         
-        font-size: 16px;
+        font-size: 18px;
     }
 
 }  
@@ -497,7 +577,7 @@ input::-webkit-inner-spin-button
 
 @media(max-width: 600px){
     .second-container{
-        background-color: var(--quaternary-color);
+        background-color: var(--secondary-color);
         padding: 15px;
         align-items: center;
         /*align-items: top;
