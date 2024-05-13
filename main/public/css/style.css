@@ -25,6 +25,7 @@ header {
     background-color: var(--secondary-color);
     align-items: center;
     justify-content: space-between;
+    border-radius: 8px;
 }
 
 body {
@@ -293,6 +294,7 @@ input::-webkit-inner-spin-button
     width:30%;
     text-align:center;
     align-items: center;
+    border-radius: 8px;
   }
   #right-side-panel{
     position: absolute;
@@ -301,6 +303,7 @@ input::-webkit-inner-spin-button
     height: 100%;
     width:30%;
     align-items: center;
+    border-radius: 8px;
   }
   #circle-ovest {
     position:absolute;
@@ -365,7 +368,10 @@ input::-webkit-inner-spin-button
     overflow-y: scroll;
     scroll-behavior: smooth;
     align-items: center;
+    border-radius: 8px;
+
   }
+
   .scroll-page {
     display: flex;
     align-items: center;
