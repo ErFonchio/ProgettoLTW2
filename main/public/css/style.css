@@ -5,14 +5,7 @@
     --quaternary-color: #8f32e0;
     --live-color: #CC4774;
     --dead-color: transparent;
-
-    
 }
-/*
-* {
-    box-sizing: border-box;
-}
-*/
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button
@@ -27,6 +20,7 @@ header {
     background-color: var(--secondary-color);
     align-items: center;
     justify-content: space-between;
+    border-radius: 8px;
 }
 
 body {
@@ -103,7 +97,7 @@ td.live {
     margin-top: -20px;
     font-family: "Roboto", sans-serif;
     font-size: 2rem;
-    padding: 0px 5px 0px 5px;
+    padding: 5px 5px 10px 5px;
 }
 
 
@@ -143,7 +137,13 @@ td.live {
 }
 
 .nav-bar span {
-    font-size: 2.5vw;
+    font-size: 3vw;
+}
+
+@media(max-width: 600px){
+    .nav-bar span {
+        font-size: 35px;
+    }
 }
 
 
@@ -207,23 +207,79 @@ td.live {
 }
 
 .text{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     margin: 5px;
     text-align:justify;
+    background-color: antiquewhite;
     
 }
 
 .div-img{
     padding: 8px;
-    width: 350%;
+    height: 20vw;
+    max-width: auto;
 }
 
 .img{
     object-fit:contain;
-    width:100%;
+    max-height: 100%;
+    
 
+    
+    
 }
+
+/* CLASSI ABOUT 2 COME PROVA*/
+
+.card > h3, p {
+    padding: 8px;
+}
+
+.card > h3 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.card-container > h2 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+    margin-top: 20px;
+}
+.text-area {    
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    margin: 1px;
+    padding: 20px;
+}
+
+.text-area > * {
+    font-family: "Roboto";
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card {
+    width: calc(4/5 * 100%);
+    margin: 10px;
+}
+
+.img-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
 
 /*fine classi about*/
 
@@ -288,6 +344,7 @@ input::-webkit-inner-spin-button
     width:30%;
     text-align:center;
     align-items: center;
+    border-radius: 8px;
   }
   #right-side-panel{
     position: absolute;
@@ -296,6 +353,7 @@ input::-webkit-inner-spin-button
     height: 100%;
     width:30%;
     align-items: center;
+    border-radius: 8px;
   }
   #circle-ovest {
     position:absolute;
@@ -304,7 +362,7 @@ input::-webkit-inner-spin-button
     border-radius:50%;
     font-size:16px;
     margin-left: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -320,7 +378,7 @@ input::-webkit-inner-spin-button
     border-radius:50%;
     font-size:16px;
     margin-right: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -360,7 +418,10 @@ input::-webkit-inner-spin-button
     overflow-y: scroll;
     scroll-behavior: smooth;
     align-items: center;
+    border-radius: 8px;
+
   }
+
   .scroll-page {
     display: flex;
     align-items: center;
@@ -372,11 +433,10 @@ input::-webkit-inner-spin-button
 
   .div-image{
     position: relative;
-    left: 50%;
+    left: 65%;
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
-    align-items: center;
   }
   .item-image{
     opacity: 1.0;
@@ -384,31 +444,57 @@ input::-webkit-inner-spin-button
   }
   .cross{
     position: absolute;
-    background-color: #f95959;
-    right: 15%;
-    top: 10px;
+    background-color: var(--primary-color);
     border-radius: 30%;
     width: 20px;
     height: 20px;
+    top: 10px;
+    right: -10px;
     cursor:pointer;
   }
+
   .fa-close{
-    top: -3px;
-    left: 1px;
     color: rgb(21, 21, 21);
   }
+
   #infoButton{
     position: absolute;
     cursor: pointer;
     right: 0px;
     top: 0px;
+    right: 40px;
   }
   #addButton{
     position: relative;
     top: 10px;
     cursor: pointer;
   }
-  
+
+/* Stile per la finestra di popup */
+.class-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
+}
+
+/* Stile per il pulsante di chiusura della finestra di popup */
+.class-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#id-popup{
+    display: "block";
+}
+
     .first-container{
         padding-left: 2vw;
         padding-right: 2vw;
@@ -433,8 +519,10 @@ input::-webkit-inner-spin-button
         font-size: 16px;
     }
 
+    
 
-@media(max-width: 700px){
+
+@media(max-width: 600px){
     .second-container{
         background-color: var(--quaternary-color);
         padding: 15px;
@@ -447,6 +535,14 @@ input::-webkit-inner-spin-button
     .div-img{
         padding: 8px;
         width: 40%;
+        height: 40%
+        
+        
+    }
+
+    .img{
+        width:100%;
+        height: 100%
     }
 }
 
