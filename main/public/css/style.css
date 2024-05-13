@@ -203,7 +203,7 @@ td.live {
 
 .div-img{
     padding: 8px;
-    height: 20vw;
+    height: 12vw;
     max-width: auto;
     
     
@@ -212,7 +212,7 @@ td.live {
 
 .img{
     object-fit:contain;
-    max-height: 100%;
+    height: 100%;
     
 
     
@@ -260,22 +260,8 @@ td.live {
     color: var(--tertiary-color);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button
-{
-   -webkit-appearance: none;
-   margin: 0;
-}
-
-
-@media (max-width: 1000px) {
-    #title {
-        color: blue;
-        font-size: 20px;
-    }
-
-
-  #left-side-panel {
+/*panels*/
+#left-side-panel {
     position: absolute;
     background-color:#455d7a;
     height: 100%;
@@ -323,7 +309,8 @@ input::-webkit-inner-spin-button
     cursor:pointer;
     z-index: 1;
   }
-/* Transitioning*/
+
+  /* Transitioning*/
   #left-side-panel.slide-left {
     transform: translateX(-100%);
 }
@@ -389,6 +376,61 @@ input::-webkit-inner-spin-button
   .fa-close{
     color: rgb(21, 21, 21);
   }
+
+  #infoButton{
+    position: absolute;
+    cursor: pointer;
+    right: 0px;
+    top: 0px;
+  }
+  #addButton{
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+  }
+
+/* Stile per la finestra di popup */
+.class-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
+}
+
+/* Stile per il pulsante di chiusura della finestra di popup */
+.class-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#id-popup{
+    display: "block";
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+
+@media (max-width: 1000px) {
+    #title {
+        color: blue;
+        font-size: 20px;
+    }
+
+
+  
+
   #infoButton{
     position: absolute;
     cursor: pointer;
@@ -465,8 +507,8 @@ input::-webkit-inner-spin-button
 
     .div-img{
         padding: 8px;
-        width: 40%;
-        height: 40%
+        width: 25%;
+        height: 25%
         
         
     }
