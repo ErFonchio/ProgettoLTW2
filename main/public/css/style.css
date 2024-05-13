@@ -6,11 +6,6 @@
     --live-color: #CC4774;
     --dead-color: transparent;
 }
-/*
-* {
-    box-sizing: border-box;
-}
-*/
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button
@@ -142,7 +137,13 @@ td.live {
 }
 
 .nav-bar span {
-    font-size: 2.5vw;
+    font-size: 3vw;
+}
+
+@media(max-width: 600px){
+    .nav-bar span {
+        font-size: 35px;
+    }
 }
 
 
@@ -206,10 +207,11 @@ td.live {
 }
 
 .text{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     margin: 5px;
     text-align:justify;
+    background-color: antiquewhite;
     
 }
 
@@ -217,9 +219,6 @@ td.live {
     padding: 8px;
     height: 20vw;
     max-width: auto;
-    
-    
-    
 }
 
 .img{
@@ -230,6 +229,57 @@ td.live {
     
     
 }
+
+/* CLASSI ABOUT 2 COME PROVA*/
+
+.card > h3, p {
+    padding: 8px;
+}
+
+.card > h3 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.card-container > h2 {
+    font-family: "Roboto";
+    font-size: 2rem;
+    margin: 10px;
+    margin-top: 20px;
+}
+.text-area {    
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    margin: 1px;
+    padding: 20px;
+}
+
+.text-area > * {
+    font-family: "Roboto";
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card {
+    width: calc(4/5 * 100%);
+    margin: 10px;
+}
+
+.img-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
 
 /*fine classi about*/
 
