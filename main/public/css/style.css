@@ -312,7 +312,7 @@ input::-webkit-inner-spin-button
     border-radius:50%;
     font-size:16px;
     margin-left: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -328,7 +328,7 @@ input::-webkit-inner-spin-button
     border-radius:50%;
     font-size:16px;
     margin-right: 0px;
-    background-color:#f95959;
+    background-color:var(--secondary-color);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -383,11 +383,10 @@ input::-webkit-inner-spin-button
 
   .div-image{
     position: relative;
-    left: 50%;
+    left: 65%;
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
-    align-items: center;
   }
   .item-image{
     opacity: 1.0;
@@ -395,7 +394,7 @@ input::-webkit-inner-spin-button
   }
   .cross{
     position: absolute;
-    background-color: #f95959;
+    background-color: var(--primary-color);
     border-radius: 30%;
     width: 20px;
     height: 20px;
@@ -403,14 +402,17 @@ input::-webkit-inner-spin-button
     right: -10px;
     cursor:pointer;
   }
+
   .fa-close{
     color: rgb(21, 21, 21);
   }
+
   #infoButton{
     position: absolute;
     cursor: pointer;
     right: 0px;
     top: 0px;
+    right: 40px;
   }
   #addButton{
     position: relative;
