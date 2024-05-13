@@ -141,11 +141,6 @@ function loadGame() {
     }
 }
 
-
-
-
-
-
 // listener del bottone save
 document.getElementById('save').addEventListener('click', saveGame);
 
@@ -402,3 +397,148 @@ screen.orientation.addEventListener("change", (event) => {
     isMobileOrDesktop()
     console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`);
   });
+
+
+//Gestione dei pannelli laterali
+function LeftSidePanelSliding () {
+    const co = document.getElementById('circle-ovest');
+    const lsp = document.getElementById('left-side-panel');
+    lsp.classList.toggle('slide-left');
+    co.classList.toggle('rotate');
+};
+
+
+function RightSidePanelSliding() {
+    const co = document.getElementById('circle-est');
+    const lsp = document.getElementById('right-side-panel');
+    lsp.classList.toggle('slide-right');
+    co.classList.toggle('rotate');
+};
+
+function aggiungiDiv() {
+    // Creare un nuovo elemento div
+    var nuovoDiv = document.createElement('div');
+    nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
+
+    var nuovaImmagine = document.createElement('img');
+    nuovaImmagine.src = createImageFromMatrix(savedMatrix);
+    var matrixHeight = savedMatrix.length;
+    var matrixWidth = savedMatrix[0].length;
+    var ratio = matrixWidth/matrixHeight;
+    nuovaImmagine.style.height = '70px'
+    nuovaImmagine.style.width = parseFloat(nuovaImmagine.style.height)*ratio +'px';
+    nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
+    nuovaImmagine.id = 'id-item-image';
+
+    /*Aggiorno dimensioni del div in base all'immagine*/
+    nuovoDiv.style.width = nuovaImmagine.style.width;
+    nuovoDiv.style.height = nuovaImmagine.style.height;
+
+    var nuovaX = document.createElement('div');
+    nuovaX.className = 'cross';
+    nuovaX.id = 'id-cross';
+    var nuovaIcona = document.createElement('i');
+    nuovaIcona.className = 'fa fa-close'; 
+
+    //aggiunta dell'immagine e della X per l'eliminazione
+    nuovoDiv.appendChild(nuovaImmagine);
+    nuovoDiv.appendChild(nuovaX);
+    nuovaX.appendChild(nuovaIcona);
+
+    // Aggiungere il nuovo div al div genitore
+    var parentDiv = document.getElementById('scroll-container-ovest');
+
+    parentDiv.append(nuovoDiv);
+}
+function LeftContainerEvent(event) { 
+    if(event.target.classList.contains('fa-close')) {
+        var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
+    }
+    else if (event.target.id == 'id-item-image'){
+        var currentOpacity = window.getComputedStyle(event.target).getPropertyValue('opacity');
+        console.log(currentOpacity);
+        if (currentOpacity == 1){
+            // Trova tutte le immagini nel pannello di sinistra
+            var images = document.getElementById('scroll-container-ovest').querySelectorAll('img');
+            
+            // Imposta l'opacità di tutte le immagini a 1, tranne quella selezionata da event.target
+            for (var i = 0; i < images.length; i++) {
+                if (images[i] != event.target) {
+                    images[i].style.opacity = '1.0';
+                }
+            }
+            event.target.style.opacity = '0.6';
+            /** aggiungo il div per il pop-up */
+            event.target.append(popup);
+            var popup = document.createElement('div');
+            popup.id = 'id-popup';
+            popup.className = 'class-popup';
+            var close = document.createElement('span');
+            var image = document.createElement('img');
+            close.className = 'class-close';
+            close.innerHTML = '&times;';
+            image.id = 'popup-image';
+            image.src = '';
+            image.alt = 'Popup Image';
+            popup.append(close);
+            openPopup(image);
+            console.log('close');
+
+        }
+        else{
+            event.target.style.opacity = '1.0'
+        }
+        
+        
+    }
+};
+
+function createImageFromMatrix(matrix) {
+    // Creazione di un nuovo elemento canvas
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    var cellColor = '#ff0000'; // rosso
+
+    // Definisci la larghezza e l'altezza delle celle
+    var cellWidth = 10;
+    var cellHeight = 10;
+
+    // Impostazione delle dimensioni del canvas
+    canvas.width = matrix[0].length*cellWidth; // Larghezza basata sulla lunghezza delle colonne
+    canvas.height = matrix.length*cellHeight; // Altezza basata sul numero di righe
+
+    // Iterazione sull'array per disegnare sull'canvas
+    for (var i = 0; i < matrix.length; i++) {
+        for (var j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] === 1) {
+                // Disegna un rettangolo pieno quando il valore è 1
+                ctx.fillStyle = cellColor;
+            }
+            else{
+                ctx.fillStyle = '#ffffff'; // bianco
+            }
+            // Disegna la cella
+            ctx.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+            // Disegna il bordo della cella
+            ctx.strokeStyle = '#000000'; // nero
+            ctx.strokeRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+        }
+    }
+    // Restituisci il canvas creato
+    return canvas.toDataURL();
+};
+
+function openPopup(img) {
+    var popup = document.getElementById("id-popup");
+    var popupImage = document.getElementById("popup-image");
+    popup.style.display = "block";
+    popupImage.src = img.src;
+};
+
+
+
+document.getElementById('save').addEventListener('click', aggiungiDiv);
+document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
+document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
+document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
