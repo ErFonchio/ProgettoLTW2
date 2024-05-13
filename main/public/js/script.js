@@ -448,7 +448,7 @@ function aggiungiDiv() {
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
-    if(event.target.classList.contains('fa-close')) {
+    if(event.target.className == 'cross' || event.target.classList.contains('fa-close')) {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
     }
@@ -486,8 +486,6 @@ function LeftContainerEvent(event) {
         else{
             event.target.style.opacity = '1.0'
         }
-        
-        
     }
 };
 
