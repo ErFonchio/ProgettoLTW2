@@ -32,8 +32,8 @@
     <header>
         <h1 id="title">The Game of Life</h1>
         <div class="nav-bar">
-            <a class="nav-item" href="#"><span class="material-symbols-outlined">passkey</span></a>
-            <a class="nav-item" href="about.html"><span class="material-symbols-outlined">question_mark</span></a>
+            <a class="nav-item" onclick="showLoginForm()"><span class="material-symbols-outlined">passkey</span></a>
+            <a class="nav-item" href="about.html"><span class="material-symbols-outlined">info</span></a>
             <a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a>
         </div>
     </header>
@@ -100,6 +100,10 @@
 
     </div>
     <div class="control-panel">
+        <div class="cell-counter-div">
+            <span>Live cells:</span>
+            <span id="cell-counter">0</span>
+        </div>
         <div class="save-buttons">
             <md-filled-button id="save"><span class="material-symbols-outlined">save</span></md-filled-button>
             <md-filled-button id="load"><span class="material-symbols-outlined">restore</span></md-filled-button>
@@ -121,6 +125,39 @@
 
         </div>
     </div>
+
+    <div id="ModalLog" class="modal">
+        <div id="loginForm" class="popup-form" action="/action_page.php" method="post">
+            <h2 class="subtitle">Login</h2>
+            <form class="form">
+                <label for="username">Username</label><br>
+                <input type="text" class="field" placeholder="Username"><br>
+                <label for="password">Password</label><br>
+                <input type="password" class="field" placeholder="Password"> <br>
+                <input type="submit" class="login-button" value="Login">
+                <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
+                <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
+            </form>
+        </div>
+        </div>
+    
+    
+        <div id="ModalSign" class="modal">
+          <div id="signupForm" class="popup-form" action="/action_page.php" method="post">
+              <h2 class="subtitle">Sign up</h2>
+              <form class="form">
+                  <label for="username">Email</label><br>
+                  <input type="text" class="field" placeholder="Username" required><br>
+                  <label for="password">Password</label><br>
+                  <input type="password" class="field" placeholder="Password" required> <br>
+                  <input type="submit" class="login-button" value="Register">
+                  <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
+                  <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
+              </form>
+          </div>
+          </div>
+
+
 </body>
 
 <script src="public/js/script.js"></script>

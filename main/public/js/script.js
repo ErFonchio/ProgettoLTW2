@@ -151,7 +151,10 @@ document.getElementById('load').addEventListener('click', loadGame);
 
 function isStillAlive(){
     var cellsList = document.getElementsByClassName("live");
-    console.log("Number of live cells: ", cellsList.length);
+    var cellCounter = cellsList.length;
+    console.log("Number of live cells: ", cellCounter);
+    var cellCounterField = document.getElementById("cell-counter");
+    cellCounterField.innerHTML = cellCounter;
     if(cellsList.length == 0){
         console.log("GAME OVER");
         var startButton = document.getElementById('start');
@@ -537,3 +540,31 @@ document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
+
+/*login form*/
+function showLoginForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "block";
+}
+
+function hideLoginForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "none";
+}
+
+function showSignupForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "none";
+    var ModalSign = document.getElementById("ModalSign");
+    ModalSign.style.display = "block";
+}
+
+function hideSignupForm() {
+    var ModalSign = document.getElementById("ModalSign");
+    ModalSign.style.display = "none";
+}
+
+function backToLogin(){
+    hideSignupForm();
+    showLoginForm();
+}
