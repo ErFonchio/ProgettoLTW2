@@ -431,6 +431,7 @@ function aggiungiDiv() {
     nuovaImmagine.id = 'id-item-image';
 
     /*Aggiorno dimensioni del div in base all'immagine*/
+    nuovoDiv.style.left = "50%";
     nuovoDiv.style.width = nuovaImmagine.style.width;
     nuovoDiv.style.height = nuovaImmagine.style.height;
 
@@ -457,7 +458,6 @@ function LeftContainerEvent(event) {
     }
     else if (event.target.id == 'id-item-image'){
         var currentOpacity = window.getComputedStyle(event.target).getPropertyValue('opacity');
-        console.log(currentOpacity);
         if (currentOpacity == 1){
             // Trova tutte le immagini nel pannello di sinistra
             var images = document.getElementById('scroll-container-ovest').querySelectorAll('img');

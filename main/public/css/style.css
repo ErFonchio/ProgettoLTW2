@@ -238,11 +238,7 @@ td.live {
 .img{
     object-fit:contain;
     height: 100%;
-    
-    
 
-    
-    
 }
 
 /* CLASSI ABOUT 2 COME PROVA*/
@@ -347,7 +343,7 @@ td.live {
     align-items: center;
     border-radius: 8px;
   }
-  #right-side-panel{
+#right-side-panel{
     position: absolute;
     background-color:#455d7a;
     right: 0px;
@@ -356,7 +352,7 @@ td.live {
     align-items: center;
     border-radius: 8px;
   }
-  #circle-ovest {
+#circle-ovest {
     position:absolute;
     width: var(--diameter);
     height: var(--diameter);
@@ -372,7 +368,7 @@ td.live {
     cursor:pointer;
     z-index: 1;
   }
-  #circle-est{
+#circle-est{
     position:absolute;
     width: var(--diameter);
     height: var(--diameter);
@@ -387,10 +383,10 @@ td.live {
     right:calc(100% - var(--radius));
     cursor:pointer;
     z-index: 1;
-  }
+}
 
   /* Transitioning*/
-  #left-side-panel.slide-left {
+#left-side-panel.slide-left {
     transform: translateX(-100%);
 }
 
@@ -420,6 +416,7 @@ td.live {
     overflow-y: scroll;
     scroll-behavior: smooth;
     align-items: center;
+    justify-content: center; /* Centratura orizzontale */
     border-radius: 8px;
 
   }
@@ -509,22 +506,18 @@ input::-webkit-inner-spin-button
         color: blue;
         font-size: 20px;
     }
-
-
-  
-
-  #infoButton{
+    #infoButton{
     position: absolute;
     cursor: pointer;
     right: 0px;
     top: 0px;
     right: 40px;
-  }
-  #addButton{
-    position: relative;
-    top: 10px;
-    cursor: pointer;
-  }
+    }
+    #addButton{
+        position: relative;
+        top: 10px;
+        cursor: pointer;
+    }
 
 /* Stile per la finestra di popup */
 .class-popup {
@@ -547,9 +540,9 @@ input::-webkit-inner-spin-button
     cursor: pointer;
 }
 
-#id-popup{
-    display: "block";
-}
+    #id-popup{
+        display: "block";
+    }
 
     .first-container{
         padding-left: 2vw;
