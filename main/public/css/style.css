@@ -46,6 +46,7 @@ td {
 
 span {
     color: #222;
+    cursor: pointer;
 }
 
 footer{
@@ -216,6 +217,7 @@ td.live {
     align-items: top;
     justify-content: space-between;
     border-radius: 8px;
+    
 
 }
 
@@ -225,6 +227,7 @@ td.live {
     margin: 5px;
     text-align:justify;
     background-color: var(--secondary-color);
+    /*color: var(--tertiary-color);*/
     
 }
 
@@ -551,8 +554,8 @@ input::-webkit-inner-spin-button
 }
 
     .first-container{
-        padding-left: 2vw;
-        padding-right: 2vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
     }
     .text{
         font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -572,6 +575,10 @@ input::-webkit-inner-spin-button
     .subsubtitle-right{
         
         font-size: 18px;
+    }
+
+    .second-container{
+        padding: 20px;
     }
 
 }  
