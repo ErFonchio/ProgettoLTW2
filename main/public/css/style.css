@@ -31,6 +31,7 @@ body {
     /*padding: 20px;*/
     padding: 0;
     background-color: var(--primary-color);
+    overflow-x: hidden;
     --diameter: 22px;
     --radius: 11px;
 }
