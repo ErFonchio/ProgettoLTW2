@@ -542,3 +542,31 @@ document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
+
+/*login form*/
+function showLoginForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "block";
+}
+
+function hideLoginForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "none";
+}
+
+function showSignupForm() {
+    var ModalLog = document.getElementById("ModalLog");
+    ModalLog.style.display = "none";
+    var ModalSign = document.getElementById("ModalSign");
+    ModalSign.style.display = "block";
+}
+
+function hideSignupForm() {
+    var ModalSign = document.getElementById("ModalSign");
+    ModalSign.style.display = "none";
+}
+
+function backToLogin(){
+    hideSignupForm();
+    showLoginForm();
+}
