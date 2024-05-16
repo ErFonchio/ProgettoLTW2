@@ -419,6 +419,7 @@ function aggiungiDiv() {
     // Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
+    nuovoDiv.style.paddingTop = '20px';
 
     var nuovaImmagine = document.createElement('img');
     nuovaImmagine.src = createImageFromMatrix(savedMatrix);
@@ -435,16 +436,34 @@ function aggiungiDiv() {
     nuovoDiv.style.width = nuovaImmagine.style.width;
     nuovoDiv.style.height = nuovaImmagine.style.height;
 
-    var nuovaX = document.createElement('div');
-    nuovaX.className = 'cross';
-    nuovaX.id = 'id-cross';
-    var nuovaIcona = document.createElement('i');
-    nuovaIcona.className = 'fa fa-close'; 
-
     //aggiunta dell'immagine e della X per l'eliminazione
     nuovoDiv.appendChild(nuovaImmagine);
-    nuovoDiv.appendChild(nuovaX);
-    nuovaX.appendChild(nuovaIcona);
+
+    //Creazione del div popup da appendere all'immagine
+    var popup = document.createElement('div');
+    var divPopup = document.createElement('div');
+    divPopup.className = 'div-popup';
+    divPopup.style.height = nuovaImmagine.style.height;
+    divPopup.style.weight = nuovaImmagine.style.weight;
+    divPopup.style.top = nuovoDiv.style.paddingTop;
+
+    popup.className = 'class-popup';
+    popup.style.height = divPopup.style.height;
+
+    nuovoDiv.append(divPopup);
+    divPopup.append(popup);
+
+    
+    var nuovaX = document.createElement('div');
+    nuovaX.className = 'cross';
+    nuovaX.id = 'id-delete';
+    var nuovaIcona = document.createElement('i');
+    nuovaIcona.className = 'material-icons';
+    nuovaIcona.classList.add('delete');
+    nuovaIcona.textContent = 'delete';
+    nuovaX.append(nuovaIcona);
+    popup.append(nuovaX);
+
 
     // Aggiungere il nuovo div al div genitore
     var parentDiv = document.getElementById('scroll-container-ovest');
@@ -452,7 +471,8 @@ function aggiungiDiv() {
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
-    if(event.target.className == 'cross' || event.target.classList.contains('fa-close')) {
+    
+    if(event.target.className == 'cross' || event.target.className == 'material-icons') {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
     }
@@ -469,22 +489,6 @@ function LeftContainerEvent(event) {
                 }
             }
             event.target.style.opacity = '0.6';
-            /** aggiungo il div per il pop-up */
-            event.target.append(popup);
-            var popup = document.createElement('div');
-            popup.id = 'id-popup';
-            popup.className = 'class-popup';
-            var close = document.createElement('span');
-            var image = document.createElement('img');
-            close.className = 'class-close';
-            close.innerHTML = '&times;';
-            image.id = 'popup-image';
-            image.src = '';
-            image.alt = 'Popup Image';
-            popup.append(close);
-            openPopup(image);
-            console.log('close');
-
         }
         else{
             event.target.style.opacity = '1.0'
@@ -527,19 +531,11 @@ function createImageFromMatrix(matrix) {
     return canvas.toDataURL();
 };
 
-function openPopup(img) {
-    var popup = document.getElementById("id-popup");
-    var popupImage = document.getElementById("popup-image");
-    popup.style.display = "block";
-    popupImage.src = img.src;
-};
-
-
-
 document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
+
 
 /*login form*/
 function showLoginForm() {
