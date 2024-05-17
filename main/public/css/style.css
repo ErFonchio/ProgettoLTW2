@@ -50,9 +50,13 @@ table {
     table-layout: fixed;
     background-color: var(--primary-color);
     border-spacing: 0;
+    cursor: grab;
+}
+table:active {
+    cursor: grabbing; /* Cambia il cursore quando viene cliccato */
 }
 
-th, td{
+td{
     border: 1px solid rgb(196, 196, 196);
     border-radius: 6px;
     width: 15px;
@@ -713,4 +717,3 @@ label {
     top: 0;
     left: 0;
 }
-

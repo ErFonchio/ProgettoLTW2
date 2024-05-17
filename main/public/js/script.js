@@ -58,7 +58,7 @@ function initialize() {
 }
 
 function adjustTableSize(){
-    
+
 }
 
 // Lay out the board
@@ -547,10 +547,35 @@ function createImageFromMatrix(matrix) {
     return canvas.toDataURL();
 };
 
+function zoomIn(){
+    console.log("CI sei");
+    const table = document.querySelector('table');
+    const cells = table.querySelectorAll('td');
+    var cellSize = cells[0].offsetHeight;
+    cellSize += 10;
+        cells.forEach(cell => {
+            cell.style.width = `${cellSize}px`;
+            cell.style.height = `${cellSize}px`;
+        });
+}
+function zoomOut(){
+    console.log("CI sei");
+    const table = document.querySelector('table');
+    const cells = table.querySelectorAll('td');
+    var cellSize = cells[0].offsetHeight;
+    cellSize -= 10;
+        cells.forEach(cell => {
+            cell.style.width = `${cellSize}px`;
+            cell.style.height = `${cellSize}px`;
+        });
+}
+
 document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
+document.getElementById('zoom-in').addEventListener('click', zoomIn);
+document.getElementById('zoom-out').addEventListener('click', zoomOut);
 
 
 /*login form*/
