@@ -33,6 +33,7 @@ function resetGrids() {
             nextGrid[i][j] = 0;
         }
     }
+    
 }
 
 function copyAndResetGrid() {
@@ -223,6 +224,7 @@ function clearButtonHandler() {
             grid[i][j]=0;
         }
     }
+    updateView();
 }
 
 // start/pause/continue the game
