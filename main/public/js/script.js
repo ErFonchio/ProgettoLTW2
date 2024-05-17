@@ -447,22 +447,23 @@ function aggiungiDiv() {
     divPopup.style.weight = nuovaImmagine.style.weight;
     divPopup.style.top = nuovoDiv.style.paddingTop;
 
-    popup.className = 'class-popup';
+    popup.className = 'class-popup-left';
     popup.style.height = divPopup.style.height;
 
     nuovoDiv.append(divPopup);
     divPopup.append(popup);
 
     
-    var nuovaX = document.createElement('div');
-    nuovaX.className = 'cross';
-    nuovaX.id = 'id-delete';
-    var nuovaIcona = document.createElement('i');
-    nuovaIcona.className = 'material-icons';
-    nuovaIcona.classList.add('delete');
-    nuovaIcona.textContent = 'delete';
-    nuovaX.append(nuovaIcona);
-    popup.append(nuovaX);
+    var deleteIcon = document.createElement('i');
+    deleteIcon.className = 'material-icons';
+    deleteIcon.classList.add('delete');
+    deleteIcon.textContent = 'delete';
+    var uploadIcon = document.createElement('i');
+    uploadIcon.className = 'material-icons';
+    uploadIcon.classList.add('upload');
+    uploadIcon.textContent = 'upload';
+    popup.append(deleteIcon);
+    popup.append(uploadIcon);
 
 
     // Aggiungere il nuovo div al div genitore
@@ -471,11 +472,12 @@ function aggiungiDiv() {
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
-    
-    if(event.target.className == 'cross' || event.target.className == 'material-icons') {
+    if(event.target.classList.contains('delete')) {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
+        
     }
+    /*
     else if (event.target.id == 'id-item-image'){
         var currentOpacity = window.getComputedStyle(event.target).getPropertyValue('opacity');
         if (currentOpacity == 1){
@@ -493,6 +495,10 @@ function LeftContainerEvent(event) {
         else{
             event.target.style.opacity = '1.0'
         }
+    }
+    */
+    else if (event.target.classList.contains('upload')){
+        
     }
 };
 
