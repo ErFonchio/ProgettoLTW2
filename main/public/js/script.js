@@ -552,7 +552,7 @@ function zoomIn(){
     const table = document.querySelector('table');
     const cells = table.querySelectorAll('td');
     var cellSize = cells[0].offsetHeight;
-    cellSize += 10;
+    cellSize += 7;
         cells.forEach(cell => {
             cell.style.width = `${cellSize}px`;
             cell.style.height = `${cellSize}px`;
@@ -563,7 +563,7 @@ function zoomOut(){
     const table = document.querySelector('table');
     const cells = table.querySelectorAll('td');
     var cellSize = cells[0].offsetHeight;
-    cellSize -= 10;
+    cellSize -= 7;
         cells.forEach(cell => {
             cell.style.width = `${cellSize}px`;
             cell.style.height = `${cellSize}px`;

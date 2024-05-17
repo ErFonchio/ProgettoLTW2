@@ -50,10 +50,6 @@ table {
     table-layout: fixed;
     background-color: var(--primary-color);
     border-spacing: 0;
-    cursor: grab;
-}
-table:active {
-    cursor: grabbing; /* Cambia il cursore quando viene cliccato */
 }
 
 td{
