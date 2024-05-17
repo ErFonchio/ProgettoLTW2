@@ -54,6 +54,11 @@ function initialize() {
     initializeGrids();
     resetGrids();
     setupControlButtons();
+    adjustTableSize();
+}
+
+function adjustTableSize(){
+    
 }
 
 // Lay out the board
@@ -453,17 +458,22 @@ function aggiungiDiv() {
     nuovoDiv.append(divPopup);
     divPopup.append(popup);
 
-    
+    var popupTop = document.createElement('div');
+    var popupDown = document.createElement('div');
+    popupTop.className = 'popup-Top';
+    popupDown.className = 'popup-Down';
+
     var deleteIcon = document.createElement('i');
-    deleteIcon.className = 'material-icons';
-    deleteIcon.classList.add('delete');
+    deleteIcon.classList.add('material-icons');
     deleteIcon.textContent = 'delete';
     var uploadIcon = document.createElement('i');
     uploadIcon.className = 'material-icons';
-    uploadIcon.classList.add('upload');
     uploadIcon.textContent = 'upload';
-    popup.append(deleteIcon);
-    popup.append(uploadIcon);
+    
+    popupTop.append(deleteIcon);
+    popupDown.append(uploadIcon);
+    popup.append(popupTop);
+    popup.append(popupDown);
 
 
     // Aggiungere il nuovo div al div genitore
@@ -472,7 +482,7 @@ function aggiungiDiv() {
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
-    if(event.target.classList.contains('delete')) {
+    if(event.target.className == 'popup-Top' || event.target.classList.contains('material-icons')) {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
         
