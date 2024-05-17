@@ -46,6 +46,7 @@ td {
 
 span {
     color: #222;
+    cursor: pointer;
 }
 
 footer {
@@ -216,6 +217,7 @@ td.live {
     align-items: top;
     justify-content: space-between;
     border-radius: 8px;
+    
 
 }
 
@@ -225,7 +227,8 @@ td.live {
     margin: 5px;
     text-align: justify;
     background-color: var(--secondary-color);
-
+    /*color: var(--tertiary-color);*/
+    
 }
 
 .div-img {
@@ -530,22 +533,76 @@ input::-webkit-inner-spin-button {
         font-size: 20px;
     }
 
-    #infoButton {
-        position: absolute;
-        cursor: pointer;
-        right: 0px;
-        top: 0px;
-        right: 40px;
-    }
 
-    #addButton {
-        position: relative;
-        top: 10px;
-        cursor: pointer;
-    }
+  
+
+  #infoButton{
+    position: absolute;
+    cursor: pointer;
+    right: 0px;
+    top: 0px;
+    right: 40px;
+  }
+  #addButton{
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+  }
+
+/* Stile per la finestra di popup */
+.class-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999;
 }
 
+/* Stile per il pulsante di chiusura della finestra di popup */
+.class-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
 
+#id-popup{
+    display: "block";
+}
+
+    .first-container{
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+    .text{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+        margin: 5px;
+    }
+    .subtitle{
+        font-size: 20px;
+        
+    }
+    
+    .subsubtitle-left{
+        
+        font-size: 18px;
+    }
+    
+    .subsubtitle-right{
+        
+        font-size: 18px;
+    }
+
+    .second-container{
+        padding: 20px;
+    }
+
+}  
 
 
 @media(max-width: 600px) {
