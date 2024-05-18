@@ -611,6 +611,7 @@ document.getElementById('circle-est').addEventListener('click', RightSidePanelSl
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
+document.getElementById('login-button').addEventListener('click', showLoginForm)
 
 
 
