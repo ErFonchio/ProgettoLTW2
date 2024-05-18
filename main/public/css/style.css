@@ -37,13 +37,17 @@ body {
     overflow: hidden;
 }
 
-#gridContainer{
+#gridContainer{ 
     display: flex;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
     overflow: auto;
+    cursor: pointer;
+}
+#gridContainer.active{
+    cursor: grabbing;
 }
 table {
     width: 95%;

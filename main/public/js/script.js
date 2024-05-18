@@ -69,6 +69,7 @@ function createTable() {
         console.error("Problem: No div for the grid table!");
     }
     var table = document.createElement("table");
+    table.id = 'id-table';
     
     for (var i = 0; i < rows; i++) {
         var tr = document.createElement("tr");
@@ -548,7 +549,6 @@ function createImageFromMatrix(matrix) {
 };
 
 function zoomIn(){
-    console.log("CI sei");
     const table = document.querySelector('table');
     const cells = table.querySelectorAll('td');
     var cellSize = cells[0].offsetHeight;
@@ -559,7 +559,6 @@ function zoomIn(){
         });
 }
 function zoomOut(){
-    console.log("CI sei");
     const table = document.querySelector('table');
     const cells = table.querySelectorAll('td');
     var cellSize = cells[0].offsetHeight;
@@ -570,12 +569,49 @@ function zoomOut(){
         });
 }
 
+const gridContainer = document.getElementById('gridContainer');
+let isDown = false;
+let startX, startY;
+let scrollLeft, scrollTop;
+
+gridContainer.addEventListener('mousedown', (e) => {
+    isDown = true;
+    gridContainer.classList.add('active');
+    startX = e.pageX - gridContainer.offsetLeft;
+    startY = e.pageY - gridContainer.offsetTop;
+    scrollLeft = gridContainer.scrollLeft;
+    scrollTop = gridContainer.scrollTop;
+});
+
+gridContainer.addEventListener('mouseleave', () => {
+    isDown = false;
+    gridContainer.classList.remove('active');
+});
+
+gridContainer.addEventListener('mouseup', () => {
+    isDown = false;
+    gridContainer.classList.remove('active');
+});
+
+gridContainer.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - gridContainer.offsetLeft;
+    const y = e.pageY - gridContainer.offsetTop;
+    const walkX = (x - startX); 
+    const walkY = (y - startY);
+    gridContainer.scrollLeft = scrollLeft - walkX;
+    gridContainer.scrollTop = scrollTop - walkY;
+});
+
+
 document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
+
 
 
 /*login form*/
