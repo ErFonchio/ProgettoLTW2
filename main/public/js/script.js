@@ -605,13 +605,41 @@ gridContainer.addEventListener('mousemove', (e) => {
 });
 
 
+function register() {
+    console.log("Ti sei registrato");
+    
+    // Dati da inviare al server per la registrazione
+    const userData = {
+        username: document.getElementById('id-username').value, // Sostituisci con i dati reali
+        password: document.getElementById('id-password').value  // Sostituisci con i dati reali
+    };
+    
+    fetch('http://localhost/LTW/index.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+
+
+
 document.getElementById('save').addEventListener('click', aggiungiDiv);
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
-
+document.getElementById('id-register').addEventListener('click', register);
 
 
 /*login form*/

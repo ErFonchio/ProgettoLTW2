@@ -440,12 +440,17 @@ p {
     height: 100%;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    justify-content: center;
+    border-radius: 8px;
+}
+#scroll-container-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     align-items: center;
     justify-content: center;
-    /* Centratura orizzontale */
-    border-radius: 8px;
-
 }
+
 
 .scroll-page {
     display: flex;
@@ -460,15 +465,24 @@ p {
     align-items: center;
     justify-content: center;
     position: relative;
-    left: 65%;
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
 }
 
+.div-image-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    padding-top: 10%;
+
+}
+
+
 .item-image {
     opacity: 1.0;
-    width: 60%;
+    width: 90%;
 
 }
 
@@ -519,8 +533,8 @@ p {
 #infoButton {
     position: absolute;
     cursor: pointer;
-    right: 0px;
-    top: 0px;
+    top: 3%;
+    right: 32%;
 }
 
 #addButton {
