@@ -445,6 +445,7 @@ td.live {
   .item-image{
     opacity: 1.0;
     width: 60%;
+    cursor: pointer;
   }
   .cross{
     position: absolute;
