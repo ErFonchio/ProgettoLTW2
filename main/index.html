@@ -175,14 +175,14 @@
         </div>
 
         <div id="ModalLog" class="modal">
-            <div id="loginForm" class="popup-form" action="/action_page.php" method="post">
+            <div id="loginForm" class="popup-form" onsubmit="return false">
                 <h2 class="subtitle">Login</h2>
                 <form class="form">
                     <label for="username">Username</label><br>
-                    <input type="text" class="field" placeholder="Username"><br>
+                    <input type="text" id="id-username-login" class="field" placeholder="Username"><br>
                     <label for="password">Password</label><br>
-                    <input type="password" class="field" placeholder="Password"> <br>
-                    <input type="submit" class="login-button" value="Login">
+                    <input type="password" id="id-password-login" class="field" placeholder="Password"> <br>
+                    <input type="submit" id="id-login" class="login-button" value="Login" onsubmit="return false">
                     <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
                     <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
                 </form>
@@ -190,14 +190,14 @@
         </div>
         
         <div id="ModalSign" class="modal">
-            <div id="signupForm" class="popup-form" action="/action_page.php" method="post">
+            <div id="signupForm" class="popup-form" onsubmit="return false">
                 <h2 class="subtitle">Sign up</h2>
                 <form class="form">
                     <label for="username">Email</label><br>
-                    <input type="text" class="field" id="id-username" placeholder="Username" required><br>
+                    <input type="text" class="field" id="id-username-signup" placeholder="Username" required><br>
                     <label for="password">Password</label><br>
-                    <input type="password" class="field" id="id-password" required> <br>
-                    <input type="submit" class="login-button" value="Register" id="id-register">
+                    <input type="password" class="field" id="id-password-signup" required> <br>
+                    <input type="submit" class="login-button" value="Register" id="id-register" onsubmit="return false">
                     <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
                     <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
                 </form>

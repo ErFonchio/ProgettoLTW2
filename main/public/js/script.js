@@ -2,6 +2,7 @@ var rows = 25;
 var cols = 70;
 
 var playing = false;
+var permissionLogin = false;
 
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
@@ -421,16 +422,25 @@ function RightSidePanelSliding() {
     co.classList.toggle('rotate');
 };
 
-function aggiungiDiv() {
-    // Creare un nuovo elemento div
+var listaMatrici = [];
+
+function aggiungiDiv(downloadedmatrix) {
+    var tempMatrix = savedMatrix;
+    //Questo controllo serve per assegnare le matrici che vengono scaricate dal server
+    if(downloadedmatrix != null){
+        tempMatrix = downloadedmatrix;
+    }
+
+    //Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
+    listaMatrici.push(nuovoDiv);
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
     nuovoDiv.style.paddingTop = '20px';
 
     var nuovaImmagine = document.createElement('img');
-    nuovaImmagine.src = createImageFromMatrix(savedMatrix);
-    var matrixHeight = savedMatrix.length;
-    var matrixWidth = savedMatrix[0].length;
+    nuovaImmagine.src = createImageFromMatrix(tempMatrix);
+    var matrixHeight = tempMatrix.length;
+    var matrixWidth = tempMatrix[0].length;
     var ratio = matrixWidth/matrixHeight;
     nuovaImmagine.style.height = '70px'
     nuovaImmagine.style.width = parseFloat(nuovaImmagine.style.height)*ratio +'px';
@@ -476,38 +486,24 @@ function aggiungiDiv() {
     popup.append(popupTop);
     popup.append(popupDown);
 
-
     // Aggiungere il nuovo div al div genitore
     var parentDiv = document.getElementById('scroll-container-ovest');
 
     parentDiv.append(nuovoDiv);
 }
+
+function eliminaListaDiv(){
+    for(let i=0; i<listaMatrici.length; i++){
+        listaMatrici[i].remove();
+    }
+}
+
 function LeftContainerEvent(event) { 
     if(event.target.className == 'popup-Top' || event.target.classList.contains('material-icons')) {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
-        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine    
-        
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
     }
-    /*
-    else if (event.target.id == 'id-item-image'){
-        var currentOpacity = window.getComputedStyle(event.target).getPropertyValue('opacity');
-        if (currentOpacity == 1){
-            // Trova tutte le immagini nel pannello di sinistra
-            var images = document.getElementById('scroll-container-ovest').querySelectorAll('img');
-            
-            // Imposta l'opacità di tutte le immagini a 1, tranne quella selezionata da event.target
-            for (var i = 0; i < images.length; i++) {
-                if (images[i] != event.target) {
-                    images[i].style.opacity = '1.0';
-                }
-            }
-            event.target.style.opacity = '0.6';
-        }
-        else{
-            event.target.style.opacity = '1.0'
-        }
-    }
-    */
+    
     else if (event.target.classList.contains('upload')){
         
     }
@@ -604,42 +600,149 @@ gridContainer.addEventListener('mousemove', (e) => {
     gridContainer.scrollTop = scrollTop - walkY;
 });
 
+function register(){
+    permissionLogin = false;
+    var flag_register = 1;
+    var username = document.getElementById('id-username-signup').value;
+    var password = document.getElementById('id-password-signup').value;
 
-function register() {
-    console.log("Ti sei registrato");
-    
-    // Dati da inviare al server per la registrazione
-    const userData = {
-        username: document.getElementById('id-username').value, // Sostituisci con i dati reali
-        password: document.getElementById('id-password').value  // Sostituisci con i dati reali
-    };
-    
-    fetch('http://localhost/LTW/index.php', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    .then(response => {
-        if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+    var params = "flag_register="+flag_register+"&username="+username+"&password="+password;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.send(params);
+    xhr.onload = function(){
+        var data = JSON.parse(this.responseText);
+
+        if (data.length >= 3 && data[2] != null){
+            console.log(JSON.parse(data[2]).message);
+            document.getElementById('id-username-signup').setCustomValidity("Username o password non validi");
         }
-        return response.json();
-    })
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+
+        //User già in uso
+        else if (data.length >= 4 && data[3] != null){
+            console.log(JSON.parse(data[3]).message);
+            document.getElementById('id-username-signup').setCustomValidity("User già in uso");
+
+        }
+        //Questo comunica se la registrazione è riuscita
+        else if (data.length >= 5 && data[4] != null){
+            console.log(JSON.parse(data[4]).message);
+            hideSignupForm();
+            showLoginForm();
+        }
+        else if (data.length >= 6 && data[5] != null){
+            document.getElementById('id-username-signup').setCustomValidity("Inserimento fallito");
+            console.log(JSON.parse(data[4]).message);
+        }
+    }
+}
+
+function login(){
+    permissionLogin = false;
+    var flag_login = 1;
+    var username = document.getElementById('id-username-login').value;
+    var password = document.getElementById('id-password-login').value;
+    console.log("Stai provando a fare il login con ", username, password);
+    var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.send(params);
+
+    xhr.onload = function(){
+        var data = JSON.parse(this.responseText);
+
+        if (data.length >= 3 && data[2] != null){
+            console.log(JSON.parse(data[2]).message);
+            document.getElementById('id-username-login').setCustomValidity("Username o password non validi");
+        }
+
+        //L'utente non si è ancora registrato
+        else if (data.length >= 4 && data[3] != null){
+            console.log(JSON.parse(data[3]).message);
+            document.getElementById('id-username-login').setCustomValidity("Utente non ancora registrato");
+
+        }
+        //Questo comunica se la password inserita è errata
+        else if (data.length >= 5 && data[4] != null){
+            console.log(JSON.parse(data[4]).message);
+        }
+        //Login riuscito: sono arrivati 0 o più corrispondenze dalla tabella data
+        else if (data.length >= 6 && data[5] != null){
+            matrixList = JSON.parse(data[5]).message;
+            permissionLogin = true;
+            eliminaListaDiv(); //Rimuove gli stati registrati fino a questo momento
+            printDownloadedMatrix(matrixList);
+            hideLoginForm();
+        }
+    }
+}
+
+function printDownloadedMatrix(list){
+    for (let i=0; i<list.length; i++){
+        aggiungiDiv(JSON.parse(list[i]));
+    }
+}
+
+function uploadMatrix(){
+    var flag_upload = 1;
+    var username = document.getElementById('id-username-login').value;
+    var matrix = JSON.stringify(savedMatrix);
+    //Non hai i permessi per l'upload
+    if (username == '' || !flag_upload) return;
+
+    var params = "flag_upload="+flag_upload+"&username="+username+"&matrix="+matrix;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.send(params);
+
+    xhr.onload = function(){
+        var data = JSON.parse(this.responseText);
+
+        //Empty username
+        if (data.length >= 3 && data[2] != null){
+            console.log(JSON.parse(data[2]).message);
+        }
+        //Username non esistente
+        else if (data.length >= 4 && data[3] != null){
+            console.log(JSON.parse(data[3]).message);
+        }
+        //Matrice vuota
+        else if (data.length >= 5 && data[4] != null){
+            console.log(JSON.parse(data[4]).message);
+        }
+        //Sono arrivati 0 o più corrispondenze dalla tabella data
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+        }
+        //Inserimento della matrice fallito
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+        }
+    }
 }
 
 
-
-document.getElementById('save').addEventListener('click', aggiungiDiv);
+document.getElementById('save').addEventListener('click', function() {
+    aggiungiDiv(null);
+});
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
-document.getElementById('id-register').addEventListener('click', register);
+document.getElementById('id-register').addEventListener('mousedown', register);
+document.getElementById('id-login').addEventListener('mousedown', login);
+document.getElementById('save').addEventListener('click', uploadMatrix);
+
 
 
 /*login form*/
@@ -663,9 +766,4 @@ function showSignupForm() {
 function hideSignupForm() {
     var ModalSign = document.getElementById("ModalSign");
     ModalSign.style.display = "none";
-}
-
-function backToLogin(){
-    hideSignupForm();
-    showLoginForm();
 }
