@@ -499,7 +499,7 @@ function eliminaListaDiv(){
 }
 
 function LeftContainerEvent(event) { 
-    if(event.target.className == 'popup-Top' || event.target.classList.contains('material-icons')) {
+    if(event.target.classList.contains('popup-Top') || event.target.textContent == 'delete') {
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
     }
