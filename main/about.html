@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,15 @@
           }
         }
       </script>
-      <script type="module">
+    <script type="module">
         import '@material/web/all.js';
-        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
-    
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-      </script>
-      <link rel="stylesheet" href="public/css/style.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </script>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>The Game of Life</title>
 </head>
 
@@ -26,12 +28,12 @@
     <header>
         <h1 id="title">The Game of Life</h1>
         <div class="nav-bar">
-            <a class="nav-item"  onclick="showLoginForm()"><span class="material-symbols-outlined">passkey</span></a>
+            <a class="nav-item" onclick="showLoginForm()"><span class="material-symbols-outlined">passkey</span></a>
             <a class="nav-item" href="index.html"><span class="material-symbols-outlined">home</span></a>
-            <a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a>
+            <!--a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a-->
         </div>
     </header>
-    
+
     <div class="first-container">
         <h2 class="subtitle">The Game</h2>
         <div class="second-container">
@@ -41,17 +43,21 @@
         </div>
         <h2 class="subtitle">The Rules</h2>
         <div class="second-container">
-            <p class="text">
+          <div class="text">
+            <p>
                 The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, live or dead. Every cell interacts with its eight neighbors, which are the cells that are horizontally, vertically, or diagonally adjacent. 
           <br>At each step in time, the following transitions occur:
+            </p>
           <ul>
           <li>Any live cell with fewer than two live neighbors dies, as if by underpopulation.</li>
           <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
           <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
           <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
           </ul>
+          <p>
           The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed, live or dead; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.
         </p>
+          </div>
         </div>
         <h2 class="subtitle">The History</h2>
         <div class="second-container">
@@ -190,48 +196,49 @@
 
     </div>
 
-    
-      
-    
-  <footer>
-    References: <a href='https://conwaylife.com/wiki/Main_Page'> conwaylife.com/wiki </a>
-  </footer>
 
-  
+
+
+    <footer>
+        References: <a href='https://conwaylife.com/wiki/Main_Page'> conwaylife.com/wiki </a>
+    </footer>
+
+
     <div id="ModalLog" class="modal">
-    <div id="loginForm" class="popup-form" action="/action_page.php" method="post">
-        <h2 class="subtitle">Login</h2>
-        <form class="form">
-            <label for="username">Username</label><br>
-            <input type="text" class="field" placeholder="Username"><br>
-            <label for="password">Password</label><br>
-            <input type="password" class="field" placeholder="Password"> <br>
-            <input type="submit" class="login-button" value="Login">
-            <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
-            <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
-        </form>
-    </div>
+        <div id="loginForm" class="popup-form" action="/action_page.php" method="post">
+            <h2 class="subtitle">Login</h2>
+            <form class="form">
+                <label for="username">Username</label><br>
+                <input type="text" class="field" placeholder="Username"><br>
+                <label for="password">Password</label><br>
+                <input type="password" class="field" placeholder="Password"> <br>
+                <input type="submit" class="login-button" value="Login">
+                <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
+                <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
+            </form>
+        </div>
     </div>
 
 
     <div id="ModalSign" class="modal">
-      <div id="signupForm" class="popup-form" action="/action_page.php" method="post">
-          <h2 class="subtitle">Sign up</h2>
-          <form class="form">
-              <label for="username">Email</label><br>
-              <input type="text" class="field" placeholder="Username" required><br>
-              <label for="password">Password</label><br>
-              <input type="password" class="field" placeholder="Password" required> <br>
-              <input type="submit" class="login-button" value="Register">
-              <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
-              <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
-          </form>
-      </div>
-      </div>
+        <div id="signupForm" class="popup-form" action="/action_page.php" method="post">
+            <h2 class="subtitle">Sign up</h2>
+            <form class="form">
+                <label for="username">Email</label><br>
+                <input type="text" class="field" placeholder="Username" required><br>
+                <label for="password">Password</label><br>
+                <input type="password" class="field" placeholder="Password" required> <br>
+                <input type="submit" class="login-button" value="Register">
+                <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
+                <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
+            </form>
+        </div>
+    </div>
 
-  
-        
+
+
 </body>
 
 <script src="public/js/script.js"></script>
+
 </html>
