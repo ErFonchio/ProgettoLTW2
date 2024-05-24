@@ -1008,6 +1008,8 @@ document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
 document.getElementById('save').addEventListener('click', uploadMatrix);
+document.getElementById('login-button').addEventListener('click', showLoginForm);
+
 
 
 
