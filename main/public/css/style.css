@@ -154,6 +154,10 @@ td.live {
     justify-content: center;
 }
 
+.controls > * {
+    margin: 0 4px 0 4px;
+}
+
 .fps-control {
     grid-column: 3;
     grid-row: 2;
@@ -693,7 +697,13 @@ input::-webkit-inner-spin-button {
 }
 
 
-@media(max-width: 600px) {
+@media(max-width: 680px) {
+
+    #title {
+        color: red;
+        font-size: 24px;
+    }
+
     .second-container {
         background-color: var(--secondary-color);
         padding: 15px;
