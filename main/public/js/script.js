@@ -423,6 +423,7 @@ function RightSidePanelSliding() {
 };
 
 var listaMatrici = [];
+var listaDiv = [];
 
 function aggiungiDiv(downloadedmatrix) {
     var tempMatrix = savedMatrix;
@@ -433,9 +434,11 @@ function aggiungiDiv(downloadedmatrix) {
 
     //Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
-    listaMatrici.push(nuovoDiv);
+    listaDiv.push(nuovoDiv); //Serve per identificare il div la cui matrice voglio inserire nella griglia
+    listaMatrici.push(tempMatrix);
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
     nuovoDiv.style.paddingTop = '20px';
+
 
     var nuovaImmagine = document.createElement('img');
     nuovaImmagine.src = createImageFromMatrix(tempMatrix);
@@ -492,10 +495,13 @@ function aggiungiDiv(downloadedmatrix) {
     parentDiv.append(nuovoDiv);
 }
 
+
 function eliminaListaDiv(){
     for(let i=0; i<listaMatrici.length; i++){
-        listaMatrici[i].remove();
+        listaDiv[i].remove();
     }
+    listaMatrici = [];
+    listaDiv = [];
 }
 
 function LeftContainerEvent(event) { 
@@ -504,8 +510,14 @@ function LeftContainerEvent(event) {
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
     }
     
-    else if (event.target.classList.contains('upload')){
-        
+    else if (event.target.classList.contains('popup-Down') || event.target.textContent == 'upload'){
+        console.log("Sei qui dentro");
+        var parentPanel = event.target.closest('.div-image');
+        var index = listaDiv.indexOf(parentPanel);
+        if (index !== -1){
+            grid = listaMatrici[index];
+            updateView();
+        }
     }
 };
 
