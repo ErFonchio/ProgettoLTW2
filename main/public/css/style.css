@@ -2,7 +2,7 @@
     --primary-color: #e3e3e3;
     --secondary-color: #735EAB;
     --tertiary-color: #222222;
-    --quaternary-color: #8f32e0;
+    --quaternary-color: #455d7a;
     --live-color: #CC4774;
     --dead-color: transparent;
 }
@@ -83,8 +83,9 @@ footer {
 
 .nav-bar {
     display: flex;
-    width: 30vh;
+    width: 15vw;
     justify-content: space-around;
+    padding-right: 1.5vw;
 }
 
 td.dead {
@@ -357,20 +358,23 @@ p {
     position: absolute;
     background-color: #455d7a;
     height: 100%;
-    width: 30%;
+    width: 20%;
     align-items: center;
     border-radius: 8px;
-    left: -29%;
+    left: -19%;
 }
 
 #right-side-panel {
     position: absolute;
     background-color: #455d7a;
     height: 100%;
-    width: 30%;
+    width: 20%;
     align-items: center;
     border-radius: 8px;
-    right: -29%;
+    right: -19%;
+    justify-content: center;
+    
+    
 
 }
 
@@ -410,11 +414,11 @@ p {
 
 /* Transitioning*/
 #left-side-panel.slide-left {
-    transform: translateX(97%);
+    transform: translateX(95%);
 }
 
 #right-side-panel.slide-right {
-    transform: translateX(-97%);
+    transform: translateX(-95%);
 }
 
 #left-side-panel,
@@ -442,13 +446,16 @@ p {
     scroll-behavior: smooth;
     justify-content: center;
     border-radius: 8px;
+    align-items: center;
 }
 #scroll-container-right{
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-items: center;
     justify-content: center;
+    display: inline-block;
+    
+    
 }
 
 
@@ -468,21 +475,31 @@ p {
     transform: translate(-50%);
     width: 70%;
     padding-top: 20px;
+    display: flex;
+    
+    
+
 }
 
 .div-image-right{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    padding-top: 10%;
+    width: 60%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 
 }
 
 
 .item-image {
     opacity: 1.0;
-    width: 90%;
+    width: 80%;
+    cursor: pointer;
+    
 
 }
 
@@ -533,8 +550,12 @@ p {
 #infoButton {
     position: absolute;
     cursor: pointer;
-    top: 3%;
-    right: 32%;
+    top: 4%;
+    right: 2%;
+    font-size: 20px;
+    background-color: var(--primary-color);
+    color: var(--quaternary-color);
+    border-radius: 90px;
 }
 
 #addButton {
@@ -558,16 +579,58 @@ input::-webkit-inner-spin-button {
     #infoButton {
         position: absolute;
         cursor: pointer;
-        right: 0px;
-        top: 0px;
-        right: 40px;
+        top: 4%;
+        right: 2%;
+        font-size: 18px;
+        background-color: var(--primary-color);
+        color: var(--quaternary-color);
+        border-radius: 90px;
+        /*border: solid 2px;*/
     }
+
 
     #addButton {
         position: relative;
         top: 10px;
         cursor: pointer;
     }
+
+    #left-side-panel {
+        position: absolute;
+        background-color: #455d7a;
+        height: 100%;
+        width: 30%;
+        align-items: center;
+        border-radius: 8px;
+        left: -29%;
+        
+    }
+    
+    #right-side-panel {
+        position: absolute;
+        background-color: #455d7a;
+        height: 100%;
+        width: 30%;
+        align-items: center;
+        border-radius: 8px;
+        right: -29%;
+        
+        
+        
+    
+    }
+    
+    
+    
+    /* Transitioning*/
+    #left-side-panel.slide-left {
+        transform: translateX(97%);
+    }
+    
+    #right-side-panel.slide-right {
+        transform: translateX(-97%);
+    }
+    
 
     /* Stile per la finestra di popup */
     .class-popup {
@@ -624,6 +687,11 @@ input::-webkit-inner-spin-button {
         padding: 20px;
     }
 
+    .nav-bar span {
+        font-size: 5vw;
+        
+    }
+
 }
 
 
@@ -646,6 +714,54 @@ input::-webkit-inner-spin-button {
     .img {
         width: 100%;
         height: 100%
+    }
+
+   
+
+    
+}
+
+@media(max-width: 400px){
+    .nav-bar span {
+        font-size: 3vh;
+    }
+    
+    #left-side-panel {
+        position: absolute;
+        background-color: #455d7a;
+        height: 100%;
+        width: 95%;
+        align-items: center;
+        border-radius: 8px;
+        left: -92%;
+        
+        
+    }
+    
+    #right-side-panel {
+        position: absolute;
+        background-color: #455d7a;
+        height: 100%;
+        width: 95%;
+        align-items: center;
+        border-radius: 8px;
+        right: -92%;
+
+        
+        
+        
+    
+    }
+    
+    
+    
+    /* Transitioning*/
+    #left-side-panel.slide-left {
+        transform: translateX(92%);
+    }
+    
+    #right-side-panel.slide-right {
+        transform: translateX(-92%);
     }
 }
 
@@ -674,6 +790,7 @@ label {
     border-radius: 5px;
     text-align: center;
     max-width: 250px;
+    min-width: 180px;
 }
 
 /* Style for the close button */
