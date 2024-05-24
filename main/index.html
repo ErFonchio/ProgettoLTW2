@@ -34,7 +34,7 @@
             <div class="nav-bar">
                 <a id="login-button" class="nav-item"><span class="material-symbols-outlined">passkey</span></a>
                 <a class="nav-item" href="about.html"><span class="material-symbols-outlined">info</span></a>
-                <a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a>
+                <!--a class="nav-item" href="#"><span class="material-symbols-outlined">lightbulb</span></a-->
             </div>
         </header>
         <div class="container">
@@ -56,17 +56,100 @@
                         chevron_left
                     </span> 
                 </div>
-                <div class="scroll-container">
-                    <div class="div-image">
-                        <img src="public/img/glider.png" class="item-image" alt="Spaceship">
-                            <a href="about.html#spceship">
+                <div class="scroll-container" id="scroll-container-right">
+                    <div class="div-image-right">
+                        <img src="../immagini/block.png" class="item-image" alt="The Block" id="Block">
+                            <a href="about.html#block">
                             <span id="infoButton" class="material-symbols-outlined">
-                                info
+                                help
                             </span>
                             </a>
                         </img>
                     </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/beehive.png" class="item-image" alt="The Beehive" id="Beehive">
+                            <a href="about.html#beehive">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/boat.png" class="item-image" alt="The Boat" id="Boat">
+                            <a href="about.html#boat">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/blinker1.webp" class="item-image" alt="The Blinker" id="Blinker">
+                            <a href="about.html#blinker">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/toad.gif" class="item-image" alt="The Toad" id="Toad">
+                            <a href="about.html#toad">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/beacon1.gif" class="item-image" alt="The Beacon" id="Beacon">
+                            <a href="about.html#beacon1">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Pulsar.gif" class="item-image" alt="The Pulsar" id="Pulsar">
+                            <a href="about.html#pulsar">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Pentadecathlon.gif" class="item-image" alt="The Pentadecathlon" id="Pentadecathlon">
+                            <a href="about.html#pentadecathlon">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Glider.webp" class="item-image" alt="The Glider" id="Glider">
+                            <a href="about.html#glider">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Mwss.gif" class="item-image" alt="The Spaceship" id="Spaceship">
+                            <a href="about.html#spaceship">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    
                 </div>
+                
             </div>
 
         </div>
@@ -101,14 +184,14 @@
         </div>
 
         <div id="ModalLog" class="modal">
-            <div id="loginForm" class="popup-form" action="/action_page.php" method="post">
+            <div id="loginForm" class="popup-form" onsubmit="return false">
                 <h2 class="subtitle">Login</h2>
                 <form class="form">
                     <label for="username">Username</label><br>
-                    <input type="text" class="field" placeholder="Username"><br>
+                    <input type="text" id="id-username-login" class="field" placeholder="Username"><br>
                     <label for="password">Password</label><br>
-                    <input type="password" class="field" placeholder="Password"> <br>
-                    <input type="submit" class="login-button" value="Login">
+                    <input type="password" id="id-password-login" class="field" placeholder="Password"> <br>
+                    <input type="submit" id="id-login" class="login-button" value="Login" onsubmit="return false">
                     <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
                     <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
                 </form>
@@ -116,14 +199,14 @@
         </div>
         
         <div id="ModalSign" class="modal">
-            <div id="signupForm" class="popup-form" action="/action_page.php" method="post">
+            <div id="signupForm" class="popup-form" onsubmit="return false">
                 <h2 class="subtitle">Sign up</h2>
                 <form class="form">
                     <label for="username">Email</label><br>
-                    <input type="text" class="field" placeholder="Username" required><br>
+                    <input type="text" class="field" id="id-username-signup" placeholder="Username" required><br>
                     <label for="password">Password</label><br>
-                    <input type="password" class="field" placeholder="Password" required> <br>
-                    <input type="submit" class="login-button" value="Register">
+                    <input type="password" class="field" id="id-password-signup" required> <br>
+                    <input type="submit" class="login-button" value="Register" id="id-register" onsubmit="return false">
                     <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
                     <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
                 </form>
