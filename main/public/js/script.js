@@ -11,6 +11,18 @@ var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
 
+function handleVisibilityChange() {
+    if (document.hidden) {
+        console.log("Tab is not in focus");
+        document.title =  "Torna QUI ✨😎"
+    } else {
+        console.log("Tab is in focus");
+        document.title = "The Game of Life"
+    }
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
+
 /*patterns*/
 var gliderMatrix= [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
