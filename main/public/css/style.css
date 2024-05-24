@@ -351,6 +351,8 @@ p {
     font-weight: 600;
     font-size: 1em;
     color: var(--tertiary-color);
+    margin: 0;
+    padding: 0;
 }
 
 /*panels*/
@@ -574,14 +576,14 @@ input::-webkit-inner-spin-button {
 @media (max-width: 1000px) {
     #title {
         color: blue;
-        font-size: 20px;
+        font-size: 45px;
     }
     #infoButton {
         position: absolute;
         cursor: pointer;
         top: 4%;
         right: 2%;
-        font-size: 18px;
+        font-size: 32px;
         background-color: var(--primary-color);
         color: var(--quaternary-color);
         border-radius: 90px;
@@ -614,12 +616,8 @@ input::-webkit-inner-spin-button {
         align-items: center;
         border-radius: 8px;
         right: -29%;
-        
-        
-        
-    
+
     }
-    
     
     
     /* Transitioning*/
@@ -849,3 +847,4 @@ label {
     top: 0;
     left: 0;
 }
+
