@@ -708,9 +708,9 @@ function aggiungiDiv(downloadedmatrix) {
     nuovaImmagine.src = createImageFromMatrix(tempMatrix);
     var matrixHeight = tempMatrix.length;
     var matrixWidth = tempMatrix[0].length;
-    var ratio = matrixWidth/matrixHeight;
-    nuovaImmagine.style.height = '70px'
-    nuovaImmagine.style.width = parseFloat(nuovaImmagine.style.height)*ratio +'px';
+    var ratio = matrixHeight/matrixWidth;
+    nuovaImmagine.style.width = '200px';
+    nuovaImmagine.style.height = parseFloat(nuovaImmagine.style.width)*ratio +'px';
     nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
     nuovaImmagine.id = 'id-item-image';
 
@@ -759,12 +759,13 @@ function aggiungiDiv(downloadedmatrix) {
     parentDiv.append(nuovoDiv);
 }
 function LeftContainerEvent(event) { 
-    if(event.target.className == 'popup-Top' || event.target.classList.contains('material-icons')) {
+    if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
+        console.log("adesso sei qui");
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
     }
     
-    else if (event.target.classList.contains('popup-Down') || event.target.textContent == 'upload'){
+    else if (event.target.className == 'popup-Down' || event.target.textContent == 'upload') {
         console.log("Sei qui dentro");
         var parentPanel = event.target.closest('.div-image');
         var index = listaDiv.indexOf(parentPanel);
