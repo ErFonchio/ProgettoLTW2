@@ -998,6 +998,13 @@ function uploadMatrix(){
 }
 
 
+function eliminaListaDiv(){
+    for(let i=0; i<listaDiv.length; i++){
+        listaDiv[i].remove();
+    }
+    listaMatrici = [];
+}
+
 document.getElementById('save').addEventListener('click', function() {
     aggiungiDiv(null);
 });
