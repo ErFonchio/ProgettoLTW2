@@ -997,6 +997,56 @@ function uploadMatrix(){
     }
 }
 
+function deleteMatrix(event){
+    var flag_delete = 1;
+    //var username = document.getElementById('id-username-login').value;
+    var parentPanel = event.target.closest('.div-image');
+    var index = listaDiv.indexOf(parentPanel);
+    if (index !== -1){
+        matrice = listaMatrici[index];
+    }
+    
+    var matrix = JSON.stringify(matrice);
+    //Non hai i permessi per l'upload
+    if (username == '' || !flag_delete) return;
+
+    var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.send(params);
+
+    xhr.onload = function(){
+        var data = JSON.parse(this.responseText);
+
+        //Empty username
+        if (data.length >= 3 && data[2] != null){
+            console.log(JSON.parse(data[2]).message);
+            
+        }
+        //Username non esistente
+        else if (data.length >= 4 && data[3] != null){
+            console.log(JSON.parse(data[3]).message);
+            
+        }
+        //Matrice vuota
+        else if (data.length >= 5 && data[4] != null){
+            console.log(JSON.parse(data[4]).message);
+            
+        }
+        //Sono arrivati 0 o più corrispondenze dalla tabella data
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+        }
+        //Inserimento della matrice fallito
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+        }
+    }
+}
+
 
 function eliminaListaDiv(){
     for(let i=0; i<listaDiv.length; i++){
@@ -1016,6 +1066,7 @@ document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
 document.getElementById('save').addEventListener('click', uploadMatrix);
+document.getElementById('deleteIcon').addEventListener('click', deleteMatrix);
 
 
 
