@@ -762,7 +762,9 @@ function LeftContainerEvent(event) {
     if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
         console.log("adesso sei qui");
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
-        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine
+        var parentPanel = event.target.closest('.div-image');
+        deleteMatrix(parentPanel);     
     }
     
     else if (event.target.className == 'popup-Down' || event.target.textContent == 'upload') {
@@ -997,11 +999,11 @@ function uploadMatrix(){
     }
 }
 
-function deleteMatrix(event){
+function deleteMatrix(panel){
     var flag_delete = 1;
     //var username = document.getElementById('id-username-login').value;
-    var parentPanel = event.target.closest('.div-image');
-    var index = listaDiv.indexOf(parentPanel);
+    
+    var index = listaDiv.indexOf(panel);
     if (index !== -1){
         matrice = listaMatrici[index];
     }
