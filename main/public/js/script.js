@@ -1157,5 +1157,3 @@ function checkResize(){
     previousWidth=currentWidth;
 };
 
-
-
