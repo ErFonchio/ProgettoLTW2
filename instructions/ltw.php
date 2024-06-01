@@ -80,6 +80,7 @@ function delete($conn, $data0, $data1){
     $data4 = null;
     $data5 = null;
     $data6 = null;
+    
     //Matrix viene ricevuta già come JSON
     $username = $_POST['username'];
     $matrix = $_POST['matrix'];
@@ -108,7 +109,7 @@ function delete($conn, $data0, $data1){
         echo json_encode($result);
         return;
     }
-    $query = "DELETE FROM data WHERE (username = '$username' AND matrix = '$matrix')";
+    $query = "DELETE FROM data WHERE username='$username' AND matrix='$matrix'";
     if (mysqli_query($conn, $query)){
         $data5 = json_encode(['message' => 'Eliminazione della matrice riuscita']);
         $result = [$data0, $data1, $data2, $data3, $data4, $data5];

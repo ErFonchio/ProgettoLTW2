@@ -10,6 +10,7 @@ var nextGrid = new Array(rows);
 var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
+var username= "";
 
 /*patterns*/
 var gliderMatrix= [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -763,7 +764,6 @@ function LeftContainerEvent(event) {
         console.log("adesso sei qui");
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
         parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine
-        var parentPanel = event.target.closest('.div-image');
         deleteMatrix(parentPanel);     
     }
     
@@ -912,7 +912,7 @@ function register(){
 function login(){
     permissionLogin = false;
     var flag_login = 1;
-    var username = document.getElementById('id-username-login').value;
+    username = document.getElementById('id-username-login').value;
     var password = document.getElementById('id-password-login').value;
     console.log("Stai provando a fare il login con ", username, password);
     var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
@@ -960,7 +960,7 @@ function printDownloadedMatrix(list){
 
 function uploadMatrix(){
     var flag_upload = 1;
-    var username = document.getElementById('id-username-login').value;
+    //var username = document.getElementById('id-username-login').value;
     var matrix = JSON.stringify(savedMatrix);
     //Non hai i permessi per l'upload
     if (username == '' || !flag_upload) return;
@@ -1068,7 +1068,7 @@ document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
 document.getElementById('save').addEventListener('click', uploadMatrix);
-document.getElementById('deleteIcon').addEventListener('click', deleteMatrix);
+//document.getElementById('deleteIcon').addEventListener('click', deleteMatrix);
 
 
 
