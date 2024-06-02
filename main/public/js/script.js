@@ -10,8 +10,9 @@ var nextGrid = new Array(rows);
 var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
-var username= "";
+var username= '';
 localStorage.setItem("username", username);
+
 
 /*patterns*/
 var gliderMatrix= [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -911,6 +912,8 @@ function register(){
     }
 }
 
+
+
 function login(){
     permissionLogin = false;
     var flag_login = 1;
@@ -951,8 +954,27 @@ function login(){
             eliminaListaDiv(); //Rimuove gli stati registrati fino a questo momento
             printDownloadedMatrix(matrixList);
             hideLoginForm();
+            console.log(listaDiv.length, listaMatrici.length);
+            document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
+            
         }
     }
+}
+
+
+function logout(){
+    var confirmation = confirm("Are you sure you want to logout?");
+    if (confirmation){
+        permissionLogin = false;
+        eliminaListaDiv();
+        username='';
+        document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">passkey</span>';
+        document.getElementById('id-username-login').value = '';
+        document.getElementById('id-password-login').value = '';
+        
+        console.log("Logged out");
+    }
+    else return;
 }
 
 function printDownloadedMatrix(list){
@@ -1000,6 +1022,7 @@ function uploadMatrix(){
             console.log(JSON.parse(data[5]).message);
         }
     }
+    console.log(listaDiv.length, listaMatrici.length);
     
 }
 
@@ -1016,6 +1039,7 @@ function deleteMatrix(panel){
     //Non hai i permessi per l'upload
     if (username == '' || !flag_delete) return;
     console.log(username, matrix);
+    console.log(listaDiv.length, listaMatrici.length)
 
     var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
 
@@ -1052,8 +1076,8 @@ function deleteMatrix(panel){
             console.log(JSON.parse(data[5]).message);
         }
     }
-    listaMatrici[index].pop();
-    listaDiv[index].pop();
+    var rimosso=listaMatrici.splice(index, 1);
+    var rimosso=listaDiv.splice(index, 1);
 }
 
 
@@ -1062,6 +1086,7 @@ function eliminaListaDiv(){
         listaDiv[i].remove();
     }
     listaMatrici = [];
+    listaDiv=[];
 }
 
 document.getElementById('save').addEventListener('click', function() {
@@ -1075,9 +1100,17 @@ document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
 document.getElementById('save').addEventListener('click', uploadMatrix);
-//document.getElementById('deleteIcon').addEventListener('click', deleteMatrix);
+document.getElementById('login').addEventListener('click', ManageLogin);
 
 
+function ManageLogin(){
+    if(!permissionLogin){
+        showLoginForm();
+    }
+    else{
+        logout();
+    }
+}
 
 /*login form*/
 function showLoginForm() {
@@ -1159,7 +1192,7 @@ for (var i = 0; i < divImages.length; i++) {
 };
 
 
-/*gestione pannelli su schermo mobile*/
+/*gestione resize pannelli*/
 document.getElementById('circle-ovest').addEventListener('click', clickOvest);
 function clickOvest() {
     if(openOvest==0) openOvest=1;
@@ -1216,6 +1249,31 @@ function checkResize(){
     }
     previousWidth=currentWidth;
 };
+
+
+window.addEventListener('load', restoreSession());
+function restoreSession(){
+    if(localStorage.getItem("username") != null){
+        username = localStorage.getItem("username");
+        permissionLogin = true;
+        document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
+        var flag_login = 1;
+        var password = '';
+        var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+
+        xhr.onload = function(){
+            var data = JSON.parse(this.responseText);
+            if (data.length >= 6 && data[5] != null){
+                matrixList = JSON.parse(data[5]).message;
+                printDownloadedMatrix(matrixList);
+            }
+        }
+    }
+}
 
 
 
