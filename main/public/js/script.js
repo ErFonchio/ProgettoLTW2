@@ -11,6 +11,7 @@ var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
 var username= "";
+localStorage.setItem("username", username);
 
 /*patterns*/
 var gliderMatrix= [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -758,6 +759,7 @@ function aggiungiDiv(downloadedmatrix) {
     var parentDiv = document.getElementById('scroll-container-ovest');
 
     parentDiv.append(nuovoDiv);
+    console.log(listaMatrici.indexOf(tempMatrix));
 }
 function LeftContainerEvent(event) { 
     if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
@@ -916,6 +918,7 @@ function login(){
     var password = document.getElementById('id-password-login').value;
     console.log("Stai provando a fare il login con ", username, password);
     var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+    localStorage.setItem("username", username);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
@@ -997,6 +1000,7 @@ function uploadMatrix(){
             console.log(JSON.parse(data[5]).message);
         }
     }
+    
 }
 
 function deleteMatrix(panel){
@@ -1007,10 +1011,11 @@ function deleteMatrix(panel){
     if (index !== -1){
         matrice = listaMatrici[index];
     }
-    
+    console.log(matrice, index);
     var matrix = JSON.stringify(matrice);
     //Non hai i permessi per l'upload
     if (username == '' || !flag_delete) return;
+    console.log(username, matrix);
 
     var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
 
@@ -1047,6 +1052,8 @@ function deleteMatrix(panel){
             console.log(JSON.parse(data[5]).message);
         }
     }
+    listaMatrici[index].pop();
+    listaDiv[index].pop();
 }
 
 
@@ -1212,3 +1219,4 @@ function checkResize(){
 
 
 
+ 
