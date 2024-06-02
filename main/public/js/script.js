@@ -11,7 +11,8 @@ var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
 var username= '';
-localStorage.setItem("username", username);
+var pw='';
+//window.localStorage.setItem('username', username);
 
 
 /*patterns*/
@@ -925,7 +926,10 @@ function login(){
     var password = document.getElementById('id-password-login').value;
     console.log("Stai provando a fare il login con ", username, password);
     var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
-    localStorage.setItem("username", username);
+    
+    console.log("user");
+    console.log(username);
+    console.log(password);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
@@ -962,6 +966,10 @@ function login(){
             hideLoginForm();
             //console.log(listaDiv.length, listaMatrici.length);
             document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
+            window.localStorage.setItem('username', username);
+            window.localStorage.setItem('password', password);
+            console.log(window.localStorage.getItem("password"));
+            console.log(window.localStorage.getItem("username"));
             
         }
     }
@@ -977,7 +985,8 @@ function logout(){
         document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">passkey</span>';
         document.getElementById('id-username-login').value = '';
         document.getElementById('id-password-login').value = '';
-        
+        window.localStorage.removeItem('username');
+        window.localStorage.removeItem('password');
         console.log("Logged out");
     }
     else return;
@@ -1256,28 +1265,35 @@ function checkResize(){
     previousWidth=currentWidth;
 };
 
-
+/*restoring session*/
 window.addEventListener('load', restoreSession());
 function restoreSession(){
-    if(localStorage.getItem("username") != null){
-        username = localStorage.getItem("username");
+    console.log("b")
+    if(window.localStorage.getItem('username') != '' && window.localStorage.getItem('username') != null){
+        console.log("ok")
+        username = window.localStorage.getItem('username');
+        console.log(username);
         permissionLogin = true;
         document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
         var flag_login = 1;
-        var password = '';
+        var password = window.localStorage.getItem('password');
         var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+        console.log(password);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.send(params);
-
+        
         xhr.onload = function(){
             var data = JSON.parse(this.responseText);
             if (data.length >= 6 && data[5] != null){
                 matrixList = JSON.parse(data[5]).message;
                 printDownloadedMatrix(matrixList);
+                //add the code tho display the matrices
             }
         }
+        console.log(username)
+
     }
 }
 
