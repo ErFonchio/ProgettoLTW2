@@ -34,7 +34,8 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    /*overflow-y:visible;*/
 }
 
 #gridContainer{ 
@@ -85,7 +86,7 @@ footer {
     display: flex;
     width: 15vw;
     justify-content: space-around;
-    padding-right: 1.5vw;
+    padding-right: 2vw;
 }
 
 td.dead {
@@ -114,7 +115,7 @@ td.live {
 
 .control-panel {
     position: relative;
-    margin: 20px;
+    margin: 5px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 50% 50%;
@@ -130,10 +131,11 @@ td.live {
 }
 
 .cell-counter-div>* {
-    margin-top: -20px;
+    margin-top: -15px;
     font-family: "Roboto", sans-serif;
-    font-size: 2rem;
-    padding: 5px 5px 10px 5px;
+    font-size: 3.5vh;
+    padding: 5px 5px 5px 5px;
+    
 }
 
 
@@ -143,6 +145,7 @@ td.live {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-top: 7px;
 
 }
 
@@ -152,6 +155,7 @@ td.live {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 7px;
 }
 
 .fps-control {
@@ -160,6 +164,8 @@ td.live {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    
+    margin-top: 7px;
 }
 
 .fps-control>* {
@@ -344,6 +350,7 @@ p {
     background-color: var(--tertiary-color);
     border: none;
     color: var(--primary-color);
+    margin-top: -15px;
 }
 
 #fps-field-label {
@@ -351,6 +358,8 @@ p {
     font-weight: 600;
     font-size: 1em;
     color: var(--tertiary-color);
+    margin-top: -15px;
+    
 }
 
 /*panels*/
@@ -688,8 +697,98 @@ input::-webkit-inner-spin-button {
     }
 
     .nav-bar span {
-        font-size: 5vw;
+        font-size: 5vh;
+        padding-left: 0;
+        padding-right: 5vw;
         
+    }
+
+    .nav-bar {
+        display: flex;
+        width: 15vw;
+        justify-content: space-around;
+        padding-right: 3vh;
+    }
+
+
+    .control-panel {
+        position: relative;
+        margin: 5px;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 50% 50%;
+    }
+    
+    .cell-counter-div {
+        grid-row: 1;
+        grid-column: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cell-counter-div>* {
+        margin-top: -15px;
+        font-family: "Roboto", sans-serif;
+        font-size: 3.5vh;
+        padding: 5px 5px 5px 5px;
+        
+    }
+    
+    
+    .save-buttons {
+        grid-column: 1;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 7px;
+    
+    }
+    
+    .control-buttons {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 7px;
+    }
+    
+    .fps-control {
+        grid-column: 3;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        margin-top: 7px;
+    }
+    
+    .fps-control>* {
+        margin: 0 5px;
+    
+    }
+    
+    .save-buttons>* {
+        margin: 0 5px;
+    
+    }
+    
+    .nav-bar span {
+        font-size: 3vw;
+    }
+    
+    
+    
+    .fps-counter-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    
     }
 
 }
@@ -716,6 +815,8 @@ input::-webkit-inner-spin-button {
         height: 100%
     }
 
+    
+
    
 
     
@@ -723,7 +824,7 @@ input::-webkit-inner-spin-button {
 
 @media(max-width: 400px){
     .nav-bar span {
-        font-size: 3vh;
+        font-size: 4vh;
     }
     
     #left-side-panel {

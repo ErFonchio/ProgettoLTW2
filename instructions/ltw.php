@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 
-$conn = mysqli_connect('localhost', 'root', '', 'LTW-database');
+$conn = mysqli_connect('localhost', 'root', '', 'ltw-database');
 
 
 $data0 = json_encode(['message' => 'processing']);
@@ -19,6 +19,10 @@ else if (isset($_POST['flag_login'])){
 else if (isset($_POST['flag_upload'])){
     $data1 = json_encode(['status' => 'success', 'message' => 'Save in loading...']);
     save($conn, $data0, $data1);
+}
+else if (isset($_POST['flag_delete'])){
+    $data1 = json_encode(['status' => 'success', 'message' => 'Delete in loading...']);
+    delete($conn, $data0, $data1);
 }
 
 function save($conn, $data0, $data1){
@@ -64,6 +68,55 @@ function save($conn, $data0, $data1){
         return;
     }else{
         $data5 = json_encode(['message' => 'Inserimento della matrice fallito']);
+        $result = [$data0, $data1, $data2, $data3, $data4, $data5, $data6];
+        echo json_encode($result);
+        return;
+    }
+}
+
+function delete($conn, $data0, $data1){
+    $data2 = null;
+    $data3 = null;
+    $data4 = null;
+    $data5 = null;
+    $data6 = null;
+    
+    //Matrix viene ricevuta già come JSON
+    $username = $_POST['username'];
+    $matrix = $_POST['matrix'];
+
+    //Controlli su username
+    if (empty($username)) {
+        $data2 = json_encode(['status'=> 'error','message'=> 'Empty username']);
+        $result = [$data0, $data1, $data2];
+        echo json_encode($result);
+        return;
+    }
+    $query = "SELECT username from users WHERE username = '$username'";
+    $result = mysqli_query($conn, $query);
+    //Username non esistente
+    if (mysqli_num_rows($result) == 0){
+        $data3 = json_encode(["status"=> "error","message"=> "Username non presente"]);
+        $result = [$data0, $data1, $data2, $data3]; 
+        echo json_encode($result);
+        return;
+    }
+
+    //Controllo su matrice
+    if (empty($matrix)){
+        $data4 = json_encode(['status'=> 'error','message'=> 'Empty matrix']);
+        $result = [$data0, $data1, $data2, $data3, $data4];
+        echo json_encode($result);
+        return;
+    }
+    $query = "DELETE FROM data WHERE username='$username' AND matrix='$matrix'";
+    if (mysqli_query($conn, $query)){
+        $data5 = json_encode(['message' => 'Eliminazione della matrice riuscita']);
+        $result = [$data0, $data1, $data2, $data3, $data4, $data5];
+        echo json_encode($result);
+        return;
+    }else{
+        $data5 = json_encode(['message' => 'Eliminazione della matrice fallita']);
         $result = [$data0, $data1, $data2, $data3, $data4, $data5, $data6];
         echo json_encode($result);
         return;
