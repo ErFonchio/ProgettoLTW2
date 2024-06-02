@@ -370,8 +370,8 @@ function createTable() {
         
     }
 
-    function updateView() {
-        isStillAlive();
+    function updateView(flag_update=false) {
+        if (!flag_update)isStillAlive();
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 var cell = document.getElementById(i + "_" + j);
@@ -388,6 +388,7 @@ function createTable() {
 function saveGame(){
     savedMatrix = JSON.parse(JSON.stringify(recordMatrix));
     console.log("Saved Matrix: ", savedMatrix);
+    aggiungiDiv(null);
 }
 
 // load the newest saved matrix
@@ -496,7 +497,7 @@ function clearButtonHandler() {
             grid[i][j]=0;
         }
     }
-    updateView();
+    updateView(1);
 }
 
 // start/pause/continue the game
@@ -506,7 +507,7 @@ function startButtonHandler() {
         playing = false;
         this.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
         clearTimeout(timer);
-    } else {
+    }else {
         console.log("Continue the game");
         playing = true;
         this.innerHTML = '<span class="material-symbols-outlined">pause</span>';
@@ -697,11 +698,13 @@ function aggiungiDiv(downloadedmatrix) {
     //Questo controllo serve per assegnare le matrici che vengono scaricate dal server
     if(downloadedmatrix != null){
         tempMatrix = downloadedmatrix;
+        console.log("Stai assegnando downloadedmatrix: ", downloadedmatrix);
     }
 
     //Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
     listaDiv.push(nuovoDiv); //Serve per identificare il div la cui matrice voglio inserire nella griglia
+    console.log("Inserendo nella lista listaMatrici la matrice scaricata tempMatrix: ", tempMatrix);
     listaMatrici.push(tempMatrix);
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
     nuovoDiv.style.paddingTop = '20px';
@@ -760,7 +763,7 @@ function aggiungiDiv(downloadedmatrix) {
     var parentDiv = document.getElementById('scroll-container-ovest');
 
     parentDiv.append(nuovoDiv);
-    console.log(listaMatrici.indexOf(tempMatrix));
+    //console.log(listaMatrici.indexOf(tempMatrix));
 }
 function LeftContainerEvent(event) { 
     if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
@@ -771,12 +774,13 @@ function LeftContainerEvent(event) {
     }
     
     else if (event.target.className == 'popup-Down' || event.target.textContent == 'upload') {
-        console.log("Sei qui dentro");
         var parentPanel = event.target.closest('.div-image');
         var index = listaDiv.indexOf(parentPanel);
         if (index !== -1){
             grid = listaMatrici[index];
-            updateView();
+            console.log("Stai inserendo la matrice: ", grid);
+            console.log("Dalla lista: ", listaMatrici);
+            updateView(1);
         }
     }
 };
@@ -950,11 +954,13 @@ function login(){
         //Login riuscito: sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
             matrixList = JSON.parse(data[5]).message;
+            console.log("Ricevendo dal database1111: ", matrixList);
             permissionLogin = true;
             eliminaListaDiv(); //Rimuove gli stati registrati fino a questo momento
+            console.log("Stai inserendo da database: ", matrixList);
             printDownloadedMatrix(matrixList);
             hideLoginForm();
-            console.log(listaDiv.length, listaMatrici.length);
+            //console.log(listaDiv.length, listaMatrici.length);
             document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
             
         }
@@ -1022,7 +1028,7 @@ function uploadMatrix(){
             console.log(JSON.parse(data[5]).message);
         }
     }
-    console.log(listaDiv.length, listaMatrici.length);
+    // console.log(listaDiv.length, listaMatrici.length);
     
 }
 
@@ -1038,8 +1044,8 @@ function deleteMatrix(panel){
     var matrix = JSON.stringify(matrice);
     //Non hai i permessi per l'upload
     if (username == '' || !flag_delete) return;
-    console.log(username, matrix);
-    console.log(listaDiv.length, listaMatrici.length)
+    // console.log(username, matrix);
+    // console.log(listaDiv.length, listaMatrici.length);
 
     var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
 
@@ -1089,9 +1095,9 @@ function eliminaListaDiv(){
     listaDiv=[];
 }
 
-document.getElementById('save').addEventListener('click', function() {
-    aggiungiDiv(null);
-});
+// document.getElementById('save').addEventListener('click', function() {
+//     aggiungiDiv(null);
+// });
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
