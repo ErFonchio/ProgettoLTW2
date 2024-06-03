@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,54 +20,205 @@
       </script>
       <link rel="stylesheet" href="public/css/style.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>The Game of Life</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      <title>The Game of Life</title>
 </head>
 
 <body>
-    <header>
-        <h1 id="title">The Game of Life</h1>
-        <div class="nav-bar">
-            <a href="#"><span id="login-button" class="material-symbols-outlined">passkey</span></a>
-            <a href="#"><span id="about-button" class="material-symbols-outlined">lightbulb</span></a>
-            <a href="#"><span id="help-button" class="material-symbols-outlined">question_mark</span></a>
-        </div>
-    </header>
-    <div class="container">
-        <div class="left-side-panel">
+    <div class="ManagerWrapper">
 
-        </div>
-        
-        <div id="gridContainer"></div>
-        
+        <header>
+            <h1 id="title">The Game of Life</h1>
+            <div class="nav-bar">
+                <a class="nav-item" id="login"><span class="material-symbols-outlined">passkey</span></a>
+                <a class="nav-item" href="about.html"><span class="material-symbols-outlined">info</span></a>
+                <a class="nav-item" href="ranking.html" ><span class="material-symbols-outlined">star_rate</span></a>
+
+            </div>
+        </header>
+        <div class="container">
+            <div id="left-side-panel">
+                <div id="circle-ovest">
+                    <span class="material-symbols-rounded">
+                        chevron_right
+                    </span> 
+                </div>
+                <div class="scroll-container" id="scroll-container-ovest">
+                </div>
+            </div>
             
-        <div class="right-side-panel">
+            <div id="gridContainer"></div>
+            
+            <div id="right-side-panel" class="class-right-side-panel">
+                <div id="circle-est">
+                    <span class="material-symbols-rounded">
+                        chevron_left
+                    </span> 
+                </div>
+                <div class="scroll-container" id="scroll-container-right">
+                    <div class="div-image-right">
+                        <img src="../immagini/block.png" class="item-image" alt="The Block" id="Block">
+                            <a href="about.html#block">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/beehive.png" class="item-image" alt="The Beehive" id="Beehive">
+                            <a href="about.html#beehive">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/boat.png" class="item-image" alt="The Boat" id="Boat">
+                            <a href="about.html#boat">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/blinker1.webp" class="item-image" alt="The Blinker" id="Blinker">
+                            <a href="about.html#blinker">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/toad.gif" class="item-image" alt="The Toad" id="Toad">
+                            <a href="about.html#toad">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/beacon1.gif" class="item-image" alt="The Beacon" id="Beacon">
+                            <a href="about.html#beacon1">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Pulsar.gif" class="item-image" alt="The Pulsar" id="Pulsar">
+                            <a href="about.html#pulsar">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Pentadecathlon.gif" class="item-image" alt="The Pentadecathlon" id="Pentadecathlon">
+                            <a href="about.html#pentadecathlon">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Glider.webp" class="item-image" alt="The Glider" id="Glider">
+                            <a href="about.html#glider">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    <div class="div-image-right">
+                        <img src="../immagini/Mwss.gif" class="item-image" alt="The Spaceship" id="Spaceship">
+                            <a href="about.html#spaceship">
+                            <span id="infoButton" class="material-symbols-outlined">
+                                help
+                            </span>
+                            </a>
+                        </img>
+                    </div>
+                    
+                </div>
+                
+            </div>
 
         </div>
+        <div class="control-panel">
+            <div class="cell-counter-div">
+                <span>Live cells:</span>
+                <span id="cell-counter">0</span>
+            </div>
+            <div class="save-buttons">
+                <md-filled-button id="save"><span class="material-symbols-outlined">save</span></md-filled-button>
+                <md-filled-button id="load"><span class="material-symbols-outlined">restore</span></md-filled-button>
+            </div>
+            <div class="control-buttons">
+                <div class="controls">
+                    <md-filled-button id="zoom-out"><span class="material-symbols-outlined">zoom_out</span></md-filled-button>
+                    <md-filled-button id="clear"><span class="material-symbols-outlined">restart_alt</span></md-filled-button>
+                    <md-filled-button id="start"><span class="material-symbols-outlined">play_arrow</span></md-filled-button>
+                    <md-filled-button id="random"><span class="material-symbols-outlined">casino</span></md-filled-button>
+                    <md-filled-button id="zoom-in"><span class="material-symbols-outlined">zoom_in</span></md-filled-button>
+                    
 
-    </div>
-    <div class="control-panel">
-        <div class="save-buttons">
-            <md-filled-button id="save"><span class="material-symbols-outlined">save</span></md-filled-button>
-            <md-filled-button id="load"><span class="material-symbols-outlined">restore</span></md-filled-button>
+                </div>
+            </div>
+            <div class="fps-control">
+                <md-filled-button id="decrease-fps" ><span class="material-symbols-outlined">remove</span></md-filled-button>
+                <div class="fps-counter-div">
+                    <label id="fps-field-label" for="fps-field">FPS:</label>
+                    <input type="number" name="fps-field" id="fps-field" value="120" min="10" max="240" placeholder="FPS">
+                </div>
+                <md-filled-button id="increase-fps" ><span class="material-symbols-outlined">add</span></md-filled-button>
+            </div>
+            
         </div>
-        <div class="control-buttons">
-            <div class="controls">
-                <md-filled-button id="start"><span class="material-symbols-outlined">play_arrow</span></md-filled-button>
-                <md-filled-button id="clear"><span class="material-symbols-outlined">restart_alt</span></md-filled-button>
-                <md-filled-button id="random"><span class="material-symbols-outlined">casino</span></md-filled-button>
+
+        <div id="ModalLog" class="modal">
+            <div id="loginForm" class="popup-form" onsubmit="return false">
+                <h2 class="subtitle">Login</h2>
+                <form class="form">
+                    <label for="username">Username</label><br>
+                    <input type="text" id="id-username-login" class="field" placeholder="Username"><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" id="id-password-login" class="field" placeholder="Password"> <br>
+                    <input type="submit" id="id-login" class="login-button" value="Login" onsubmit="return false">
+                    <input type="button" class="login-button" value="Sign up" onclick="showSignupForm()">
+                    <input type="button" class="close-button" value="&#x2716;" onclick="hideLoginForm()">
+                </form>
             </div>
         </div>
-        <div class="fps-control">
-            <md-filled-button id="increase-fps" ><span class="material-symbols-outlined">add</span></md-filled-button>
-            <div class="fps-counter-div">
-                <label id="fps-field-label" for="fps-field">FPS:</label>
-                <input type="number" name="fps-field" id="fps-field" value="120" min="10" max="240" placeholder="FPS">
+        
+        <div id="ModalSign" class="modal">
+            <div id="signupForm" class="popup-form" onsubmit="return false">
+                <h2 class="subtitle">Sign up</h2>
+                <form class="form">
+                    <label for="username">Email</label><br>
+                    <input type="text" class="field" id="id-username-signup" placeholder="Username" required><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" class="field" id="id-password-signup" placeholder="Password" required> <br>
+                    <input type="submit" class="login-button" value="Register" id="id-register" onsubmit="return false">
+                    <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
+                    <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
+                </form>
             </div>
-            <md-filled-button id="decrease-fps" ><span class="material-symbols-outlined">remove</span></md-filled-button>
-
         </div>
     </div>
+
 </body>
+
 
 <script src="public/js/script.js"></script>
 <script src="public/js/orientationTest.js"></script>
