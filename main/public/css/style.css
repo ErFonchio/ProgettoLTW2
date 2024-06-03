@@ -5,6 +5,8 @@
     --quaternary-color: #455d7a;
     --live-color: #CC4774;
     --dead-color: transparent;
+
+
 }
 
 input::-webkit-outer-spin-button,
@@ -364,7 +366,7 @@ p {
 /*panels*/
 #left-side-panel {
     position: absolute;
-    background-color: #455d7a;
+    background-color: var(--quaternary-color);
     height: 100%;
     width: 20%;
     align-items: center;
@@ -374,7 +376,7 @@ p {
 
 #right-side-panel {
     position: absolute;
-    background-color: #455d7a;
+    background-color: var(--quaternary-color);
     height: 100%;
     width: 20%;
     align-items: center;
@@ -599,7 +601,7 @@ input::-webkit-inner-spin-button {
 
     #left-side-panel {
         position: absolute;
-        background-color: #455d7a;
+        background-color: var(--quaternary-color);
         height: 100%;
         width: 30%;
         align-items: center;
@@ -610,7 +612,7 @@ input::-webkit-inner-spin-button {
     
     #right-side-panel {
         position: absolute;
-        background-color: #455d7a;
+        background-color: var(--quaternary-color);
         height: 100%;
         width: 30%;
         align-items: center;
@@ -788,8 +790,6 @@ input::-webkit-inner-spin-button {
         background-color: var(--secondary-color);
         padding: 15px;
         align-items: center;
-        /*align-items: top;
-        justify-content: space-between;*/
         flex-direction: column;
     }
 
