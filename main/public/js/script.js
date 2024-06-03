@@ -12,6 +12,7 @@ var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
 var username= '';
 var pw='';
+var checkUpload=true;
 //window.localStorage.setItem('username', username);
 
 
@@ -389,7 +390,15 @@ function createTable() {
 function saveGame(){
     savedMatrix = JSON.parse(JSON.stringify(recordMatrix));
     console.log("Saved Matrix: ", savedMatrix);
+    var savedMatrixString = JSON.stringify(savedMatrix);
+    if(listaMatrici.some(function(matrix) {return JSON.stringify(matrix) === savedMatrixString})){
+        checkUpload=false;
+        console.log("Matrice già presente")
+        return;
+    }
+    checkUpload=true;
     aggiungiDiv(null);
+    
 }
 
 // load the newest saved matrix
@@ -498,7 +507,12 @@ function clearButtonHandler() {
             grid[i][j]=0;
         }
     }
-    updateView(0);
+    updateView(1);
+    var cellsList = document.getElementsByClassName("live");
+    var cellCounter = cellsList.length;
+    console.log("Number of live cells: ", cellCounter);
+    var cellCounterField = document.getElementById("cell-counter");
+    cellCounterField.innerHTML = cellCounter;
 }
 
 // start/pause/continue the game
@@ -695,8 +709,8 @@ var listaMatrici = [];
 var listaDiv = [];
 
 function aggiungiDiv(downloadedmatrix) {
-    console.log("Stai aggiungendo il div");
-    var tempMatrix = savedMatrix.map(function(arr) {return arr.slice()});
+    console.log(listaMatrici, downloadedmatrix);
+    var tempMatrix = savedMatrix.map(function(arr){return arr.slice()});
     //Questo controllo serve per assegnare le matrici che vengono scaricate dal server
     if(downloadedmatrix != null){
         tempMatrix = downloadedmatrix.map(function(arr) {return arr.slice()});
@@ -774,10 +788,12 @@ function LeftContainerEvent(event) {
         var parentPanel = event.target.closest('.div-image');
         var index = listaDiv.indexOf(parentPanel);
         if (index !== -1){
-            grid = listaMatrici[index].map(function(arr) {return arr.slice()});
+            /*grid = listaMatrici[index].map(function(arr){return arr.slice()});
             console.log("Stai inserendo la matrice: ", grid);
             console.log("Dalla lista: ", listaMatrici);
-            updateView(1);
+            updateView(1);*/
+            savedMatrix=listaMatrici[index];
+            loadGame();
         }
     }
 };
@@ -960,7 +976,7 @@ function login(){
             console.log("Stai inserendo da database: ", matrixList);
             printDownloadedMatrix(matrixList);
             hideLoginForm();
-            //console.log(listaDiv.length, listaMatrici.length);
+            console.log(listaDiv.length, listaMatrici.length);
             document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
             window.localStorage.setItem('username', username);
             window.localStorage.setItem('password', password);
@@ -995,6 +1011,7 @@ function printDownloadedMatrix(list){
 }
 
 function uploadMatrix(){
+    if(!checkUpload){return;}
     var flag_upload = 1;
     //var username = document.getElementById('id-username-login').value;
     var matrix = JSON.stringify(savedMatrix);
@@ -1027,13 +1044,14 @@ function uploadMatrix(){
         //Sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
+            
         }
         //Inserimento della matrice fallito
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
         }
     }
-    // console.log(listaDiv.length, listaMatrici.length);
+    console.log(listaDiv.length, listaMatrici.length);
     
 }
 
@@ -1050,7 +1068,7 @@ function deleteMatrix(panel){
     //Non hai i permessi per l'upload
     if (username == '' || !flag_delete) return;
     // console.log(username, matrix);
-    // console.log(listaDiv.length, listaMatrici.length);
+    
 
     var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
 
@@ -1081,14 +1099,19 @@ function deleteMatrix(panel){
         //Sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
+            var rimosso=listaMatrici.splice(index, 1);
+            var rimosso=listaDiv.splice(index, 1);
+            console.log(listaDiv.length, listaMatrici.length);
+            
         }
-        //Inserimento della matrice fallito
+        //Eliminazione della matrice fallito
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
         }
     }
-    var rimosso=listaMatrici.splice(index, 1);
-    var rimosso=listaDiv.splice(index, 1);
+    //var rimosso=listaMatrici.splice(index, 1);
+    //var rimosso=listaDiv.splice(index, 1);
+    //console.log(listaDiv.length, listaMatrici.length);
 }
 
 
