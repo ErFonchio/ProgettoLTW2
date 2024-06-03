@@ -1,5 +1,5 @@
 var rows = 25;
-var cols = 70;
+var cols = 75;
 
 var playing = false;
 var permissionLogin = false;
@@ -10,6 +10,11 @@ var nextGrid = new Array(rows);
 var recordMatrix = new Array(rows);
 var nextRecordMatrix = new Array(rows);
 var savedMatrix = new Array(rows);
+var username= '';
+var pw='';
+var checkUpload=true;
+//window.localStorage.setItem('username', username);
+
 
 function handleVisibilityChange() {
     if (document.hidden) {
@@ -379,8 +384,8 @@ function createTable() {
         
     }
 
-    function updateView() {
-        isStillAlive();
+    function updateView(flag_update=false) {
+        if (!flag_update)isStillAlive();
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 var cell = document.getElementById(i + "_" + j);
@@ -397,6 +402,15 @@ function createTable() {
 function saveGame(){
     savedMatrix = JSON.parse(JSON.stringify(recordMatrix));
     console.log("Saved Matrix: ", savedMatrix);
+    var savedMatrixString = JSON.stringify(savedMatrix);
+    if(listaMatrici.some(function(matrix) {return JSON.stringify(matrix) === savedMatrixString})){
+        checkUpload=false;
+        console.log("Matrice già presente")
+        return;
+    }
+    checkUpload=true;
+    aggiungiDiv(null);
+    
 }
 
 // load the newest saved matrix
@@ -496,7 +510,6 @@ function clearButtonHandler() {
     }
     
     for (var i = 0; i < cells.length; i++) {
-
         cells[i].setAttribute("class", "dead");
     }
     for(var i=0; i<rows; i++){
@@ -505,7 +518,12 @@ function clearButtonHandler() {
             grid[i][j]=0;
         }
     }
-    updateView();
+    updateView(1);
+    var cellsList = document.getElementsByClassName("live");
+    var cellCounter = cellsList.length;
+    console.log("Number of live cells: ", cellCounter);
+    var cellCounterField = document.getElementById("cell-counter");
+    cellCounterField.innerHTML = cellCounter;
 }
 
 // start/pause/continue the game
@@ -515,7 +533,7 @@ function startButtonHandler() {
         playing = false;
         this.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
         clearTimeout(timer);
-    } else {
+    }else {
         console.log("Continue the game");
         playing = true;
         this.innerHTML = '<span class="material-symbols-outlined">pause</span>';
@@ -702,11 +720,14 @@ var listaMatrici = [];
 var listaDiv = [];
 
 function aggiungiDiv(downloadedmatrix) {
-    var tempMatrix = savedMatrix;
+    console.log(listaMatrici, downloadedmatrix);
+    var tempMatrix = savedMatrix.map(function(arr){return arr.slice()});
     //Questo controllo serve per assegnare le matrici che vengono scaricate dal server
     if(downloadedmatrix != null){
-        tempMatrix = downloadedmatrix;
+        tempMatrix = downloadedmatrix.map(function(arr) {return arr.slice()});
     }
+    //Prendo come riferimento il pannello di sinistra
+    var leftPanel = document.getElementById('scroll-container-ovest');
 
     //Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
@@ -714,22 +735,18 @@ function aggiungiDiv(downloadedmatrix) {
     listaMatrici.push(tempMatrix);
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
     nuovoDiv.style.paddingTop = '20px';
-
+    nuovoDiv.style.width = '70%';
 
     var nuovaImmagine = document.createElement('img');
     nuovaImmagine.src = createImageFromMatrix(tempMatrix);
-    var matrixHeight = tempMatrix.length;
-    var matrixWidth = tempMatrix[0].length;
-    var ratio = matrixWidth/matrixHeight;
-    nuovaImmagine.style.height = '70px'
-    nuovaImmagine.style.width = parseFloat(nuovaImmagine.style.height)*ratio +'px';
+
+    nuovaImmagine.style.width = '100%';
+    nuovaImmagine.style.height = '100%';
     nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
     nuovaImmagine.id = 'id-item-image';
 
     /*Aggiorno dimensioni del div in base all'immagine*/
     nuovoDiv.style.left = "50%";
-    nuovoDiv.style.width = nuovaImmagine.style.width;
-    nuovoDiv.style.height = nuovaImmagine.style.height;
 
     //aggiunta dell'immagine e della X per l'eliminazione
     nuovoDiv.appendChild(nuovaImmagine);
@@ -738,15 +755,15 @@ function aggiungiDiv(downloadedmatrix) {
     var popup = document.createElement('div');
     var divPopup = document.createElement('div');
     divPopup.className = 'div-popup';
-    divPopup.style.height = nuovaImmagine.style.height;
-    divPopup.style.weight = nuovaImmagine.style.weight;
+
     divPopup.style.top = nuovoDiv.style.paddingTop;
 
     popup.className = 'class-popup-left';
-    popup.style.height = divPopup.style.height;
-
+    
     nuovoDiv.append(divPopup);
     divPopup.append(popup);
+
+    
 
     var popupTop = document.createElement('div');
     var popupDown = document.createElement('div');
@@ -770,19 +787,24 @@ function aggiungiDiv(downloadedmatrix) {
 
     parentDiv.append(nuovoDiv);
 }
-function LeftContainerEvent(event) { 
-    if(event.target.className == 'popup-Top' || event.target.classList.contains('material-icons')) {
+function LeftContainerEvent(event) {
+    if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
+        console.log("adesso sei qui");
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
-        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine        
+        parentPanel.remove(); // Rimuovi il genitore dell'icona, ovvero il pannello grande che contiene l'immagine
+        deleteMatrix(parentPanel);     
     }
     
-    else if (event.target.classList.contains('popup-Down') || event.target.textContent == 'upload'){
-        console.log("Sei qui dentro");
+    else if (event.target.className == 'popup-Down' || event.target.textContent == 'upload') {
         var parentPanel = event.target.closest('.div-image');
         var index = listaDiv.indexOf(parentPanel);
         if (index !== -1){
-            grid = listaMatrici[index];
-            updateView();
+            /*grid = listaMatrici[index].map(function(arr){return arr.slice()});
+            console.log("Stai inserendo la matrice: ", grid);
+            console.log("Dalla lista: ", listaMatrici);
+            updateView(1);*/
+            savedMatrix=listaMatrici[index];
+            loadGame();
         }
     }
 };
@@ -791,7 +813,7 @@ function createImageFromMatrix(matrix) {
     // Creazione di un nuovo elemento canvas
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
-    var cellColor = '#ff0000'; // rosso
+    var cellColor = getComputedStyle(document.documentElement).getPropertyValue('--live-color').trim();
 
     // Definisci la larghezza e l'altezza delle celle
     var cellWidth = 10;
@@ -918,13 +940,19 @@ function register(){
     }
 }
 
+
+
 function login(){
     permissionLogin = false;
     var flag_login = 1;
-    var username = document.getElementById('id-username-login').value;
+    username = document.getElementById('id-username-login').value;
     var password = document.getElementById('id-password-login').value;
     console.log("Stai provando a fare il login con ", username, password);
     var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+    
+    console.log("user");
+    console.log(username);
+    console.log(password);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
@@ -952,13 +980,39 @@ function login(){
         }
         //Login riuscito: sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
-            matrixList = JSON.parse(data[5]).message;
+            var matrixList = JSON.parse(data[5]).message;
+            console.log("Ricevendo dal database1111: ", matrixList);
             permissionLogin = true;
             eliminaListaDiv(); //Rimuove gli stati registrati fino a questo momento
+            console.log("Stai inserendo da database: ", matrixList);
             printDownloadedMatrix(matrixList);
             hideLoginForm();
+            console.log(listaDiv.length, listaMatrici.length);
+            document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
+            window.localStorage.setItem('username', username);
+            window.localStorage.setItem('password', password);
+            console.log(window.localStorage.getItem("password"));
+            console.log(window.localStorage.getItem("username"));
+            
         }
     }
+}
+
+
+function logout(){
+    var confirmation = confirm("Are you sure you want to logout?");
+    if (confirmation){
+        permissionLogin = false;
+        eliminaListaDiv();
+        username='';
+        document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">passkey</span>';
+        document.getElementById('id-username-login').value = '';
+        document.getElementById('id-password-login').value = '';
+        window.localStorage.removeItem('username');
+        window.localStorage.removeItem('password');
+        console.log("Logged out");
+    }
+    else return;
 }
 
 function printDownloadedMatrix(list){
@@ -968,8 +1022,9 @@ function printDownloadedMatrix(list){
 }
 
 function uploadMatrix(){
+    if(!checkUpload){return;}
     var flag_upload = 1;
-    var username = document.getElementById('id-username-login').value;
+    //var username = document.getElementById('id-username-login').value;
     var matrix = JSON.stringify(savedMatrix);
     //Non hai i permessi per l'upload
     if (username == '' || !flag_upload) return;
@@ -1000,18 +1055,88 @@ function uploadMatrix(){
         //Sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
+            
         }
         //Inserimento della matrice fallito
         else if (data.length >= 6 && data[5] != null){
             console.log(JSON.parse(data[5]).message);
         }
     }
+    console.log(listaDiv.length, listaMatrici.length);
+    
+}
+
+function deleteMatrix(panel){
+    var flag_delete = 1;
+    //var username = document.getElementById('id-username-login').value;
+    
+    var index = listaDiv.indexOf(panel);
+    if (index !== -1){
+        matrice = listaMatrici[index];
+    }
+    console.log(matrice, index);
+    var matrix = JSON.stringify(matrice);
+    //Non hai i permessi per l'upload
+    if (username == '' || !flag_delete) return;
+    // console.log(username, matrix);
+    
+
+    var params = "flag_delete="+flag_delete+"&username="+username+"&matrix="+matrix;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.send(params);
+
+    xhr.onload = function(){
+        var data = JSON.parse(this.responseText);
+
+        //Empty username
+        if (data.length >= 3 && data[2] != null){
+            console.log(JSON.parse(data[2]).message);
+            
+        }
+        //Username non esistente
+        else if (data.length >= 4 && data[3] != null){
+            console.log(JSON.parse(data[3]).message);
+            
+        }
+        //Matrice vuota
+        else if (data.length >= 5 && data[4] != null){
+            console.log(JSON.parse(data[4]).message);
+            
+        }
+        //Sono arrivati 0 o più corrispondenze dalla tabella data
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+            var rimosso=listaMatrici.splice(index, 1);
+            var rimosso=listaDiv.splice(index, 1);
+            console.log(listaDiv.length, listaMatrici.length);
+            
+        }
+        //Eliminazione della matrice fallito
+        else if (data.length >= 6 && data[5] != null){
+            console.log(JSON.parse(data[5]).message);
+        }
+    }
+    //var rimosso=listaMatrici.splice(index, 1);
+    //var rimosso=listaDiv.splice(index, 1);
+    //console.log(listaDiv.length, listaMatrici.length);
 }
 
 
-document.getElementById('save').addEventListener('click', function() {
-    aggiungiDiv(null);
-});
+function eliminaListaDiv(){
+    for(let i=0; i<listaDiv.length; i++){
+        listaDiv[i].remove();
+    }
+    listaMatrici = [];
+    listaDiv=[];
+}
+
+// document.getElementById('save').addEventListener('click', function() {
+//     aggiungiDiv(null);
+// });
 document.getElementById('circle-ovest').addEventListener('click', LeftSidePanelSliding);
 document.getElementById('circle-est').addEventListener('click', RightSidePanelSliding);
 document.getElementById('scroll-container-ovest').addEventListener('click', LeftContainerEvent);
@@ -1020,8 +1145,17 @@ document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
 document.getElementById('save').addEventListener('click', uploadMatrix);
+document.getElementById('login').addEventListener('click', ManageLogin);
 
 
+function ManageLogin(){
+    if(!permissionLogin){
+        showLoginForm();
+    }
+    else{
+        logout();
+    }
+}
 
 /*login form*/
 function showLoginForm() {
@@ -1103,7 +1237,7 @@ for (var i = 0; i < divImages.length; i++) {
 };
 
 
-/*gestione pannelli su schermo mobile*/
+/*gestione resize pannelli*/
 document.getElementById('circle-ovest').addEventListener('click', clickOvest);
 function clickOvest() {
     if(openOvest==0) openOvest=1;
@@ -1161,5 +1295,38 @@ function checkResize(){
     previousWidth=currentWidth;
 };
 
+/*restoring session*/
+window.addEventListener('load', restoreSession());
+function restoreSession(){
+    console.log("b")
+    if(window.localStorage.getItem('username') != '' && window.localStorage.getItem('username') != null){
+        console.log("ok")
+        username = window.localStorage.getItem('username');
+        console.log(username);
+        permissionLogin = true;
+        document.getElementById("login").innerHTML = '<span class="material-symbols-outlined">logout</span>';
+        var flag_login = 1;
+        var password = window.localStorage.getItem('password');
+        var params = "flag_login="+flag_login+"&username="+username+"&password="+password;
+        console.log(password);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost/LTW/ltw.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+        
+        xhr.onload = function(){
+            var data = JSON.parse(this.responseText);
+            if (data.length >= 6 && data[5] != null){
+                matrixList = JSON.parse(data[5]).message;
+                printDownloadedMatrix(matrixList);
+                //add the code tho display the matrices
+            }
+        }
+        console.log(username)
+
+    }
+}
 
 
+
+ 
