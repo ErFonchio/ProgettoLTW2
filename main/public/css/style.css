@@ -481,8 +481,8 @@ p {
     justify-content: center;
     position: relative;
     transform: translate(-50%);
-    width: 70%;
-    padding-top: 20px;
+    /* width: 70%; */
+    padding-top: 20px; 
     display: flex;
 }
 
@@ -577,7 +577,6 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 1000px) {
     #title {
-        color: blue;
         font-size: 20px;
     }
     #infoButton {
