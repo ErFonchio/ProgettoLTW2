@@ -498,7 +498,7 @@ function clearButtonHandler() {
             grid[i][j]=0;
         }
     }
-    updateView(1);
+    updateView(0);
 }
 
 // start/pause/continue the game
@@ -695,36 +695,33 @@ var listaMatrici = [];
 var listaDiv = [];
 
 function aggiungiDiv(downloadedmatrix) {
-    var tempMatrix = savedMatrix;
+    console.log("Stai aggiungendo il div");
+    var tempMatrix = savedMatrix.map(function(arr) {return arr.slice()});
     //Questo controllo serve per assegnare le matrici che vengono scaricate dal server
     if(downloadedmatrix != null){
-        tempMatrix = downloadedmatrix;
-        console.log("Stai assegnando downloadedmatrix: ", downloadedmatrix);
+        tempMatrix = downloadedmatrix.map(function(arr) {return arr.slice()});
     }
+    //Prendo come riferimento il pannello di sinistra
+    var leftPanel = document.getElementById('scroll-container-ovest');
 
     //Creare un nuovo elemento div
     var nuovoDiv = document.createElement('div');
     listaDiv.push(nuovoDiv); //Serve per identificare il div la cui matrice voglio inserire nella griglia
-    console.log("Inserendo nella lista listaMatrici la matrice scaricata tempMatrix: ", tempMatrix);
     listaMatrici.push(tempMatrix);
     nuovoDiv.className = 'div-image'; // Aggiungere la classe 'child' al nuovo div
     nuovoDiv.style.paddingTop = '20px';
-
+    nuovoDiv.style.width = '70%';
 
     var nuovaImmagine = document.createElement('img');
     nuovaImmagine.src = createImageFromMatrix(tempMatrix);
-    var matrixHeight = tempMatrix.length;
-    var matrixWidth = tempMatrix[0].length;
-    var ratio = matrixHeight/matrixWidth;
-    nuovaImmagine.style.width = '200px';
-    nuovaImmagine.style.height = parseFloat(nuovaImmagine.style.width)*ratio +'px';
+
+    nuovaImmagine.style.width = '100%';
+    nuovaImmagine.style.height = '100%';
     nuovaImmagine.classList.add('item-image'); // Aggiungere la classe 'nuova-classe' all'immagine
     nuovaImmagine.id = 'id-item-image';
 
     /*Aggiorno dimensioni del div in base all'immagine*/
     nuovoDiv.style.left = "50%";
-    nuovoDiv.style.width = nuovaImmagine.style.width;
-    nuovoDiv.style.height = nuovaImmagine.style.height;
 
     //aggiunta dell'immagine e della X per l'eliminazione
     nuovoDiv.appendChild(nuovaImmagine);
@@ -733,15 +730,15 @@ function aggiungiDiv(downloadedmatrix) {
     var popup = document.createElement('div');
     var divPopup = document.createElement('div');
     divPopup.className = 'div-popup';
-    divPopup.style.height = nuovaImmagine.style.height;
-    divPopup.style.weight = nuovaImmagine.style.weight;
+
     divPopup.style.top = nuovoDiv.style.paddingTop;
 
     popup.className = 'class-popup-left';
-    popup.style.height = divPopup.style.height;
-
+    
     nuovoDiv.append(divPopup);
     divPopup.append(popup);
+
+    
 
     var popupTop = document.createElement('div');
     var popupDown = document.createElement('div');
@@ -764,9 +761,8 @@ function aggiungiDiv(downloadedmatrix) {
     var parentDiv = document.getElementById('scroll-container-ovest');
 
     parentDiv.append(nuovoDiv);
-    //console.log(listaMatrici.indexOf(tempMatrix));
 }
-function LeftContainerEvent(event) { 
+function LeftContainerEvent(event) {
     if(event.target.className == 'popup-Top' || event.target.textContent == 'delete') {
         console.log("adesso sei qui");
         var parentPanel = event.target.closest('.div-image'); // Trova il genitore del pulsante con la classe 'div-image'
@@ -778,7 +774,7 @@ function LeftContainerEvent(event) {
         var parentPanel = event.target.closest('.div-image');
         var index = listaDiv.indexOf(parentPanel);
         if (index !== -1){
-            grid = listaMatrici[index];
+            grid = listaMatrici[index].map(function(arr) {return arr.slice()});
             console.log("Stai inserendo la matrice: ", grid);
             console.log("Dalla lista: ", listaMatrici);
             updateView(1);
@@ -957,7 +953,7 @@ function login(){
         }
         //Login riuscito: sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
-            matrixList = JSON.parse(data[5]).message;
+            var matrixList = JSON.parse(data[5]).message;
             console.log("Ricevendo dal database1111: ", matrixList);
             permissionLogin = true;
             eliminaListaDiv(); //Rimuove gli stati registrati fino a questo momento

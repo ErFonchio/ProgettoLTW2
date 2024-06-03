@@ -514,9 +514,12 @@ p {
 
 .div-popup {
     position: absolute;
-    height: 100%;
+    height: calc(100% - 20px); /* 100% meno 20px di padding top */
     width: 100%;
+    box-sizing: border-box;
 }
+
+
 
 .class-popup-left {
     position: absolute;
