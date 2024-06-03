@@ -438,7 +438,8 @@ function loadGame() {
 }
 
 // listener del bottone save
-document.getElementById('save').addEventListener('click', saveGame);
+document.getElementById('save-ext').addEventListener('click', saveGame);
+document.getElementById('save-res').addEventListener('click', saveGame);
 
 // listener del bottone load
 document.getElementById('load').addEventListener('click', loadGame);
@@ -1144,7 +1145,8 @@ document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
-document.getElementById('save').addEventListener('click', uploadMatrix);
+document.getElementById('save-ext').addEventListener('click', uploadMatrix);
+document.getElementById('save-res').addEventListener('click', uploadMatrix);
 document.getElementById('login').addEventListener('click', ManageLogin);
 
 
