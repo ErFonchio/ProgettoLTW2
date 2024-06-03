@@ -42,8 +42,6 @@ body {
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
     overflow: auto;
     cursor: pointer;
 }
@@ -463,8 +461,6 @@ p {
     align-items: center;
     justify-content: center;
     display: inline-block;
-    
-    
 }
 
 
@@ -485,7 +481,6 @@ p {
     width: 70%;
     padding-top: 20px;
     display: flex;
-
 }
 
 .div-image-right{
@@ -498,7 +493,6 @@ p {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-
 }
 
 
@@ -621,10 +615,6 @@ input::-webkit-inner-spin-button {
         align-items: center;
         border-radius: 8px;
         right: -29%;
-        
-        
-        
-    
     }
     
     
@@ -811,13 +801,7 @@ input::-webkit-inner-spin-button {
     .img {
         width: 100%;
         height: 100%
-    }
-
-    
-
-   
-
-    
+    }    
 }
 
 @media(max-width: 400px){
@@ -833,8 +817,6 @@ input::-webkit-inner-spin-button {
         align-items: center;
         border-radius: 8px;
         left: -92%;
-        
-        
     }
     
     #right-side-panel {
@@ -845,8 +827,6 @@ input::-webkit-inner-spin-button {
         align-items: center;
         border-radius: 8px;
         right: -92%;
-
-        
     }
     
     
