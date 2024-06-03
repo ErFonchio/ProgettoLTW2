@@ -1,5 +1,6 @@
 // SEZIONE PER IL RANKING
 // Permette prima
+
 document.addEventListener('DOMContentLoaded', initializeUsersPage);
 function initializeUsersPage(){
     //Controllo sulla pagina di origine
@@ -40,6 +41,7 @@ function initializeUsersPage(){
 }
 
 function createUsersDiv(listaUtenti){
+    var midWrapper = document.getElementById("id-midWrapper");
     var lista = JSON.parse(listaUtenti);
     var dizionario = {};
 
@@ -56,23 +58,88 @@ function createUsersDiv(listaUtenti){
             dizionario[username] = [matrix];
         }
     }
-
-    //Creazione div
-    for (var username in dizionario) {
-        // Crea un nuovo elemento div
-        var div = document.createElement('div');
-        div.className = 'specialUser';
     
+
+    var usernames = Object.keys(dizionario);
+    //Creazione div
+    for (var i=0; i<usernames.length; i++) {
+        var username = usernames[i];
+        // Crea un nuovo elemento div
+        var wrapper = document.createElement('div');
+        wrapper.className = 'slider-wrapper';
+        var matrix = dizionario[username];
+    
+        //Aggiungo il wrapper al container
+        var container = document.createElement('section');
+        //Aggiungo container a midWrapper
+        //Container contiene wrapper + navigation bar
+        midWrapper.appendChild(container);
+        
         // Crea un elemento h2 per il titolo
         var h2 = document.createElement('h2');
         h2.textContent = username;
     
-        // Aggiungi l'h2 al div
-        div.appendChild(h2);
-    
-        // Aggiungi il div al body del documento
-        document.body.appendChild(div);
+        midWrapper.appendChild(h2);
+        container.appendChild(wrapper);
+
+        //Aggiungo uno sliderNav al wrapper
+        var sliderNav = document.createElement('div');
+        sliderNav.className = 'slider-nav';
+
+        //Prendo le matrici e le parso da JSON
+        for (var j = 0; j < matrix.length; j++) {
+            var img = document.createElement('img');
+            img.src = createImageFromMatrix(JSON.parse(matrix[j]));
+            slider = document.createElement('div');
+            slider.className = 'slider';
+            slider.appendChild(img);
+            img.id = 'slider'+i+j;
+            console.log("Stai creando lo slider: ", slider.id);
+            wrapper.appendChild(slider);
+            var a = document.createElement('a');
+            a.href = '#slider' + i + j;
+            sliderNav.appendChild(a); // Aggiungi l'elemento 'a' a 'sliderNav'
+        }
+        container.appendChild(sliderNav);
     }
+    
 }
 
+
+
+
+function createImageFromMatrix(matrix) {
+    // Creazione di un nuovo elemento canvas
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    var cellColor = getComputedStyle(document.documentElement).getPropertyValue('--live-color').trim();
+
+    // Definisci la larghezza e l'altezza delle celle
+    var cellWidth = 10;
+    var cellHeight = 10;
+
+    // Impostazione delle dimensioni del canvas
+    canvas.width = matrix[0].length*cellWidth; // Larghezza basata sulla lunghezza delle colonne
+    canvas.height = matrix.length*cellHeight; // Altezza basata sul numero di righe
+
+    // Iterazione sull'array per disegnare sull'canvas
+    for (var i = 0; i < matrix.length; i++) {
+        for (var j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] === 1) {
+                // Disegna un rettangolo pieno quando il valore è 1
+                ctx.fillStyle = cellColor;
+            }
+            else{
+                ctx.fillStyle = '#ffffff'; // bianco
+            }
+            // Disegna la cella
+            ctx.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+            // Disegna il bordo della cella
+            ctx.strokeStyle = '#000000'; // nero
+            ctx.strokeRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+        }
+    }
+    // Restituisci il canvas creato
+    return canvas.toDataURL();
+};
 
