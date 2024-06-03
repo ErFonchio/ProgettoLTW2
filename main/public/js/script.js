@@ -786,7 +786,7 @@ function createImageFromMatrix(matrix) {
     // Creazione di un nuovo elemento canvas
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
-    var cellColor = '#ff0000'; // rosso
+    var cellColor = getComputedStyle(document.documentElement).getPropertyValue('--live-color').trim();
 
     // Definisci la larghezza e l'altezza delle celle
     var cellWidth = 10;

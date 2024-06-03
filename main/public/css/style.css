@@ -485,8 +485,6 @@ p {
     width: 70%;
     padding-top: 20px;
     display: flex;
-    
-    
 
 }
 
@@ -508,7 +506,6 @@ p {
     opacity: 1.0;
     width: 80%;
     cursor: pointer;
-    
 
 }
 
@@ -518,8 +515,6 @@ p {
     width: 100%;
     box-sizing: border-box;
 }
-
-
 
 .class-popup-left {
     position: absolute;
