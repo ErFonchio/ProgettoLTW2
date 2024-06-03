@@ -1,5 +1,5 @@
 var rows = 25;
-var cols = 70;
+var cols = 75;
 
 var playing = false;
 var permissionLogin = false;
