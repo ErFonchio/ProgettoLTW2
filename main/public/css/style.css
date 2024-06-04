@@ -861,6 +861,16 @@ input::-webkit-inner-spin-button {
     #right-side-panel.slide-right {
         transform: translateX(-92%);
     }
+    #infoButton {
+        position: absolute;
+        cursor: pointer;
+        top: 6%;
+        right: 4%;
+        font-size: 20px;
+        background-color: var(--primary-color);
+        color: var(--quaternary-color);
+        border-radius: 90px;
+    }
     
     
 }
