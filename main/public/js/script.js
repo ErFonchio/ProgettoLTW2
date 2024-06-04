@@ -1,5 +1,5 @@
 var rows = 25;
-var cols = 70;
+var cols = 75;
 
 var playing = false;
 var permissionLogin = false;
@@ -15,6 +15,18 @@ var pw='';
 var checkUpload=true;
 //window.localStorage.setItem('username', username);
 
+
+function handleVisibilityChange() {
+    if (document.hidden) {
+        console.log("Tab is not in focus");
+        document.title =  "Torna QUI ✨😎"
+    } else {
+        console.log("Tab is in focus");
+        document.title = "The Game of Life"
+    }
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
 
 /*patterns*/
 var gliderMatrix= [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -426,7 +438,8 @@ function loadGame() {
 }
 
 // listener del bottone save
-document.getElementById('save').addEventListener('click', saveGame);
+document.getElementById('save-ext').addEventListener('click', saveGame);
+document.getElementById('save-res').addEventListener('click', saveGame);
 
 // listener del bottone load
 document.getElementById('load').addEventListener('click', loadGame);
@@ -498,7 +511,6 @@ function clearButtonHandler() {
     }
     
     for (var i = 0; i < cells.length; i++) {
-
         cells[i].setAttribute("class", "dead");
     }
     for(var i=0; i<rows; i++){
@@ -1133,7 +1145,8 @@ document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
 document.getElementById('id-register').addEventListener('mousedown', register);
 document.getElementById('id-login').addEventListener('mousedown', login);
-document.getElementById('save').addEventListener('click', uploadMatrix);
+document.getElementById('save-ext').addEventListener('click', uploadMatrix);
+document.getElementById('save-res').addEventListener('click', uploadMatrix);
 document.getElementById('login').addEventListener('click', ManageLogin);
 
 

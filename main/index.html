@@ -33,7 +33,7 @@
         <header>
             <h1 id="title">The Game of Life</h1>
             <div class="nav-bar">
-                <a id="login" class="nav-item"><span class="material-symbols-outlined">passkey</span></a>
+                <a class="nav-item" id="login"><span class="material-symbols-outlined">passkey</span></a>
                 <a class="nav-item" href="about.html"><span class="material-symbols-outlined">info</span></a>
                 <!-- <a class="nav-item" href="ranking.html" ><span class="material-symbols-outlined">star_rate</span></a> -->
 
@@ -161,19 +161,17 @@
                 <span id="cell-counter">0</span>
             </div>
             <div class="save-buttons">
-                <md-filled-button id="save"><span class="material-symbols-outlined">save</span></md-filled-button>
+                <md-filled-button id="save-ext"><span class="material-symbols-outlined">save</span></md-filled-button>
                 <md-filled-button id="load"><span class="material-symbols-outlined">restore</span></md-filled-button>
             </div>
             <div class="control-buttons">
-                <div class="controls">
+                    <md-filled-button id="save-res"><span class="material-symbols-outlined">save</span></md-filled-button>
                     <md-filled-button id="zoom-out"><span class="material-symbols-outlined">zoom_out</span></md-filled-button>
                     <md-filled-button id="clear"><span class="material-symbols-outlined">restart_alt</span></md-filled-button>
                     <md-filled-button id="start"><span class="material-symbols-outlined">play_arrow</span></md-filled-button>
                     <md-filled-button id="random"><span class="material-symbols-outlined">casino</span></md-filled-button>
                     <md-filled-button id="zoom-in"><span class="material-symbols-outlined">zoom_in</span></md-filled-button>
                     
-
-                </div>
             </div>
             <div class="fps-control">
                 <md-filled-button id="decrease-fps" ><span class="material-symbols-outlined">remove</span></md-filled-button>
@@ -208,7 +206,7 @@
                     <label for="username">Email</label><br>
                     <input type="text" class="field" id="id-username-signup" placeholder="Username" required><br>
                     <label for="password">Password</label><br>
-                    <input type="password" class="field" id="id-password-signup" placeholder="Password" required> <br>
+                    <input type="password" class="field" id="id-password-signup" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero, una lettera maiuscola, una lettera minuscola e almeno 8 o più caratteri" required> <br>
                     <input type="submit" class="login-button" value="Register" id="id-register" onsubmit="return false">
                     <input type="button" class="login-button" value="Go to Login" onclick="backToLogin()">
                     <input type="button" class="close-button" value="&#x2716;" onclick="hideSignupForm()">
@@ -221,5 +219,5 @@
 
 
 <script src="public/js/script.js"></script>
-<script src="public/js/orientationTest.js"></script>
+<script src="public/js/orientation.js"></script>
 </html>

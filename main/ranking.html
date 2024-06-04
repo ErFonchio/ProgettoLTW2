@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <script type="importmap">
         {
           "imports": {
             "@material/web/": "https://esm.run/@material/web/"
           }
         }
-      </script>
+    </script>
     <script type="module">
         import '@material/web/all.js';
         import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
@@ -24,14 +25,96 @@
     <script src="public/js/specialUsers.js"></script>
 </head>
 <body>
-    <header>
-        <h1 id="title">The Game of Life</h1>
-        <div class="nav-bar">
-            <a class="nav-item" href="index.html"><span class="material-symbols-outlined">home</span></a>
+    <div class="ManagerWrapper">
+        <header>
+            <h1 id="title">The Game of Life</h1>
+            <div class="nav-bar">
+                <a class="nav-item" href="index.html"><span class="material-symbols-outlined">home</span></a>
+            </div>
+        </header>
+        <div class="first-container">
+            <h2 class="subtitle">Gennaro66</h2>
+            <section class="carousel-container">
+                <div class="slider-wrapper">
+                    <div class="slider">
+                        <img id="slide-01" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.14.15.png" alt=""/>
+                        <img id="slide-02" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.15.07.png" alt=""/>
+                    </div>
+                    <div class="slider-nav">
+                        <a href="#slide-01" class="horizontal-scroll"></a>
+                        <a href="#slide-02" class="horizontal-scroll"></a>
+                    </div>
+                </div>
+            </section>
+            <h2 class="subtitle">Ship_destroyer_x8</h2>
+            <section class="carousel-container">
+                <div class="slider-wrapper">
+                    <div class="slider">
+                        <img id="slide-11" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.16.35.png" alt=""/>
+                        <img id="slide-12" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.17.12.png" alt=""/>
+                        <img id="slide-13" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.18.02.png" alt=""/>
+                    </div>
+                    <div class="slider-nav">
+                        <a href="#slide-11" class="horizontal-scroll"></a>
+                        <a href="#slide-12" class="horizontal-scroll"></a>
+                        <a href="#slide-13" class="horizontal-scroll"></a>
+                    </div>
+                </div>
+            </section>
+            <h2 class="subtitle">Giacomino_il_fungo_tragico</h2>
+            <section class="carousel-container">
+                <div class="slider-wrapper">
+                    <div class="slider">
+                        <img id="slide-21" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.18.28.png" alt=""/>
+                        <img id="slide-22" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.19.02.png" alt=""/>
+                        <img id="slide-23" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.19.20.png" alt=""/>
+                        <img id="slide-24" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.19.51.png" alt=""/>
+                        <img id="slide-25" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.20.07.png" alt=""/>
+                    </div>
+                    <div class="slider-nav">
+                        <a href="#slide-21" class="horizontal-scroll"></a>
+                        <a href="#slide-22" class="horizontal-scroll"></a>
+                        <a href="#slide-23" class="horizontal-scroll"></a>
+                        <a href="#slide-24" class="horizontal-scroll"></a>
+                        <a href="#slide-25" class="horizontal-scroll"></a>
+                    </div>
+                </div>
+            </section>
+            <h2 class="subtitle">Maria_antonietta</h2>
+            <section class="carousel-container">
+                <div class="slider-wrapper">
+                    <div class="slider">
+                        <img id="slide-31" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.14.15.png" alt=""/>
+                        <img id="slide-32" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.15.07.png" alt=""/>
+                        <img id="slide-33" src="public/immaginiSpeciali/Screenshot 2024-06-03 alle 23.15.07.png" alt=""/>
+                    </div>
+                    <div class="slider-nav">
+                        <a href="#slide-31" class="horizontal-scroll"></a>
+                        <a href="#slide-32" class="horizontal-scroll"></a>
+                        <a href="#slide-33" class="horizontal-scroll"></a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </header>
-    <div class="midWrapper"></div>
-    
-    
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.horizontal-scroll').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    const slider = targetElement.closest('.slider');
+                    const targetOffset = targetElement.offsetLeft - slider.offsetLeft;
+
+                    slider.scroll({
+                        left: targetOffset,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
