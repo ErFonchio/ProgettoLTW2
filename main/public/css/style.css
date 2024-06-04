@@ -580,7 +580,6 @@ input::-webkit-inner-spin-button {
     
 
     #title {
-        color: red;
         font-size: 20px;
     }
     #infoButton {
@@ -820,7 +819,6 @@ input::-webkit-inner-spin-button {
 
 @media(max-width: 700px) {
     .second-container {
-        background-color: var(--secondary-color);
         padding: 15px;
         align-items: center;
         flex-direction: column;
