@@ -902,6 +902,14 @@ gridContainer.addEventListener('mousemove', (e) => {
 });
 
 function register(){
+    //Controllo sulla password
+    var password = document.getElementById('id-password-signup').value;
+    var passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+    if (!passwordRegex.test(password)) {
+        document.getElementById('id-password-signup').setCustomValidity("Assicurati di inserire almeno 8 caratteri, di cui almeno una lettera maiuscola, una lettera minuscola, un numero e un carattere speciale");
+        return;
+    }
+
     permissionLogin = false;
     var flag_register = 1;
     var username = document.getElementById('id-username-signup').value;
@@ -1182,7 +1190,7 @@ function hideSignupForm() {
     ModalSign.style.display = "none";
 };
 
-function backToLogin(){
+function backToLogin(event){
     hideSignupForm();
     showLoginForm();
 };
@@ -1328,7 +1336,6 @@ function restoreSession(){
 
     }
 }
-
 
 
  
