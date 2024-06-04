@@ -986,6 +986,7 @@ function login(){
         //Questo comunica se la password inserita è errata
         else if (data.length >= 5 && data[4] != null){
             console.log(JSON.parse(data[4]).message);
+            document.getElementById('id-password-login').setCustomValidity("Password inserita errata");
         }
         //Login riuscito: sono arrivati 0 o più corrispondenze dalla tabella data
         else if (data.length >= 6 && data[5] != null){
