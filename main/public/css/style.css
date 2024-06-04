@@ -690,9 +690,9 @@ input::-webkit-inner-spin-button {
     }
 
     .nav-bar span {
-        font-size: 20px;;
+        font-size: 32px;
         padding-left: 0;
-        padding-right: 5vw;
+        padding-right: 16px;
         
     }
 
@@ -799,10 +799,6 @@ input::-webkit-inner-spin-button {
     
     }
     
-    .nav-bar span {
-        font-size: 20px;
-    }
-    
     
     
     .fps-counter-div {
@@ -818,6 +814,21 @@ input::-webkit-inner-spin-button {
 
 
 @media(max-width: 700px) {
+
+    #title {
+        font-size: 24px;
+    }
+
+    .nav-bar span {
+        font-size: 24px;
+        
+    }
+
+    header {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
     .second-container {
         padding: 15px;
         align-items: center;
@@ -838,7 +849,7 @@ input::-webkit-inner-spin-button {
 
 @media(max-width: 400px){
     .nav-bar span {
-        font-size: 40px;
+        font-size: 24px;
     }
     
     #left-side-panel {
@@ -861,7 +872,14 @@ input::-webkit-inner-spin-button {
         right: -92%;
     }
     
-    
+    #title {
+        font-size: 18px;
+        margin-left: -10px;
+        margin-right: 0;
+        padding-left: 0;
+    }
+
+
     
     /* Transitioning*/
     #left-side-panel.slide-left {
@@ -1028,6 +1046,8 @@ label {
     .control-buttons > * {
         margin: 0px 10px 0px 10px;
     }
+
+    
 
 }
 
