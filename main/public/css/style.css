@@ -853,7 +853,7 @@ input::-webkit-inner-spin-button {
     }
 }
 
-@media(max-width: 400px){
+@media(max-width: 450px){
     .nav-bar span {
         font-size: 24px;
     }

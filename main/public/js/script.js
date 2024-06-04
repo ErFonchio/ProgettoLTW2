@@ -1252,7 +1252,7 @@ document.getElementById('circle-ovest').addEventListener('click', clickOvest);
 function clickOvest() {
     if(openOvest==0) openOvest=1;
     else openOvest=0;
-    if (window.innerWidth < 400) {
+    if (window.innerWidth < 450) {
         var element = document.getElementById('circle-est'); // replace 'yourElementId' with the id of your element
         if(element.style.display != 'none'){
             element.style.display = 'none';
@@ -1267,7 +1267,7 @@ document.getElementById('circle-est').addEventListener('click', clickEst);
 function clickEst() {
     if(openEst==0) openEst=1;
     else openEst=0;
-    if (window.innerWidth < 400) {
+    if (window.innerWidth < 450) {
         var element = document.getElementById('circle-ovest'); // replace 'yourElementId' with the id of your element
         if(element.style.display != 'none'){
             element.style.display = 'none';
@@ -1282,13 +1282,13 @@ window.addEventListener('resize', checkResize );
 var previousWidth=window.innerWidth;
 function checkResize(){
     var currentWidth = window.innerWidth;
-    if (currentWidth >= 400) {
+    if (currentWidth >= 450) {
         var element = document.getElementById('circle-ovest');
         element.style.display = 'flex';
         var element = document.getElementById('circle-est');
         element.style.display = 'flex';
     }
-    if (currentWidth < 400 && previousWidth>=400) {
+    if (currentWidth < 450 && previousWidth>=450) {
         var elementOvest = document.getElementById('circle-ovest');
         var elementEst = document.getElementById('circle-est');
         if(openOvest==1){
